@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../controller/side_menu_controller.dart';
 import '../../resource_manager/assets_manager.dart';
 import '../../resource_manager/color_manager.dart';
+import '../../routes_manger.dart';
 
 class SideMenu extends StatelessWidget {
   final SideMenuController sideMenuController = Get.put(SideMenuController());
@@ -76,7 +77,7 @@ class SideMenu extends StatelessWidget {
                     title: const Text('Logout'),
                     onTap: () {
                       // Handle logout action
-                      Get.back(); // Close the drawer
+                      Get.toNamed(Routes.loginRoute); // Close the drawer
                     },
                   ),
                 ],

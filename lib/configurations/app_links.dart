@@ -67,6 +67,7 @@ class ExamLinks {
   static const examRooms = 'exam-rooms';
   static const examRoomsControlMission = 'exam-rooms/control-mission';
   static const examRoomsSchoolClass = 'exam-rooms/school-class';
+  static const examRoomNextExam = 'exam-rooms/next-exams';
 }
 
 class UserRolesSystemsLink {

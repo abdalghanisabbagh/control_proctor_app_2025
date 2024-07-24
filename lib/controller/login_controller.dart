@@ -25,7 +25,7 @@ class LoginController extends GetxController {
   Future<bool> login(String username, String password) async {
     isLoading = true;
     bool isLogin = false;
-    // update(['login_btn']);
+    update();
     ResponseHandler<LoginResModel> responseHandler = ResponseHandler();
 
     var response = await responseHandler.getResponse(
@@ -59,30 +59,4 @@ class LoginController extends GetxController {
     update();
     return isLogin;
   }
-
-  // Future<String?> refreshToken() async {
-  //   if (tokenService.tokenModel == null) {
-  //     return null;
-  //   }
-  //   String refresh = tokenService.tokenModel!.rToken;
-  //   var dio = Dio(
-  //     BaseOptions(
-  //       baseUrl: AppLinks.baseUrl,
-  //     ),
-  //   );
-
-  //   // DioException Error in the networklayer can not be resolved by the library
-  //   var response = await dio
-  //       .post(AuthLinks.refresh, data: {'refreshToken': refresh}).onError(
-  //     (error, stackTrace) {
-  //       ErrorHandler.handle(error);
-  //       return Response(requestOptions: RequestOptions(path: 'error'));
-  //     },
-  //   );
-  //   // if response is good we get new access token need to replace
-  //   //  update refresh token in local storage and profile controller
-
-  //   tokenService.saveNewAccessToken(response.data['data']);
-  //   return response.data['data'];
-  // }
 }

@@ -21,8 +21,9 @@ class Routes {
         binding: LoginBinding(),
         transitionDuration: const Duration(seconds: 1)),
     GetPage(
+        binding: NextExamBindings(),
         name: nextExams,
-        page: () => const NextExams(),
+        page: () => const NextExamPage(),
         transitionDuration: const Duration(seconds: 1)),
     GetPage(
         name: allExams,

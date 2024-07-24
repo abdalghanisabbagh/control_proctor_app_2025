@@ -1,0 +1,20 @@
+import 'package:control_proctor/models/next%20exam/next_exam_res_model.dart';
+
+class NextExamsResModel {
+  NextExamsResModel({this.data});
+
+  NextExamsResModel.fromJson(json) {
+    data = List<NextExamResModel>.from(
+        json.map((e) => NextExamResModel.fromJson(e)).toList());
+  }
+
+  List<NextExamResModel>? data;
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}

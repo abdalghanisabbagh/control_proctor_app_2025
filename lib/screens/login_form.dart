@@ -10,6 +10,8 @@ import 'package:control_proctor/resource_manager/assets_manager.dart';
 import 'package:control_proctor/resource_manager/color_manager.dart';
 import 'package:control_proctor/resource_manager/validations.dart';
 
+import '../routes_manger.dart';
+
 class LoginForm extends GetView<LoginController> {
   final emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -115,30 +117,34 @@ class LoginForm extends GetView<LoginController> {
                       const SizedBox(
                         height: 32,
                       ),
-                      controller.isLoading
-                          ? SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: FittedBox(
-                                child: LoadingIndicators.getLoadingIndicator(),
-                              ),
-                            )
-                          : SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  _login(
-                                    controller.login,
-                                    emailController.text,
-                                    passwordController.text,
-                                    formKey,
-                                    context,
-                                  );
-                                },
-                                child: const Text("Login"),
-                              ),
-                            )
+                      GetBuilder<LoginController>(builder: (_) {
+                        if (controller.isLoading) {
+                          return SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: FittedBox(
+                              child: LoadingIndicators.getLoadingIndicator(),
+                            ),
+                          );
+                        } else {
+                          return SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                _login(
+                                  controller.login,
+                                  emailController.text,
+                                  passwordController.text,
+                                  formKey,
+                                  context,
+                                );
+                              },
+                              child: const Text("Login"),
+                            ),
+                          );
+                        }
+                      })
                     ],
                   ),
                 ),
@@ -164,7 +170,7 @@ void _login(
         'You have been logged in successfully',
         'Success',
       ).show(Get.context!);
-      Get.to(() => const NextExams());
+      Get.toNamed(Routes.nextExams);
     } else {
       MyFlashBar.showError(
         'Login failed. Please try again.',

@@ -17,23 +17,7 @@ class ResponseHandler<T> {
     Map<String, dynamic>? params,
     dynamic body,
   }) async {
-    //  TokenService tokenService = Get.find<TokenService>();
-    // String dtoken =
-    //     tokenService.tokenModel?.dToken ?? DateTime.now().toIso8601String();
-    // DateTime? tokenTime = DateTime.tryParse(dtoken);
-    // if (DateTime.now().difference(tokenTime!).inMinutes > 55) {
-    //   String? newAccessToken = await Get.find<LoginController>().refreshToken();
-    //   _dio = DioFactory().getDio(
-    //     token: newAccessToken != null
-    //         ? TokenModel(
-    //             aToken: newAccessToken,
-    //             dToken: dtoken,
-    //             rToken: tokenService.tokenModel!.rToken,
-    //           )
-    //         : null,
-    //   );
-    // }
-
+   
     switch (type) {
       case ReqTypeEnum.GET:
         return await _get(path, converter, params, body);
