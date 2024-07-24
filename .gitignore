@@ -45,4 +45,3 @@ app.*.map.json
 
 # IDE - VSCode
 .vscode/*
-!.vscode/settings.json
