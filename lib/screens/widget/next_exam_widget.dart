@@ -9,10 +9,12 @@ import '../../resource_manager/color_manager.dart';
 // ignore: must_be_immutable
 class NextExamWidget extends GetView<NextExamController> {
   final NextExamResModel nextExamResModel;
+  final int index;
 
   const NextExamWidget({
     super.key,
     required this.nextExamResModel,
+    required this.index,
   });
 
   @override
@@ -44,45 +46,53 @@ class NextExamWidget extends GetView<NextExamController> {
                       "Room: ${nextExamResModel.examRoomResModel!.name!}",
                       style: const TextStyle(
                         color: ColorManager.primary,
-                        fontSize: 20,
+                        fontSize: 10,
                       ),
                     ),
                     const Spacer(),
-                    // GetBuilder<CoversSheetsController>(
-                    //     builder: (coversSheetsController) {
-                    //   return IconButton(
-                    //     onPressed: () {
-                    //       MyAwesomeDialogue(
-                    //         title: 'Delete Exam Cover Sheet',
-                    //         desc:
-                    //             'Are you sure you want to delete this mission?',
-                    //         dialogType: DialogType.warning,
-                    //         btnCancelOnPressed: () {},
-                    //         btnOkOnPressed: () {
-                    //           coversSheetsController
-                    //               .deleteExamMission(id: examMissionObject.iD!)
-                    //               .then((value) {
-                    //             if (value) {
-                    //               MyFlashBar.showSuccess(
-                    //                 'Success',
-                    //                 'Students have been distributed successfully',
-                    //               ).show(context);
-                    //             }
-                    //           });
-                    //         },
-                    //       ).showDialogue(context);
-                    //     },
-                    //     icon: CircleAvatar(
-                    //       backgroundColor: ColorManager.red,
-                    //       child: Icon(
-                    //         Icons.delete_forever,
-                    //         color: ColorManager.white,
-                    //       ),
-                    //     ),
-                    //   );
-                    // }),
+                    Text(
+                      "${nextExamResModel.month!} ",
+                      style: const TextStyle(
+                        color: ColorManager.primary,
+                        fontSize: 10,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      "Class: ${nextExamResModel.examRoomResModel!.classRoomResModel!.name!}",
+                      style: const TextStyle(
+                        color: ColorManager.primary,
+                        fontSize: 10,
+                      ),
+                    ),
                   ],
                 ),
+                const SizedBox(height: 5),
+                Text(
+                  "Session: ${nextExamResModel.period == true ? "One" : "Two"} ",
+                  style: const TextStyle(
+                    color: ColorManager.primary,
+                    fontSize: 10,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Row(children: [
+                  Text(
+                    "Subject: ${nextExamResModel.examMissionsResModel!.data![index].subjectResModel!.name!}(${nextExamResModel.examMissionsResModel!.data![index].gradeResModel!.name!})",
+                    style: const TextStyle(
+                      color: ColorManager.primary,
+                      fontSize: 10,
+                    ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    "Strart in: ${DateTime.parse(nextExamResModel.examMissionsResModel!.data![index].startTime!).hour}:${DateTime.parse(nextExamResModel.examMissionsResModel!.data![index].startTime!).minute} ",
+                    style: const TextStyle(
+                      color: ColorManager.primary,
+                      fontSize: 10,
+                    ),
+                  ),
+                ])
               ],
             ),
           ),

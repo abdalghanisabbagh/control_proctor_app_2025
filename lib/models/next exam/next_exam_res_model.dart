@@ -23,8 +23,8 @@ class NextExamResModel {
     month = json['Month'];
     year = json['Year'];
     period = json['Period'];
-    examMissionsResModel = json['exam_missions'] != null
-        ? ExamMissionsResModel.fromJson(json['exam_missions'])
+    examMissionsResModel = json['examMissions'] != null
+        ? ExamMissionsResModel.fromJson(json['examMissions'])
         : null;
   }
 
@@ -37,7 +37,7 @@ class NextExamResModel {
     data['Year'] = year;
     data['Period'] = period;
     if (examMissionsResModel != null) {
-      data['exam_missions'] = examMissionsResModel!.toJson();
+      data['examMissions'] = examMissionsResModel!.toJson();
     }
     return data;
   }

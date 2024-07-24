@@ -53,10 +53,11 @@ class NextExamsPage extends GetView<NextExamController> {
                 itemBuilder: (context, index) {
                   return GetBuilder<NextExamController>(
                       //  id: controller.nextExamList[index].,
-                      builder: (context) {
+                      builder: (_) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: NextExamWidget(
+                        index: index,
                         nextExamResModel: controller.nextExamList[index],
                       ),
                     );
