@@ -7,6 +7,7 @@ import '../../resource_manager/color_manager.dart';
 import '../../routes_manger.dart';
 
 class SideMenu extends StatelessWidget {
+  SideMenu({super.key});
   final SideMenuController sideMenuController = Get.put(SideMenuController());
 
   @override
@@ -106,7 +107,7 @@ class SideMenu extends StatelessWidget {
       },
       shape: sideMenuController.currentPage.value == pageName
           ? RoundedRectangleBorder(
-              side: BorderSide(color: ColorManager.primary, width: 2),
+              side: const BorderSide(color: ColorManager.primary, width: 2),
               borderRadius: BorderRadius.circular(5),
             )
           : null,
