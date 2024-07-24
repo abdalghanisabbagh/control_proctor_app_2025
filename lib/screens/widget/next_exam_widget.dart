@@ -5,20 +5,27 @@ import 'package:control_proctor/services/students_in_exam_room_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../models/exam mission/exam_mission_res_model.dart';
 import '../../resource_manager/color_manager.dart';
 
 class NextExamWidget extends GetView<NextExamController> {
   final NextExamResModel nextExamResModel;
+  final ExamMissionResModel examMissionResModel;
   final int index;
 
   const NextExamWidget({
     super.key,
     required this.nextExamResModel,
+    required this.examMissionResModel,
     required this.index,
   });
 
   @override
   Widget build(BuildContext context) {
+    DateTime dateTime = DateTime.parse(examMissionResModel.startTime!);
+    String formattedTime =
+        '${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
+
     return InkWell(
       onTap: () async {
         await Get.find<StudentsInExamRoomService>()
@@ -85,63 +92,28 @@ class NextExamWidget extends GetView<NextExamController> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Row(children: [
-                    Text(
-                      "Subject: ${nextExamResModel.examMissionsResModel!.data![index].subjectResModel!.name!}(${nextExamResModel.examMissionsResModel!.data![index].gradeResModel!.name!})",
-                      style: const TextStyle(
-                        color: ColorManager.primary,
-                        fontSize: 10,
+                  Row(
+                    children: [
+                      Text(
+                        "Subject: ${examMissionResModel.subjectResModel!.name!} (${examMissionResModel.gradeResModel!.name!})",
+                        style: const TextStyle(
+                          color: ColorManager.primary,
+                          fontSize: 10,
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      "Strart in: ${DateTime.parse(nextExamResModel.examMissionsResModel!.data![index].startTime!).hour}:${DateTime.parse(nextExamResModel.examMissionsResModel!.data![index].startTime!).minute} ",
-                      style: const TextStyle(
-                        color: ColorManager.primary,
-                        fontSize: 10,
+                      const Spacer(),
+                      Text(
+                        "Start in: $formattedTime",
+                        style: const TextStyle(
+                          color: ColorManager.primary,
+                          fontSize: 10,
+                        ),
                       ),
-                    ),
-                  ])
+                    ],
+                  ),
                 ],
               ),
             ),
-            // controller.isLoadingGeneratePdf
-            //     ? Center(
-            //         child: SizedBox(
-            //           height: 50,
-            //           width: 50,
-            //           child: FittedBox(
-            //             child: LoadingIndicators.getLoadingIndicator(),
-            //           ),
-            //         ),
-            //       )
-            //     : InkWell(
-            //         onTap: () {
-            //           controller.generatePdfSeatNumber(
-            //               gradeId: examMissionObject.gradesID!,
-            //               controlMissionName: controlMissionObject.name!,
-            //               controlMissionId: controlMissionObject.iD!);
-            //         },
-            //         child: Container(
-            //           height: 50,
-            //           width: double.infinity,
-            //           decoration: BoxDecoration(
-            //             borderRadius: const BorderRadius.only(
-            //               bottomLeft: Radius.circular(10),
-            //               bottomRight: Radius.circular(10),
-            //             ),
-            //             color: ColorManager.bgSideMenu,
-            //           ),
-            //           child: Row(
-            //             mainAxisAlignment: MainAxisAlignment.center,
-            //             children: [
-            //               const Text("Generate Pdf"),
-            //               const SizedBox(width: 20),
-            //               Icon(Icons.print, color: ColorManager.white),
-            //             ],
-            //           ),
-            //         ),
-            //       )
           ],
         ),
       ),
