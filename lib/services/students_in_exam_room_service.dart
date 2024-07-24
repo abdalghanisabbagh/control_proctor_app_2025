@@ -62,6 +62,8 @@ class StudentsInExamRoomService extends GetxService {
   }
 
   Future<void> deleteFromHiveBox() async {
+    _selectedExamRoomId = null;
+    _selectedExamMissionId = null;
     await Future.wait([
       Hive.box('StudentsInExamRoom').clear(),
     ]);

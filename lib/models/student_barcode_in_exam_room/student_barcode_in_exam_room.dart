@@ -1,8 +1,9 @@
 import 'package:control_proctor/models/barcodes/barcodes_res_model.dart';
-import 'package:control_proctor/models/subject/subjects_res_model.dart';
+
+import '../subject/subject_res_model.dart';
 
 class StudentBarcodeInExamRoom {
-  SubjectsResModel? subjectsResModel;
+  SubjectResModel? subjectsResModel;
 
   BarcodesResModel? barcodesResModel;
 
@@ -10,7 +11,7 @@ class StudentBarcodeInExamRoom {
 
   StudentBarcodeInExamRoom.fromJson(json) {
     subjectsResModel = json['subject'] != null
-        ? SubjectsResModel.fromJson(json['subject'])
+        ? SubjectResModel.fromJson(json['subject'])
         : null;
     barcodesResModel = json['student_barcodes'] != null
         ? BarcodesResModel.fromJson(json['student_barcodes'])

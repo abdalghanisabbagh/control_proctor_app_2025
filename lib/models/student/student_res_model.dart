@@ -1,5 +1,3 @@
-import '../class_room/class_room_res_model.dart';
-
 class StudentResModel {
   StudentResModel({
     this.iD,
@@ -20,7 +18,6 @@ class StudentResModel {
     this.createdAt,
     this.updatedBy,
     this.updatedAt,
-    this.classRoomResModel,
     this.active,
     this.religion,
   });
@@ -47,7 +44,6 @@ class StudentResModel {
 
   int? active;
   int? blbId;
-  ClassRoomResModel? classRoomResModel;
   int? cohortID;
   String? cohortName;
   String? createdAt;

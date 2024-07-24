@@ -54,9 +54,9 @@ class NextExamBindings extends Bindings {
 class StudentsInExamRoomBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<StudentsInExamRoomController>(
-      StudentsInExamRoomController(),
-      permanent: true,
+    Get.lazyPut<StudentsInExamRoomController>(
+      () => StudentsInExamRoomController(),
+      fenix: true,
     );
   }
 }
