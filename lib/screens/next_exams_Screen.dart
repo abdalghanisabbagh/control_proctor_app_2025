@@ -1,3 +1,4 @@
+import 'package:control_proctor/screens/widget/next_exam_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,15 +52,15 @@ class NextExamPage extends GetView<NextExamController> {
                 itemCount: controller.nextExamList.length,
                 itemBuilder: (context, index) {
                   return GetBuilder<NextExamController>(
-                    //  id: controller.nextExamList[index].,
+                      //  id: controller.nextExamList[index].,
                       builder: (context) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                          "${controller.nextExamList[index].month}",
-                          ),
-                        );
-                      });
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: NextExamWidget(
+                        nextExamResModel: controller.nextExamList[index],
+                      ),
+                    );
+                  });
                 },
               ),
             );
