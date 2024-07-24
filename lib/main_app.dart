@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'bindings/binding.dart';
 import 'resource_manager/theme_manager.dart';
 
 class MyApp extends StatefulWidget {
@@ -36,6 +37,7 @@ class _MyAppState extends State<MyApp> {
       transitionDuration: const Duration(milliseconds: 200),
       theme: getApplicationTheme(),
       getPages: Routes.routes,
+      initialBinding: InitialBinding(),
       initialRoute: Routes.initialRoute,
     );
   }

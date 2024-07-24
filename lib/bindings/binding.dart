@@ -1,10 +1,17 @@
-import 'package:control_proctor/controller/login_controller.dart';
-import 'package:control_proctor/controller/next_exam_controller.dart';
-import 'package:control_proctor/controller/profile_controller.dart';
-import 'package:control_proctor/services/token_service.dart';
+import 'package:control_proctor/services/services.dart';
 import 'package:get/get.dart';
 
-import '../controller/side_menu_controller.dart';
+import '../controllers/controllers.dart';
+
+class InitialBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.put<StudentsInExamRoomService>(
+      StudentsInExamRoomService(),
+      permanent: true,
+    );
+  }
+}
 
 class LoginBinding extends Bindings {
   @override
@@ -39,6 +46,16 @@ class NextExamBindings extends Bindings {
     );
     Get.put<SideMenuController>(
       SideMenuController(),
+      permanent: true,
+    );
+  }
+}
+
+class StudentsInExamRoomBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.put<StudentsInExamRoomController>(
+      StudentsInExamRoomController(),
       permanent: true,
     );
   }

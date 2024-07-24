@@ -3,7 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
 // import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../configurations/app_links.dart';
@@ -21,7 +21,7 @@ class DioFactory {
   Dio getDio({TokenModel? token}) {
     Dio dio = Dio();
 
-   TokenService tokenService = Get.find<TokenService>();
+    TokenService tokenService = Get.find<TokenService>();
 
     TokenModel? tokenModel = tokenService.tokenModel;
 
@@ -41,11 +41,11 @@ class DioFactory {
 
     if (!kReleaseMode) {
       // its debug mode so print app logs
-      dio.interceptors.add(PrettyDioLogger(
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: true,
-      ));
+      // dio.interceptors.add(PrettyDioLogger(
+      //   requestHeader: true,
+      //   requestBody: true,
+      //   responseHeader: true,
+      // ));
     }
     return dio;
   }

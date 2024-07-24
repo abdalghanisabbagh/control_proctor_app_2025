@@ -1,5 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_proctor/controller/profile_controller.dart';
+import 'package:control_proctor/controllers/profile_controller.dart';
 import 'package:get/get.dart' hide Response;
 
 import '../configurations/app_links.dart';

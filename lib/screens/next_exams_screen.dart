@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../resource_manager/color_manager.dart';
 import '../../resource_manager/font_manager.dart';
 import '../../resource_manager/styles_manager.dart';
-import '../controller/next_exam_controller.dart';
+import '../controllers/next_exam_controller.dart';
 import '../resource_manager/ReusableWidget/loading_indicators.dart';
 import 'widget/side_menu.dart';
 
