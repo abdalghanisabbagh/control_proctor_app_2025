@@ -1,7 +1,3 @@
-import 'package:control_proctor/screens/next_exams_Screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:control_proctor/controller/login_controller.dart';
 import 'package:control_proctor/resource_manager/ReusableWidget/loading_indicators.dart';
 import 'package:control_proctor/resource_manager/ReusableWidget/my_snak_bar.dart';
@@ -9,6 +5,9 @@ import 'package:control_proctor/resource_manager/ReusableWidget/my_text_form_fie
 import 'package:control_proctor/resource_manager/assets_manager.dart';
 import 'package:control_proctor/resource_manager/color_manager.dart';
 import 'package:control_proctor/resource_manager/validations.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../routes_manger.dart';
 
@@ -117,34 +116,36 @@ class LoginForm extends GetView<LoginController> {
                       const SizedBox(
                         height: 32,
                       ),
-                      GetBuilder<LoginController>(builder: (_) {
-                        if (controller.isLoading) {
-                          return SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: FittedBox(
-                              child: LoadingIndicators.getLoadingIndicator(),
-                            ),
-                          );
-                        } else {
-                          return SizedBox(
-                            width: double.infinity,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                _login(
-                                  controller.login,
-                                  emailController.text,
-                                  passwordController.text,
-                                  formKey,
-                                  context,
-                                );
-                              },
-                              child: const Text("Login"),
-                            ),
-                          );
-                        }
-                      })
+                      GetBuilder<LoginController>(
+                        builder: (_) {
+                          if (controller.isLoading) {
+                            return SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: FittedBox(
+                                child: LoadingIndicators.getLoadingIndicator(),
+                              ),
+                            );
+                          } else {
+                            return SizedBox(
+                              width: double.infinity,
+                              height: 50,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  _login(
+                                    controller.login,
+                                    emailController.text,
+                                    passwordController.text,
+                                    formKey,
+                                    context,
+                                  );
+                                },
+                                child: const Text("Login"),
+                              ),
+                            );
+                          }
+                        },
+                      )
                     ],
                   ),
                 ),
