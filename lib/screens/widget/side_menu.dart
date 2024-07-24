@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/side_menu_controller.dart';
+import '../../controllers/side_menu_controller.dart';
 import '../../resource_manager/assets_manager.dart';
 import '../../resource_manager/color_manager.dart';
 import '../../routes_manger.dart';
@@ -19,7 +19,6 @@ class SideMenu extends StatelessWidget {
           Container(
             color: ColorManager.primary, // اللون العلوي
             height: Get.height * 0.3,
-            width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -46,8 +45,8 @@ class SideMenu extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: Obx(
-                      () => ListView(
+                    child: GetBuilder<SideMenuController>(
+                      builder: (_) => ListView(
                         padding: EdgeInsets.zero,
                         children: <Widget>[
                           const Divider(

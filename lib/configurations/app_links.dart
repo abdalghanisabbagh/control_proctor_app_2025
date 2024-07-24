@@ -35,6 +35,7 @@ class StudentsLinks {
   static const student = 'student';
   static const studentBarcodes = 'student-barcodes';
   static const studentBarcodesExamMission = 'student-barcodes/exam-mission';
+  static const studentBarcodesExamRoom = '$studentBarcodes/exam-room';
   static const studentBarcodesStudent = 'student-barcodes/student';
   static const studentCohort = 'student/cohort';
   static const studentMany = 'student/many';
