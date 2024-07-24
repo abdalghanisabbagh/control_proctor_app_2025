@@ -1,7 +1,7 @@
 import 'package:control_proctor/bindings/binding.dart';
 import 'package:control_proctor/screens/attendance.dart';
 import 'package:control_proctor/screens/login_form.dart';
-import 'package:control_proctor/screens/next_exam_screen.dart';
+import 'package:control_proctor/screens/next_exams_screen.dart';
 import 'package:get/get.dart';
 
 import 'screens/all_exams_screen.dart';
