@@ -9,8 +9,8 @@ import '../controller/next_exam_controller.dart';
 import '../resource_manager/ReusableWidget/loading_indicators.dart';
 import 'widget/side_menu.dart';
 
-class NextExamPage extends GetView<NextExamController> {
-  const NextExamPage({super.key});
+class NextExamsPage extends GetView<NextExamController> {
+  const NextExamsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
