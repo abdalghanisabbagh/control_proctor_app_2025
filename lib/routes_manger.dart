@@ -1,7 +1,7 @@
 import 'package:control_proctor/bindings/binding.dart';
 import 'package:control_proctor/screens/attendance.dart';
-import 'package:control_proctor/screens/next_exams_Screen.dart';
 import 'package:control_proctor/screens/login_form.dart';
+import 'package:control_proctor/screens/next_exam_screen.dart';
 import 'package:get/get.dart';
 
 import 'screens/all_exams_screen.dart';
@@ -23,7 +23,7 @@ class Routes {
     GetPage(
         binding: NextExamBindings(),
         name: nextExams,
-        page: () => const NextExamPage(),
+        page: () => const NextExamsPage(),
         transitionDuration: const Duration(seconds: 1)),
     GetPage(
         name: allExams,

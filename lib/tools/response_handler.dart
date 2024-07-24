@@ -8,7 +8,7 @@ import '../models/failure_model.dart';
 class ResponseHandler<T> {
   ResponseHandler() : _dio = DioFactory().getDio();
 
-  Dio _dio;
+  final Dio _dio;
 
   Future<Either<Failure, T>> getResponse({
     required String path,
@@ -17,7 +17,6 @@ class ResponseHandler<T> {
     Map<String, dynamic>? params,
     dynamic body,
   }) async {
-   
     switch (type) {
       case ReqTypeEnum.GET:
         return await _get(path, converter, params, body);
