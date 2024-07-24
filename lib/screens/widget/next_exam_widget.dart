@@ -31,7 +31,7 @@ class NextExamWidget extends GetView<NextExamController> {
       onTap: () async {
         await Get.find<StudentsInExamRoomService>()
             .setSelectedExamRoomAndExamMissionId(
-          examMissionId: nextExamResModel.examMissionsResModel!.data!.first.iD,
+          examMissionId: nextExamResModel.examMissionsResModel!.data![index].iD,
           examRoomId: nextExamResModel.examRoomResModel!.id,
         );
         Get.toNamed(Routes.studentsInExamRoom);
