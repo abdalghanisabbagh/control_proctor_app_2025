@@ -61,22 +61,19 @@ class NextExamsPage extends GetView<NextExamController> {
                         return Container();
                       }
 
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: List.generate(
-                            nextExamResModel.examMissionsResModel!.data!.length,
-                            (i) {
-                              var mission = nextExamResModel
-                                  .examMissionsResModel!.data![i];
-                              return NextExamWidget(
-                                nextExamResModel: nextExamResModel,
-                                examMissionResModel: mission,
-                                index: i,
-                              );
-                            },
-                          ),
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: List.generate(
+                          nextExamResModel.examMissionsResModel!.data!.length,
+                          (i) {
+                            var mission =
+                                nextExamResModel.examMissionsResModel!.data![i];
+                            return NextExamWidget(
+                              nextExamResModel: nextExamResModel,
+                              examMissionResModel: mission,
+                              index: i,
+                            );
+                          },
                         ),
                       );
                     },

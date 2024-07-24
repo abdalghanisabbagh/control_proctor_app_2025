@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../models/exam mission/exam_mission_res_model.dart';
 import '../../resource_manager/color_manager.dart';
+import '../../resource_manager/styles_manager.dart';
 
 class NextExamWidget extends GetView<NextExamController> {
   final NextExamResModel nextExamResModel;
@@ -38,7 +39,7 @@ class NextExamWidget extends GetView<NextExamController> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
+          color: ColorManager.bgSideMenu,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -58,55 +59,48 @@ class NextExamWidget extends GetView<NextExamController> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        "Room: ${nextExamResModel.examRoomResModel!.name!}",
-                        style: const TextStyle(
-                          color: ColorManager.primary,
-                          fontSize: 10,
-                        ),
-                      ),
+                      Text("Room: ${nextExamResModel.examRoomResModel!.name!}",
+                          style: nunitoLightStyle().copyWith(
+                            fontSize: 12,
+                            color: ColorManager.white,
+                          )),
+                      const Spacer(),
+                      Text("${nextExamResModel.month!} ",
+                          style: nunitoLightStyle().copyWith(
+                            fontSize: 12,
+                            color: ColorManager.white,
+                          )),
                       const Spacer(),
                       Text(
-                        "${nextExamResModel.month!} ",
-                        style: const TextStyle(
-                          color: ColorManager.primary,
-                          fontSize: 10,
-                        ),
-                      ),
-                      const Spacer(),
-                      Text(
-                        "Class: ${nextExamResModel.examRoomResModel!.classRoomResModel!.name!}",
-                        style: const TextStyle(
-                          color: ColorManager.primary,
-                          fontSize: 10,
-                        ),
-                      ),
+                          "Class: ${nextExamResModel.examRoomResModel!.classRoomResModel!.name!}",
+                          style: nunitoLightStyle().copyWith(
+                            fontSize: 12,
+                            color: ColorManager.white,
+                          )),
                     ],
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "Session: ${nextExamResModel.period == true ? "One" : "Two"} ",
-                    style: const TextStyle(
-                      color: ColorManager.primary,
-                      fontSize: 10,
-                    ),
-                  ),
+                      "Session: ${nextExamResModel.period == true ? "One" : "Two"} ",
+                      style: nunitoLightStyle().copyWith(
+                        fontSize: 12,
+                        color: ColorManager.white,
+                      )),
                   const SizedBox(height: 5),
                   Row(
                     children: [
                       Text(
-                        "Subject: ${examMissionResModel.subjectResModel!.name!} (${examMissionResModel.gradeResModel!.name!})",
-                        style: const TextStyle(
-                          color: ColorManager.primary,
-                          fontSize: 10,
-                        ),
-                      ),
+                          "Subject: ${examMissionResModel.subjectResModel!.name!} (${examMissionResModel.gradeResModel!.name!})",
+                          style: nunitoLightStyle().copyWith(
+                            fontSize: 12,
+                            color: ColorManager.white,
+                          )),
                       const Spacer(),
                       Text(
                         "Start in: $formattedTime",
-                        style: const TextStyle(
-                          color: ColorManager.primary,
-                          fontSize: 10,
+                        style: nunitoLightStyle().copyWith(
+                          fontSize: 12,
+                          color: ColorManager.white,
                         ),
                       ),
                     ],
