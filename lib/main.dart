@@ -7,9 +7,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   TokenBindings().dependencies();
-  await Hive.initFlutter();
-  await Hive.openBox('Token');
-  await Hive.openBox('Profile');
+  await Future.wait([
+    Hive.initFlutter(),
+    Hive.openBox('Token'),
+    Hive.openBox('Profile'),
+  ]);
 
   runApp(MyApp());
 }
