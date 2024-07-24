@@ -26,46 +26,65 @@ class NextExamsPage extends GetView<NextExamController> {
         ),
         drawer: SideMenu(),
         drawerScrimColor: ColorManager.white,
-        body: GetBuilder<NextExamController>(
-          builder: (controller) {
-            if (controller.isLoadingGetNextExam) {
-              return Expanded(
-                child: Center(
-                  child: LoadingIndicators.getLoadingIndicator(),
-                ),
-              );
-            }
+        body: Column(
+          children: [
+            GetBuilder<NextExamController>(
+              builder: (controller) {
+                if (controller.isLoadingGetNextExam) {
+                  return Expanded(
+                    child: Center(
+                      child: LoadingIndicators.getLoadingIndicator(),
+                    ),
+                  );
+                }
 
-            if (controller.nextExamList.isEmpty) {
-              return Expanded(
-                child: Center(
-                  child: Text(
-                    'No items available',
-                    style: nunitoBoldStyle(),
-                  ),
-                ),
-              );
-            }
-
-            return Expanded(
-              child: ListView.builder(
-                itemCount: controller.nextExamList.length,
-                itemBuilder: (context, index) {
-                  return GetBuilder<NextExamController>(
-                      //  id: controller.nextExamList[index].,
-                      builder: (_) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: NextExamWidget(
-                        index: index,
-                        nextExamResModel: controller.nextExamList[index],
+                if (controller.nextExamList.isEmpty) {
+                  return Expanded(
+                    child: Center(
+                      child: Text(
+                        'No items available',
+                        style: nunitoBoldStyle(),
                       ),
-                    );
-                  });
-                },
-              ),
-            );
-          },
+                    ),
+                  );
+                }
+
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: controller.nextExamList.length,
+                    itemBuilder: (context, index) {
+                      var nextExamResModel = controller.nextExamList[index];
+
+                      if (nextExamResModel
+                              .examMissionsResModel?.data?.isEmpty ??
+                          true) {
+                        return Container();
+                      }
+
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: List.generate(
+                            nextExamResModel.examMissionsResModel!.data!.length,
+                            (i) {
+                              var mission = nextExamResModel
+                                  .examMissionsResModel!.data![i];
+                              return NextExamWidget(
+                                nextExamResModel: nextExamResModel,
+                                examMissionResModel: mission,
+                                index: i,
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
         ));
   }
 }
