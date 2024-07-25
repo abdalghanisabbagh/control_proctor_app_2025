@@ -31,54 +31,102 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                   child: LoadingIndicators.getLoadingIndicator(),
                 )
               : controller.studentBarcodeInExamRoom != null
-                  ? GridView(
-                      padding: const EdgeInsets.all(20),
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 2 / 3,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                      ),
+                  ? Column(
                       children: [
-                        for (int i = 0;
-                            i <
-                                controller.studentBarcodeInExamRoom!
-                                    .barcodesResModel!.barcodes!.length;
-                            i++)
-                          Card(
-                            child: Column(
-                              children: [
-                                Text(
-                                  controller
-                                      .studentBarcodeInExamRoom!
-                                      .barcodesResModel!
-                                      .barcodes![i]
-                                      .studentSeatNumberResModel!
-                                      .seatNumber
-                                      .toString(),
-                                  style: nunitoRegularStyle(
-                                    fontSize: FontSize.s18,
-                                    color: ColorManager.black,
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton.outlined(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.qr_code,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.lock_outline,
+                              ),
+                            ),
+                          ],
+                        ).paddingSymmetric(horizontal: 20, vertical: 10),
+                        Expanded(
+                          child: GridView(
+                            padding: const EdgeInsets.all(20),
+                            gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 200,
+                              childAspectRatio: 2 / 3,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                            ),
+                            children: [
+                              for (int i = 0;
+                                  i <
+                                      controller.studentBarcodeInExamRoom!
+                                          .barcodesResModel!.barcodes!.length;
+                                  i++)
+                                Card(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                          ),
+                                          color: ColorManager.primary,
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            controller
+                                                .studentBarcodeInExamRoom!
+                                                .barcodesResModel!
+                                                .barcodes![i]
+                                                .studentSeatNumberResModel!
+                                                .seatNumber
+                                                .toString(),
+                                            style: nunitoRegularStyle(
+                                              fontSize: FontSize.s18,
+                                              color: ColorManager.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10),
+                                          ),
+                                          color: ColorManager.bgSideMenu,
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            controller
+                                                .studentBarcodeInExamRoom!
+                                                .barcodesResModel!
+                                                .barcodes![i]
+                                                .student!
+                                                .firstName
+                                                .toString(),
+                                            style: nunitoRegularStyle(
+                                              fontSize: FontSize.s18,
+                                              color: ColorManager.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                const Spacer(),
-                                Text(
-                                  controller
-                                      .studentBarcodeInExamRoom!
-                                      .barcodesResModel!
-                                      .barcodes![i]
-                                      .student!
-                                      .firstName
-                                      .toString(),
-                                  style: nunitoRegularStyle(
-                                    fontSize: FontSize.s18,
-                                    color: ColorManager.black,
-                                  ),
-                                ),
-                              ],
-                            ).paddingSymmetric(vertical: 10),
+                            ],
                           ),
+                        ),
                       ],
                     )
                   : const Center();
