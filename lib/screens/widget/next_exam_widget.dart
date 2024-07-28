@@ -61,20 +61,20 @@ class NextExamWidget extends GetView<NextExamController> {
                     children: [
                       Text("Room: ${nextExamResModel.examRoomResModel!.name!}",
                           style: nunitoLightStyle().copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: ColorManager.white,
                           )),
                       const Spacer(),
                       Text("${nextExamResModel.month!} ",
                           style: nunitoLightStyle().copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: ColorManager.white,
                           )),
                       const Spacer(),
                       Text(
                           "Class: ${nextExamResModel.examRoomResModel!.classRoomResModel!.name!}",
                           style: nunitoLightStyle().copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: ColorManager.white,
                           )),
                     ],
@@ -83,7 +83,7 @@ class NextExamWidget extends GetView<NextExamController> {
                   Text(
                       "Session: ${nextExamResModel.period == true ? "One" : "Two"} ",
                       style: nunitoLightStyle().copyWith(
-                        fontSize: 12,
+                        fontSize: 14,
                         color: ColorManager.white,
                       )),
                   const SizedBox(height: 5),
@@ -92,14 +92,14 @@ class NextExamWidget extends GetView<NextExamController> {
                       Text(
                           "Subject: ${examMissionResModel.subjectResModel!.name!} (${examMissionResModel.gradeResModel!.name!})",
                           style: nunitoLightStyle().copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: ColorManager.white,
                           )),
                       const Spacer(),
                       Text(
                         "Start in: $formattedTime",
                         style: nunitoLightStyle().copyWith(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: ColorManager.white,
                         ),
                       ),

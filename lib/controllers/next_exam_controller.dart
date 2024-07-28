@@ -4,6 +4,7 @@ import 'package:control_proctor/models/next%20exam/next_exams_res_model.dart';
 import 'package:control_proctor/tools/response_handler.dart';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
@@ -16,6 +17,8 @@ class NextExamController extends GetxController {
 
   bool isLoadingGetNextExam = false;
   List<NextExamResModel> nextExamList = [];
+  List<NextExamResModel> filteredNextExamList = [];
+  DateTime? selectedDate;
 
   Future<void> getAllExamMissionsByProctorId() async {
     isLoadingGetNextExam = true;
@@ -40,6 +43,7 @@ class NextExamController extends GetxController {
       },
       (r) {
         nextExamList = r.data!;
+        filteredNextExamList = nextExamList;
 
         isLoadingGetNextExam = false;
         update();
@@ -51,5 +55,40 @@ class NextExamController extends GetxController {
   void onInit() {
     super.onInit();
     getAllExamMissionsByProctorId();
+  }
+
+  void fetchDataForSelectedDate(DateTime date) {
+    selectedDate = date;
+    filterList('');
+  }
+
+  void resetFilters() {
+    selectedDate = null;
+    filterList('');
+  }
+
+  void filterList(String query) {
+    if (query.isEmpty && selectedDate == null) {
+      filteredNextExamList = nextExamList;
+    } else {
+      filteredNextExamList = nextExamList.where((exam) {
+        final matchQuery = exam.examRoomResModel?.name
+                ?.toLowerCase()
+                .contains(query.toLowerCase()) ??
+            false;
+        final matchDate = selectedDate == null
+            ? true
+            : exam.examMissionsResModel?.data?.any((mission) {
+                  final examDate = DateFormat('yyyy-MM-dd')
+                      .format(DateTime.parse(mission.startTime!));
+                  final selectedFormattedDate =
+                      DateFormat('yyyy-MM-dd').format(selectedDate!);
+                  return examDate == selectedFormattedDate;
+                }) ??
+                false;
+        return matchQuery && matchDate;
+      }).toList();
+    }
+    update();
   }
 }
