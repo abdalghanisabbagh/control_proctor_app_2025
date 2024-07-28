@@ -3,26 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'bindings/binding.dart';
+import 'bindings/bindings.dart';
 import 'resource_manager/theme_manager.dart';
 
 class MyApp extends StatefulWidget {
+  static const MyApp _instance = MyApp._internal(); // singlton instance
+
   factory MyApp() => _instance;
 
   const MyApp._internal();
-
-  static const MyApp _instance = MyApp._internal(); // singlton instance
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -37,8 +32,13 @@ class _MyAppState extends State<MyApp> {
       transitionDuration: const Duration(milliseconds: 200),
       theme: getApplicationTheme(),
       getPages: Routes.routes,
-      initialBinding: InitialBinding(),
+      initialBinding: InitialBindings(),
       initialRoute: Routes.initialRoute,
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 }
