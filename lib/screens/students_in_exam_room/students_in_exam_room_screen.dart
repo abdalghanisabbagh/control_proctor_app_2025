@@ -1,6 +1,10 @@
 import 'package:control_proctor/controllers/controllers.dart';
+import 'package:control_proctor/resource_manager/ReusableWidget/my_snak_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simple_barcode_scanner/enum.dart';
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 import '../../resource_manager/color_manager.dart';
@@ -38,9 +42,43 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton.outlined(
-                              onPressed: () {},
+                              onPressed: () async {
+                                String? macId, studentId, name, examId;
+                                var result;
+                                if (kIsWeb) {
+                                  result = await Navigator.push(
+                                    Get.overlayContext!,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SimpleBarcodeScannerPage(
+                                        scanType: ScanType.qr,
+                                        appBarTitle: 'Student QR code',
+                                      ),
+                                    ),
+                                  );
+                                  MyFlashBar.showSuccess(result, 'Success')
+                                      .show(Get.context!);
+
+                                  if (result is String) {
+                                    var res = result;
+                                    var splitedData = res.split("%");
+                                    MyFlashBar.showSuccess(
+                                            splitedData.toString(), "Scanner")
+                                        .show(Get.context!);
+                                    macId = splitedData.first;
+                                    studentId = splitedData[1];
+                                    name = splitedData[2];
+                                    examId = splitedData.last;
+                                  } else {
+                                    // student_loading = false;
+                                    // isScanning = false;
+                                    // update();
+                                    return;
+                                  }
+                                }
+                              },
                               icon: const Icon(
-                                Icons.qr_code,
+                                Icons.qr_code_scanner_outlined,
                               ),
                             ),
                             IconButton(
