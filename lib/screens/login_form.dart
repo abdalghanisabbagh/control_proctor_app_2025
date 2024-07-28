@@ -11,6 +11,29 @@ import 'package:get/get.dart';
 
 import '../routes_manger.dart';
 
+void _login(
+    Future<bool> Function(String email, String password) login,
+    String email,
+    String password,
+    GlobalKey<FormState> formKey,
+    BuildContext context) async {
+  if (formKey.currentState!.validate()) {
+    final isSuccess = await login(email, password);
+    if (isSuccess) {
+      MyFlashBar.showSuccess(
+        'You have been logged in successfully',
+        'Success',
+      ).show(Get.context!);
+      Get.toNamed(Routes.nextExams);
+    } else {
+      MyFlashBar.showError(
+        'Login failed. Please try again.',
+        'Error',
+      ).show(Get.context!);
+    }
+  }
+}
+
 class LoginForm extends GetView<LoginController> {
   final emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -95,14 +118,14 @@ class LoginForm extends GetView<LoginController> {
                       ),
                       Obx(() {
                         return MytextFormFiled(
-                          obscureText: controller.showPass.value,
+                          obscureText: controller.showPass,
                           controller: passwordController,
                           myValidation: Validations.requiredValidator,
                           enableBorderColor: ColorManager.grey,
                           title: "Password",
                           suffixIcon: IconButton(
                             icon: Icon(
-                              controller.showPass.value
+                              controller.showPass
                                   ? Icons.visibility
                                   : Icons.visibility_off,
                               color: ColorManager.glodenColor,
@@ -155,28 +178,5 @@ class LoginForm extends GetView<LoginController> {
         ),
       ),
     );
-  }
-}
-
-void _login(
-    Future<bool> Function(String email, String password) login,
-    String email,
-    String password,
-    GlobalKey<FormState> formKey,
-    BuildContext context) async {
-  if (formKey.currentState!.validate()) {
-    final isSuccess = await login(email, password);
-    if (isSuccess) {
-      MyFlashBar.showSuccess(
-        'You have been logged in successfully',
-        'Success',
-      ).show(Get.context!);
-      Get.toNamed(Routes.nextExams);
-    } else {
-      MyFlashBar.showError(
-        'Login failed. Please try again.',
-        'Error',
-      ).show(Get.context!);
-    }
   }
 }
