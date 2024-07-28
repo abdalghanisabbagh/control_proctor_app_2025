@@ -1,14 +1,15 @@
+import 'package:control_proctor/controllers/controllers.dart';
+import 'package:control_proctor/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/side_menu_controller.dart';
 import '../../resource_manager/assets_manager.dart';
 import '../../resource_manager/color_manager.dart';
 import '../../routes_manger.dart';
 
 class SideMenu extends StatelessWidget {
-  SideMenu({super.key});
   final SideMenuController sideMenuController = Get.put(SideMenuController());
+  SideMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +76,14 @@ class SideMenu extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.exit_to_app),
                     title: const Text('Logout'),
-                    onTap: () {
+                    onTap: () async {
                       // Handle logout action
-                      Get.toNamed(Routes.loginRoute); // Close the drawer
+                      await Future.wait([
+                        Get.find<TokenService>().deleteTokenModelFromHiveBox(),
+                        Get.find<ProfileController>()
+                            .deleteProfileFromHiveBox(),
+                      ]);
+                      Get.offAllNamed(Routes.loginRoute);
                     },
                   ),
                 ],
