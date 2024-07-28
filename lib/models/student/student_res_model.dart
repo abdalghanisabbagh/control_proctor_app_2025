@@ -1,4 +1,29 @@
+import '../grade/grade_res_model.dart';
+
 class StudentResModel {
+  int? active;
+
+  int? blbId;
+
+  int? cohortID;
+  String? cohortName;
+  String? createdAt;
+  int? createdBy;
+  String? email;
+  String? firstName;
+  String? gradeName;
+  int? gradesID;
+  int? iD;
+  int? schoolClassID;
+  String? schoolClassName;
+  int? schoolsID;
+  String? secondLang;
+  String? secondName;
+  String? thirdName;
+  DateTime? updatedAt;
+  int? updatedBy;
+  String? religion;
+  GradeResModel? gradeResModel;
   StudentResModel({
     this.iD,
     this.blbId,
@@ -20,8 +45,8 @@ class StudentResModel {
     this.updatedAt,
     this.active,
     this.religion,
+    this.gradeResModel,
   });
-
   StudentResModel.fromJson(json) {
     iD = json['ID'];
     blbId = json['Blb_Id'];
@@ -40,28 +65,9 @@ class StudentResModel {
     updatedAt = json['Updated_At'];
     religion = json['Religion'];
     active = json['Active'];
+    gradeResModel =
+        json['grades'] == null ? null : GradeResModel.fromJson(json['grades']);
   }
-
-  int? active;
-  int? blbId;
-  int? cohortID;
-  String? cohortName;
-  String? createdAt;
-  int? createdBy;
-  String? email;
-  String? firstName;
-  String? gradeName;
-  int? gradesID;
-  int? iD;
-  int? schoolClassID;
-  String? schoolClassName;
-  int? schoolsID;
-  String? secondLang;
-  String? secondName;
-  String? thirdName;
-  DateTime? updatedAt;
-  int? updatedBy;
-  String? religion;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -82,6 +88,9 @@ class StudentResModel {
     data['Updated_At'] = updatedAt;
     data['Active'] = active;
     data['Religion'] = religion;
+    if (gradeResModel != null) {
+      data['grades'] = gradeResModel!.toJson();
+    }
     return data;
   }
 }
