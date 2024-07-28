@@ -14,7 +14,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Students In Exam Room'),
+        title: const Text('Scan QR Code'),
         backgroundColor: ColorManager.bgSideMenu,
         titleTextStyle: nunitoRegularStyle(
           fontSize: FontSize.s18,
@@ -56,7 +56,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                             padding: const EdgeInsets.all(20),
                             gridDelegate:
                                 const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
+                              maxCrossAxisExtent: 150,
                               childAspectRatio: 2 / 3,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
@@ -70,53 +70,95 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                 Card(
                                   child: Column(
                                     children: [
-                                      Container(
-                                        width: double.infinity,
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10),
+                                            ),
+                                            color: ColorManager.primary,
                                           ),
-                                          color: ColorManager.primary,
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            controller
-                                                .studentBarcodeInExamRoom!
-                                                .barcodesResModel!
-                                                .barcodes![i]
-                                                .studentSeatNumberResModel!
-                                                .seatNumber
-                                                .toString(),
-                                            style: nunitoRegularStyle(
-                                              fontSize: FontSize.s18,
-                                              color: ColorManager.white,
+                                          child: Center(
+                                            child: Text(
+                                              controller
+                                                  .studentBarcodeInExamRoom!
+                                                  .barcodesResModel!
+                                                  .barcodes![i]
+                                                  .studentSeatNumberResModel!
+                                                  .seatNumber
+                                                  .toString(),
+                                              style: nunitoRegularStyle(
+                                                fontSize: FontSize.s18,
+                                                color: ColorManager.white,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      const Spacer(),
-                                      Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10),
+                                      Expanded(
+                                        flex: 4,
+                                        child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                            color: ColorManager.gradesColor[
+                                                controller
+                                                    .studentBarcodeInExamRoom!
+                                                    .barcodesResModel!
+                                                    .barcodes![i]
+                                                    .student!
+                                                    .gradeResModel!
+                                                    .name!],
                                           ),
-                                          color: ColorManager.bgSideMenu,
+                                          child: Center(
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Text(
+                                                controller
+                                                    .studentBarcodeInExamRoom!
+                                                    .barcodesResModel!
+                                                    .barcodes![i]
+                                                    .student!
+                                                    .gradeResModel!
+                                                    .name!,
+                                                style: nunitoRegularStyle(
+                                                  fontSize: FontSize.s18,
+                                                  color: ColorManager.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                        child: Center(
-                                          child: Text(
-                                            controller
-                                                .studentBarcodeInExamRoom!
-                                                .barcodesResModel!
-                                                .barcodes![i]
-                                                .student!
-                                                .firstName
-                                                .toString(),
-                                            style: nunitoRegularStyle(
-                                              fontSize: FontSize.s18,
-                                              color: ColorManager.white,
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              bottomLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10),
+                                            ),
+                                            color: ColorManager.bgSideMenu,
+                                          ),
+                                          child: Center(
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Text(
+                                                controller
+                                                    .studentBarcodeInExamRoom!
+                                                    .barcodesResModel!
+                                                    .barcodes![i]
+                                                    .student!
+                                                    .firstName
+                                                    .toString(),
+                                                style: nunitoRegularStyle(
+                                                  fontSize: FontSize.s18,
+                                                  color: ColorManager.white,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
