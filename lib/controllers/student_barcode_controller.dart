@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_proctor/models/student_barcode_in_exam_room/student_barcode_in_exam_room.dart';
 import 'package:control_proctor/services/students_in_exam_room_service.dart';
@@ -12,14 +14,6 @@ class StudentsInExamRoomController extends GetxController {
   StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
 
   bool isLoading = true;
-
-  @override
-  void onInit() async {
-    await Future.wait([
-      getAllStudentsInExamRoom(),
-    ]);
-    super.onInit();
-  }
 
   Future<void> getAllStudentsInExamRoom() async {
     isLoading = true;
@@ -63,5 +57,13 @@ class StudentsInExamRoomController extends GetxController {
       Get.find<StudentsInExamRoomService>().deleteFromHiveBox(),
     ]);
     super.onClose();
+  }
+
+  @override
+  void onInit() async {
+    await Future.wait([
+      getAllStudentsInExamRoom(),
+    ]);
+    super.onInit();
   }
 }
