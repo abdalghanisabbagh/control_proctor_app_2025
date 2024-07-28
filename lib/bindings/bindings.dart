@@ -10,7 +10,10 @@ class InitialBindings extends Bindings {
       StudentsInExamRoomService(),
       permanent: true,
     );
-    Get.put(TokenService(), permanent: true);
+    Get.put(
+      TokenService(),
+      permanent: true,
+    );
 
     Get.put<ProfileController>(
       ProfileController(),
@@ -29,6 +32,7 @@ class LoginBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<LoginController>(
       () => LoginController(),
+      fenix: true,
     );
   }
 }
