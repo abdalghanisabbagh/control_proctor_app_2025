@@ -116,26 +116,28 @@ class LoginForm extends GetView<LoginController> {
                           color: ColorManager.glodenColor,
                         ),
                       ),
-                      Obx(() {
-                        return MytextFormFiled(
-                          obscureText: controller.showPass,
-                          controller: passwordController,
-                          myValidation: Validations.requiredValidator,
-                          enableBorderColor: ColorManager.grey,
-                          title: "Password",
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              controller.showPass
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: ColorManager.glodenColor,
+                      GetBuilder<LoginController>(
+                        builder: (_) {
+                          return MytextFormFiled(
+                            obscureText: controller.showPass,
+                            controller: passwordController,
+                            myValidation: Validations.requiredValidator,
+                            enableBorderColor: ColorManager.grey,
+                            title: "Password",
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                controller.showPass
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: ColorManager.glodenColor,
+                              ),
+                              onPressed: () {
+                                controller.setShowPass();
+                              },
                             ),
-                            onPressed: () {
-                              controller.setShowPass();
-                            },
-                          ),
-                        );
-                      }),
+                          );
+                        },
+                      ),
                       const SizedBox(
                         height: 32,
                       ),
