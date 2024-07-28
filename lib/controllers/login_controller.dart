@@ -11,16 +11,12 @@ import '../services/token_service.dart';
 import '../tools/response_handler.dart';
 
 class LoginController extends GetxController {
-  RxBool showPass = true.obs;
+  bool showPass = true;
   bool isLoading = false;
 
   TokenService tokenService = Get.find<TokenService>();
 
   ProfileController profileController = Get.find<ProfileController>();
-
-  setShowPass() {
-    showPass.value = !showPass.value;
-  }
 
   Future<bool> login(String username, String password) async {
     isLoading = true;
@@ -58,5 +54,9 @@ class LoginController extends GetxController {
     isLoading = false;
     update();
     return isLogin;
+  }
+
+  setShowPass() {
+    showPass = !showPass;
   }
 }
