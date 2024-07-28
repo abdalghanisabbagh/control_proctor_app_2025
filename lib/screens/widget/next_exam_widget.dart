@@ -59,47 +59,51 @@ class NextExamWidget extends GetView<NextExamController> {
                 children: [
                   Row(
                     children: [
-                      Text("Room: ${nextExamResModel.examRoomResModel!.name!}",
+                      Text(
+                          "Session: ${nextExamResModel.period == true ? "One" : "Two"} ",
                           style: nunitoLightStyle().copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: ColorManager.white,
                           )),
                       const Spacer(),
                       Text("${nextExamResModel.month!} ",
                           style: nunitoLightStyle().copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
+                            color: ColorManager.white,
+                          )),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Text("Room: ${nextExamResModel.examRoomResModel!.name!}",
+                          style: nunitoLightStyle().copyWith(
+                            fontSize: 14,
                             color: ColorManager.white,
                           )),
                       const Spacer(),
                       Text(
                           "Class: ${nextExamResModel.examRoomResModel!.classRoomResModel!.name!}",
                           style: nunitoLightStyle().copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: ColorManager.white,
                           )),
                     ],
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                      "Session: ${nextExamResModel.period == true ? "One" : "Two"} ",
-                      style: nunitoLightStyle().copyWith(
-                        fontSize: 12,
-                        color: ColorManager.white,
-                      )),
                   const SizedBox(height: 5),
                   Row(
                     children: [
                       Text(
                           "Subject: ${examMissionResModel.subjectResModel!.name!} (${examMissionResModel.gradeResModel!.name!})",
                           style: nunitoLightStyle().copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: ColorManager.white,
                           )),
                       const Spacer(),
                       Text(
                         "Start in: $formattedTime",
                         style: nunitoLightStyle().copyWith(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: ColorManager.white,
                         ),
                       ),
