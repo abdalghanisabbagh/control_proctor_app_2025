@@ -58,5 +58,6 @@ class LoginController extends GetxController {
 
   setShowPass() {
     showPass = !showPass;
+    update(['pass_icon']);
   }
 }
