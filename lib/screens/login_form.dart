@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../resource_manager/constants/app_constatnts.dart';
 import '../routes_manger.dart';
 
 void _login(
@@ -117,6 +118,7 @@ class LoginForm extends GetView<LoginController> {
                         ),
                       ),
                       GetBuilder<LoginController>(
+                        id: 'pass_icon',
                         builder: (_) {
                           return MytextFormFiled(
                             obscureText: controller.showPass,
@@ -124,15 +126,82 @@ class LoginForm extends GetView<LoginController> {
                             myValidation: Validations.requiredValidator,
                             enableBorderColor: ColorManager.grey,
                             title: "Password",
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                controller.showPass
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: ColorManager.glodenColor,
-                              ),
-                              onPressed: () {
-                                controller.setShowPass();
+                            suffixIcon: GetBuilder<LoginController>(
+                              id: 'pass_icon',
+                              builder: (_) {
+                                return IntrinsicHeight(
+                                  child: IntrinsicWidth(
+                                    child: IconButton(
+                                      icon: AnimatedSwitcher(
+                                        duration: AppConstants.mediumDuration,
+                                        transitionBuilder: (child, animation) {
+                                          final rotateAnimation = Tween<double>(
+                                                  begin: 0.0, end: 1.0)
+                                              .animate(animation);
+                                          final reverseAnimation =
+                                              Tween<double>(
+                                                      begin: 1.0, end: 0.0)
+                                                  .animate(animation);
+                                          return RotationTransition(
+                                            turns: controller.showPass
+                                                ? rotateAnimation
+                                                : reverseAnimation,
+                                            child: FadeTransition(
+                                              opacity: animation,
+                                              child: child,
+                                            ),
+                                          );
+                                        },
+                                        layoutBuilder:
+                                            (currentChild, previousChildren) {
+                                          return Stack(
+                                            fit: StackFit.loose,
+                                            children: [
+                                              // Show the current child.
+                                              if (currentChild != null)
+                                                Positioned.fill(
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topRight,
+                                                    child: currentChild,
+                                                  ),
+                                                ),
+                                              // Show the previous children in a stack.
+                                              ...previousChildren.map(
+                                                (child) {
+                                                  return Positioned.fill(
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.topRight,
+                                                      child: IgnorePointer(
+                                                          child: child),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                        switchInCurve: Curves.easeOutExpo,
+                                        switchOutCurve: Curves.easeInExpo,
+                                        child: controller.showPass
+                                            ? Icon(
+                                                key: const ValueKey(1),
+                                                Icons.visibility,
+                                                color: ColorManager.glodenColor,
+                                              )
+                                            : Icon(
+                                                key: const ValueKey(2),
+                                                Icons.visibility_off,
+                                                color: ColorManager.glodenColor,
+                                              ),
+                                      ),
+                                      onPressed: () {
+                                        controller.setShowPass();
+                                      },
+                                    ),
+                                  ),
+                                );
                               },
                             ),
                           );
