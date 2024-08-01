@@ -15,6 +15,30 @@ class StudentsInExamRoomController extends GetxController {
 
   bool isLoading = true;
 
+  Future<void> activateStudent(int id) async {
+    final responseHandler = ResponseHandler<void>();
+
+    var response = await responseHandler.getResponse(
+      path: '${StudentsLinks.studentUuid}/$id/activate',
+      body: {},
+      converter: (_) {},
+      type: ReqTypeEnum.PATCH,
+    );
+    response.fold(
+      (l) {
+        MyAwesomeDialogue(
+          title: 'Error',
+          desc: l.message,
+          dialogType: DialogType.error,
+        ).showDialogue(Get.key.currentContext!);
+      },
+      (_) {},
+    );
+
+    update();
+    return;
+  }
+
   Future<void> getAllStudentsInExamRoom() async {
     isLoading = true;
     update();

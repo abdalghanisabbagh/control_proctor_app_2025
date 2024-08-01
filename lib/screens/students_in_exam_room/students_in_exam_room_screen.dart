@@ -43,7 +43,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                           children: [
                             IconButton.outlined(
                               onPressed: () async {
-                                String? macId, studentId, name, examId;
+                                String? uuid /* , studentId, name, examId */;
                                 var result;
                                 if (kIsWeb) {
                                   result = await Navigator.push(
@@ -56,15 +56,19 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                       ),
                                     ),
                                   );
-                                  MyFlashBar.showSuccess(result, 'Success')
-                                      .show(Get.key.currentContext!);
+                                  // MyFlashBar.showSuccess(result, 'Success')
+                                  //     .show(Get.key.currentContext!);
 
                                   if (result is String) {
                                     var res = result;
-                                    var splitedData = res.split("%");
-                                    // MyFlashBar.showSuccess(
-                                    //         splitedData.toString(), "Scanner")
-                                    // .show(Get.context!);
+                                    var splitedData = res.split('\n');
+                                    MyFlashBar.showSuccess(
+                                            splitedData[0].toString(),
+                                            'Scanned Successfully')
+                                        .show(Get.key.currentContext!);
+                                    uuid = splitedData[1];
+                                    await controller
+                                        .activateStudent(int.parse(uuid));
                                     // macId = splitedData.first;
                                     // studentId = splitedData[1];
                                     // name = splitedData[2];
