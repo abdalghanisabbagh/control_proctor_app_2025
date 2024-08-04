@@ -44,7 +44,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                             IconButton.outlined(
                               onPressed: () async {
                                 String? uuid /* , studentId, name, examId */;
-                                var result;
+                                dynamic result;
                                 if (kIsWeb) {
                                   result = await Navigator.push(
                                     Get.overlayContext!,
@@ -56,9 +56,6 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                       ),
                                     ),
                                   );
-                                  // MyFlashBar.showSuccess(result, 'Success')
-                                  //     .show(Get.key.currentContext!);
-
                                   if (result is String) {
                                     var res = result;
                                     var splitedData = res.split('\n');
