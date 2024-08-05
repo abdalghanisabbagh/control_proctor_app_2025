@@ -30,6 +30,7 @@ class Routes {
       transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(
+      binding: AllExamBindings(),
       name: allExams,
       page: () => const AllExams(),
       transitionDuration: const Duration(seconds: 1),
