@@ -14,8 +14,7 @@ class AllExamController extends GetxController {
   bool isLoadingGetControlMission = false;
   List<ValueItem> optionsControlMission = <ValueItem>[];
 
-  Future<void> getControlMissionByEducationYearAndBySchool(
-      int educationYearId) async {
+  Future<void> getControlMissionByproctor() async {
     isLoadingGetControlMission = true;
 
     update();
@@ -24,7 +23,7 @@ class AllExamController extends GetxController {
         ResponseHandler();
     Either<Failure, ControlMissionsResModel> response =
         await responseHandler.getResponse(
-      path: "${ControlMissionLinks.controlMissionSchool}",
+      path: ProctorsLinks.getControlMissionByProctor,
       converter: ControlMissionsResModel.fromJson,
       type: ReqTypeEnum.GET,
     );
@@ -45,5 +44,12 @@ class AllExamController extends GetxController {
     );
     isLoadingGetControlMission = false;
     update();
+  }
+
+  @override
+  void onInit() {
+    getControlMissionByproctor();
+
+    super.onInit();
   }
 }

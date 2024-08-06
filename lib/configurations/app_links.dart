@@ -38,6 +38,8 @@ class ExamLinks {
 
 class ProctorsLinks {
   static const proctor = 'proctor';
+    static const getControlMissionByProctor = 'proctor/control-mission';
+
 }
 
 class SchoolsLinks {

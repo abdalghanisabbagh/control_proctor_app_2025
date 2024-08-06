@@ -48,13 +48,16 @@ class AllExams extends GetView<AllExamController> {
               }
 
               return SizedBox(
-                width: Get.width * 0.4,
-                child: MultiSelectDropDownView(
-                  hintText: "Select Control Mission",
-                  onOptionSelected: (selectedItem) {
-                    //  controller.setSelectedItemControlMission(selectedItem);
-                  },
-                  options: controller.optionsControlMission,
+                width: Get.width,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MultiSelectDropDownView(
+                    hintText: "Select Control Mission",
+                    onOptionSelected: (selectedItem) {
+                      //  controller.setSelectedItemControlMission(selectedItem);
+                    },
+                    options: controller.optionsControlMission,
+                  ),
                 ),
               );
             },
