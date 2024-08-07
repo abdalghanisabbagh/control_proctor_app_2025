@@ -20,6 +20,36 @@ class NextExamController extends GetxController {
   List<NextExamResModel> filteredNextExamList = [];
   DateTime? selectedDate;
 
+  void fetchDataForSelectedDate(DateTime date) {
+    selectedDate = date;
+    filterList('');
+  }
+
+  void filterList(String query) {
+    if (query.isEmpty && selectedDate == null) {
+      filteredNextExamList = nextExamList;
+    } else {
+      filteredNextExamList = nextExamList.where((exam) {
+        final matchQuery = exam.examRoomResModel?.name
+                ?.toLowerCase()
+                .contains(query.toLowerCase()) ??
+            false;
+        final matchDate = selectedDate == null
+            ? true
+            : exam.examMissionsResModel?.data?.any((mission) {
+                  final examDate = DateFormat('yyyy-MM-dd')
+                      .format(DateTime.parse(mission.startTime!));
+                  final selectedFormattedDate =
+                      DateFormat('yyyy-MM-dd').format(selectedDate!);
+                  return examDate == selectedFormattedDate;
+                }) ??
+                false;
+        return matchQuery && matchDate;
+      }).toList();
+    }
+    update();
+  }
+
   Future<void> getAllExamMissionsByProctorId() async {
     isLoadingGetNextExam = true;
 
@@ -27,7 +57,7 @@ class NextExamController extends GetxController {
     ResponseHandler<NextExamsResModel> responseHandler = ResponseHandler();
     Either<Failure, NextExamsResModel> response =
         await responseHandler.getResponse(
-      path: "${ExamLinks.examRoomNextExam}/$userId",
+      path: ExamLinks.examRoomNextExam,
       converter: NextExamsResModel.fromJson,
       type: ReqTypeEnum.GET,
     );
@@ -57,38 +87,8 @@ class NextExamController extends GetxController {
     getAllExamMissionsByProctorId();
   }
 
-  void fetchDataForSelectedDate(DateTime date) {
-    selectedDate = date;
-    filterList('');
-  }
-
   void resetFilters() {
     selectedDate = null;
     filterList('');
-  }
-
-  void filterList(String query) {
-    if (query.isEmpty && selectedDate == null) {
-      filteredNextExamList = nextExamList;
-    } else {
-      filteredNextExamList = nextExamList.where((exam) {
-        final matchQuery = exam.examRoomResModel?.name
-                ?.toLowerCase()
-                .contains(query.toLowerCase()) ??
-            false;
-        final matchDate = selectedDate == null
-            ? true
-            : exam.examMissionsResModel?.data?.any((mission) {
-                  final examDate = DateFormat('yyyy-MM-dd')
-                      .format(DateTime.parse(mission.startTime!));
-                  final selectedFormattedDate =
-                      DateFormat('yyyy-MM-dd').format(selectedDate!);
-                  return examDate == selectedFormattedDate;
-                }) ??
-                false;
-        return matchQuery && matchDate;
-      }).toList();
-    }
-    update();
   }
 }
