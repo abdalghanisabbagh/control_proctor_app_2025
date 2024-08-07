@@ -26,11 +26,6 @@ void _login(
         'Success',
       ).show(Get.context!);
       Get.toNamed(Routes.nextExams);
-    } else {
-      MyFlashBar.showError(
-        'Login failed. Please try again.',
-        'Error',
-      ).show(Get.context!);
     }
   }
 }
