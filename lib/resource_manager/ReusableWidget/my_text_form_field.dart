@@ -1,10 +1,25 @@
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../index.dart';
-
 class MytextFormFiled extends StatelessWidget {
+  final String? Function(String? newValue)? myValidation;
+
+  final String? Function(String? value)? onChange;
+  final Function(String? value)? onFieldSubmitted;
+  final TextEditingController controller;
+  final Color? enableBorderColor;
+  final Color? foucsBorderColor;
+  final bool? isEnable;
+  final bool? isNumber;
+  final int maxlines;
+  final int? maxLength;
+  final bool obscureText;
+  final Widget? suffixIcon;
+  final List<TextInputFormatter>? textInputs;
+  final String? title;
+  final FocusNode? focusNode;
   const MytextFormFiled({
     super.key,
     this.title,
@@ -24,26 +39,9 @@ class MytextFormFiled extends StatelessWidget {
     this.focusNode,
   });
 
-  final String? Function(String? newValue)? myValidation;
-  final String? Function(String? value)? onChange;
-  final Function(String? value)? onFieldSubmitted;
-  final TextEditingController controller;
-  final Color? enableBorderColor;
-  final Color? foucsBorderColor;
-  final bool? isEnable;
-  final bool? isNumber;
-  final int maxlines;
-  final int? maxLength;
-  final bool obscureText;
-  final Widget? suffixIcon;
-  final List<TextInputFormatter>? textInputs;
-  final String? title;
-  final FocusNode? focusNode;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
       keyboardType: isNumber == true ? TextInputType.number : null,
       inputFormatters: isNumber == true
           ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
