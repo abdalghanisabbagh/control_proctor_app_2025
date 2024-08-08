@@ -20,9 +20,9 @@ class ProfileController extends GetxController {
   UserProfileModel? get cachedUserProfile =>
       _cachedUserProfile ?? getProfileFromHiveBox();
 
-  void saveProfileToHiveBox(UserProfileModel cachedUserProfile) {
-    update();
-    Hive.box('Profile').put('Profile', jsonEncode(cachedUserProfile.toJson()));
+  Future<void> deleteProfileFromHiveBox() async {
+    _cachedUserProfile = null;
+    await Hive.box('Profile').clear();
   }
 
   UserProfileModel? getProfileFromHiveBox() {
@@ -33,8 +33,8 @@ class ProfileController extends GetxController {
     return _cachedUserProfile;
   }
 
-  Future<void> deleteProfileFromHiveBox() async {
-    _cachedUserProfile = null;
-    await Hive.box('Profile').clear();
+  void saveProfileToHiveBox(UserProfileModel cachedUserProfile) {
+    update();
+    Hive.box('Profile').put('Profile', jsonEncode(cachedUserProfile.toJson()));
   }
 }

@@ -8,6 +8,7 @@ import '../../services/services.dart';
 
 class SideMenu extends StatelessWidget {
   final SideMenuController sideMenuController = Get.put(SideMenuController());
+
   SideMenu({super.key});
 
   @override

@@ -4,15 +4,8 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 class StudentsInExamRoomService extends GetxService {
-  int? _selectedExamRoomId;
   int? _selectedExamMissionId;
-
-  FutureOr<int?> get selectedExamRoomId async {
-    if (_selectedExamRoomId == null) {
-      await getFromHiveBox();
-    }
-    return _selectedExamRoomId;
-  }
+  int? _selectedExamRoomId;
 
   FutureOr<int?> get selectedExamMissionId async {
     if (_selectedExamMissionId == null) {
@@ -21,22 +14,19 @@ class StudentsInExamRoomService extends GetxService {
     return _selectedExamMissionId;
   }
 
-  void setSelectedExamRoomId(int id) {
-    _selectedExamRoomId = id;
+  FutureOr<int?> get selectedExamRoomId async {
+    if (_selectedExamRoomId == null) {
+      await getFromHiveBox();
+    }
+    return _selectedExamRoomId;
   }
 
-  void setSelectedExamMissionId(int id) {
-    _selectedExamMissionId = id;
-  }
-
-  Future<void> setSelectedExamRoomAndExamMissionId({
-    int? examRoomId,
-    int? examMissionId,
-  }) async {
-    _selectedExamRoomId = examRoomId;
-    _selectedExamMissionId = examMissionId;
-
-    await saveTohiveBox();
+  Future<void> deleteFromHiveBox() async {
+    _selectedExamRoomId = null;
+    _selectedExamMissionId = null;
+    await Future.wait([
+      Hive.box('StudentsInExamRoom').clear(),
+    ]);
   }
 
   Future<void> getFromHiveBox() async {
@@ -61,11 +51,21 @@ class StudentsInExamRoomService extends GetxService {
     await Hive.box('StudentsInExamRoom').flush();
   }
 
-  Future<void> deleteFromHiveBox() async {
-    _selectedExamRoomId = null;
-    _selectedExamMissionId = null;
-    await Future.wait([
-      Hive.box('StudentsInExamRoom').clear(),
-    ]);
+  void setSelectedExamMissionId(int id) {
+    _selectedExamMissionId = id;
+  }
+
+  Future<void> setSelectedExamRoomAndExamMissionId({
+    int? examRoomId,
+    int? examMissionId,
+  }) async {
+    _selectedExamRoomId = examRoomId;
+    _selectedExamMissionId = examMissionId;
+
+    await saveTohiveBox();
+  }
+
+  void setSelectedExamRoomId(int id) {
+    _selectedExamRoomId = id;
   }
 }

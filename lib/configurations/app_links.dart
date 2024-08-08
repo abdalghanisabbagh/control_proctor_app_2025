@@ -27,19 +27,18 @@ class EducationYearsLinks {
 
 class ExamLinks {
   static const examMission = 'exam-mission';
-  static const examMissionUpload = 'exam-mission/upload';
   static const examMissionControlMission = 'exam-mission/control-mission';
   static const examMissionSubject = 'exam-mission/subject';
+  static const examMissionUpload = 'exam-mission/upload';
+  static const examRoomNextExam = 'exam-rooms/next-exams';
   static const examRooms = 'exam-rooms';
   static const examRoomsControlMission = 'exam-rooms/control-mission';
   static const examRoomsSchoolClass = 'exam-rooms/school-class';
-  static const examRoomNextExam = 'exam-rooms/next-exams';
 }
 
 class ProctorsLinks {
+  static const getControlMissionByProctor = 'proctor/control-mission';
   static const proctor = 'proctor';
-    static const getControlMissionByProctor = 'proctor/control-mission';
-
 }
 
 class SchoolsLinks {
@@ -65,21 +64,21 @@ class Stage {
 
 class StudentsLinks {
   static const student = 'student';
-  static const studentExams = '$student/student-exams';
   static const studentBarcodes = 'student-barcodes';
   static const studentBarcodesExamMission = 'student-barcodes/exam-mission';
   static const studentBarcodesExamRoom = '$studentBarcodes/exam-room';
   static const studentBarcodesStudent = 'student-barcodes/student';
   static const studentCohort = 'student/cohort';
+  static const studentExams = '$student/student-exams';
   static const studentMany = 'student/many';
   static const studentSchool = 'student/school';
   static const studentSeatNumbers = 'student-seat-numbers';
   static const studentSeatNumbersControlMission =
       '$studentSeatNumbers/control-mission';
 
-  static const studentUuid = '/uuid';
   static const studentSeatNumbersExamRoom = '$studentSeatNumbers/exam-rooms';
   static const studentSeatNumbersStudent = '$studentSeatNumbers/student';
+  static const studentUuid = '/uuid';
   static const studentsClass = 'student/class';
 }
 

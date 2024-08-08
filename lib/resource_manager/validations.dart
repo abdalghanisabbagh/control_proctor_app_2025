@@ -1,52 +1,4 @@
-
-
 abstract class Validations {
-  /// Email Validator
-  ///
-  /// check if value is null or empty
-  /// return `Field Is Required` as a [String]
-  /// otherwise return `null`
-  static String? validateEmail(String? value) {
-    if (value!.isEmpty) {
-      return 'Please enter email';
-    } else if (!checkEmail(value)) {
-      return 'Please enter valid email';
-    }
-    return null;
-  }
-
-  /// Required Field Validator
-  ///
-  /// check if value is null or empty
-  /// return `Field Is Required` as a [String]
-  /// otherwise return `null`
-  static String? requiredValidator(String? value) {
-    if (value != null) {
-      if (value.isEmpty) {
-        return 'Field  Is Required';
-      }
-    } else if (value == null) {
-      return 'Field  Is Required';
-    }
-    return null;
-  }
-
-  /// Password Validator
-  ///
-  /// check if value is null or empty
-  /// return `Field Is Required` as a [String]
-  /// otherwise return `null`
-  static String? validatePassword(String? value) {
-    if (value!.isEmpty) {
-      return 'Please enter password';
-    } else if (!checkPassword(value)) {
-      return 'Please enter valid password';
-    }
-    return null;
-  }
-
-  
-
   static bool checkEmail(String email) {
     /// Regular expression for email validation
     final RegExp regex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
@@ -85,6 +37,50 @@ abstract class Validations {
     }
 
     return true; // Password meets all criteria
+  }
+
+  /// Required Field Validator
+  ///
+  /// check if value is null or empty
+  /// return `Field Is Required` as a [String]
+  /// otherwise return `null`
+  static String? requiredValidator(String? value) {
+    if (value != null) {
+      if (value.isEmpty) {
+        return 'Field  Is Required';
+      }
+    } else if (value == null) {
+      return 'Field  Is Required';
+    }
+    return null;
+  }
+
+  /// Email Validator
+  ///
+  /// check if value is null or empty
+  /// return `Field Is Required` as a [String]
+  /// otherwise return `null`
+  static String? validateEmail(String? value) {
+    if (value!.isEmpty) {
+      return 'Please enter email';
+    } else if (!checkEmail(value)) {
+      return 'Please enter valid email';
+    }
+    return null;
+  }
+
+  /// Password Validator
+  ///
+  /// check if value is null or empty
+  /// return `Field Is Required` as a [String]
+  /// otherwise return `null`
+  static String? validatePassword(String? value) {
+    if (value!.isEmpty) {
+      return 'Please enter password';
+    } else if (!checkPassword(value)) {
+      return 'Please enter valid password';
+    }
+    return null;
   }
 
   /// MultiSelectDropDown Required Field Validator

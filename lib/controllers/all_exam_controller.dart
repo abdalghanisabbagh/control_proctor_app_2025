@@ -15,8 +15,8 @@ import '../tools/response_handler.dart';
 class AllExamController extends GetxController {
   bool isLoadingGetControlMission = false;
   bool isLoadingGetNextExam = false;
-  List<ValueItem> optionsControlMission = <ValueItem>[];
   List<NextExamResModel> nextExamList = [];
+  List<ValueItem> optionsControlMission = <ValueItem>[];
 
   Future<void> getControlMissionsByProctorId() async {
     isLoadingGetControlMission = true;

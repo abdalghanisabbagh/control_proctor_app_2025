@@ -8,13 +8,11 @@ import 'screens/next_exams_screen.dart';
 import 'screens/students_in_exam_room/students_in_exam_room_screen.dart';
 
 class Routes {
+  static const String allExams = "/AllExams";
+  static const String attendance = "/Attendance";
   static const String initialRoute = "/login";
   static const String loginRoute = "/login";
   static const String nextExams = "/NextExams";
-  static const String allExams = "/AllExams";
-  static const String attendance = "/Attendance";
-  static const String studentsInExamRoom = "/StudentsInExamRoom";
-
   static List<GetPage> routes = [
     GetPage(
       name: loginRoute,
@@ -47,4 +45,6 @@ class Routes {
       transitionDuration: const Duration(seconds: 1),
     ),
   ];
+
+  static const String studentsInExamRoom = "/StudentsInExamRoom";
 }

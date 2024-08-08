@@ -6,9 +6,9 @@ import '../models/failure_model.dart';
 import 'dio_factory.dart';
 
 class ResponseHandler<T> {
-  ResponseHandler() : _dio = DioFactory().getDio();
-
   final Dio _dio;
+
+  ResponseHandler() : _dio = DioFactory().getDio();
 
   Future<Either<Failure, T>> getResponse({
     required String path,
@@ -31,6 +31,32 @@ class ResponseHandler<T> {
     }
   }
 
+  Future<Either<Failure, T>> _delete(
+    String path,
+    T Function(dynamic) converter,
+    Map<String, dynamic>? params,
+    dynamic body,
+  ) async {
+    return await _request(
+      converter,
+      () => _dio
+          .delete(
+        path,
+        queryParameters: params,
+        data: body,
+      )
+          .catchError(
+        (error) {
+          return Response(
+            statusCode: error.response.statusCode,
+            data: {"message": error.response.data['message']},
+            requestOptions: RequestOptions(),
+          );
+        },
+      ),
+    );
+  }
+
   Future<Either<Failure, T>> _get(
     String path,
     T Function(dynamic) converter,
@@ -41,6 +67,32 @@ class ResponseHandler<T> {
       converter,
       () => _dio
           .get(
+        path,
+        queryParameters: params,
+        data: body,
+      )
+          .catchError(
+        (error) {
+          return Response(
+            statusCode: error.response.statusCode,
+            data: {"message": error.response.data['message']},
+            requestOptions: RequestOptions(),
+          );
+        },
+      ),
+    );
+  }
+
+  Future<Either<Failure, T>> _patch(
+    String path,
+    T Function(dynamic) converter,
+    Map<String, dynamic>? params,
+    dynamic body,
+  ) async {
+    return await _request(
+      converter,
+      () => _dio
+          .patch(
         path,
         queryParameters: params,
         data: body,
@@ -93,58 +145,6 @@ class ResponseHandler<T> {
       converter,
       () => _dio
           .put(
-        path,
-        queryParameters: params,
-        data: body,
-      )
-          .catchError(
-        (error) {
-          return Response(
-            statusCode: error.response.statusCode,
-            data: {"message": error.response.data['message']},
-            requestOptions: RequestOptions(),
-          );
-        },
-      ),
-    );
-  }
-
-  Future<Either<Failure, T>> _delete(
-    String path,
-    T Function(dynamic) converter,
-    Map<String, dynamic>? params,
-    dynamic body,
-  ) async {
-    return await _request(
-      converter,
-      () => _dio
-          .delete(
-        path,
-        queryParameters: params,
-        data: body,
-      )
-          .catchError(
-        (error) {
-          return Response(
-            statusCode: error.response.statusCode,
-            data: {"message": error.response.data['message']},
-            requestOptions: RequestOptions(),
-          );
-        },
-      ),
-    );
-  }
-
-  Future<Either<Failure, T>> _patch(
-    String path,
-    T Function(dynamic) converter,
-    Map<String, dynamic>? params,
-    dynamic body,
-  ) async {
-    return await _request(
-      converter,
-      () => _dio
-          .patch(
         path,
         queryParameters: params,
         data: body,

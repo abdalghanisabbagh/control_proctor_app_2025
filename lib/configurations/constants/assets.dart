@@ -1,6 +1,4 @@
 class Assets {
-  Assets._();
-  
   /// Assets for assetsFontsNunitoBlack
   /// assets/fonts/Nunito-Black.ttf
   static const String assetsFontsNunitoBlack = "assets/fonts/Nunito-Black.ttf";
@@ -15,11 +13,13 @@ class Assets {
 
   /// Assets for assetsFontsNunitoRegular
   /// assets/fonts/Nunito-Regular.ttf
-  static const String assetsFontsNunitoRegular = "assets/fonts/Nunito-Regular.ttf";
+  static const String assetsFontsNunitoRegular =
+      "assets/fonts/Nunito-Regular.ttf";
 
   /// Assets for assetsFontsNunitoSemiBold
   /// assets/fonts/Nunito-SemiBold.ttf
-  static const String assetsFontsNunitoSemiBold = "assets/fonts/Nunito-SemiBold.ttf";
+  static const String assetsFontsNunitoSemiBold =
+      "assets/fonts/Nunito-SemiBold.ttf";
 
   /// Assets for assetsFontsOpenSans
   /// assets/fonts/open-sans.ttf
@@ -27,19 +27,23 @@ class Assets {
 
   /// Assets for assetsFontsPlayfairDisplayBold
   /// assets/fonts/PlayfairDisplay-Bold.ttf
-  static const String assetsFontsPlayfairDisplayBold = "assets/fonts/PlayfairDisplay-Bold.ttf";
+  static const String assetsFontsPlayfairDisplayBold =
+      "assets/fonts/PlayfairDisplay-Bold.ttf";
 
   /// Assets for assetsFontsPlayfairDisplayMedium
   /// assets/fonts/PlayfairDisplay-Medium.ttf
-  static const String assetsFontsPlayfairDisplayMedium = "assets/fonts/PlayfairDisplay-Medium.ttf";
+  static const String assetsFontsPlayfairDisplayMedium =
+      "assets/fonts/PlayfairDisplay-Medium.ttf";
 
   /// Assets for assetsFontsPlayfairDisplayRegular
   /// assets/fonts/PlayfairDisplay-Regular.ttf
-  static const String assetsFontsPlayfairDisplayRegular = "assets/fonts/PlayfairDisplay-Regular.ttf";
+  static const String assetsFontsPlayfairDisplayRegular =
+      "assets/fonts/PlayfairDisplay-Regular.ttf";
 
   /// Assets for assetsFontsPlayfairDisplaySemiBold
   /// assets/fonts/PlayfairDisplay-SemiBold.ttf
-  static const String assetsFontsPlayfairDisplaySemiBold = "assets/fonts/PlayfairDisplay-SemiBold.ttf";
+  static const String assetsFontsPlayfairDisplaySemiBold =
+      "assets/fonts/PlayfairDisplay-SemiBold.ttf";
 
   /// Assets for assetsIconsAdmin
   /// assets/icons/admin.png
@@ -87,7 +91,8 @@ class Assets {
 
   /// Assets for assetsIconsNotificationImage
   /// assets/icons/notification_image.png
-  static const String assetsIconsNotificationImage = "assets/icons/notification_image.png";
+  static const String assetsIconsNotificationImage =
+      "assets/icons/notification_image.png";
 
   /// Assets for assetsIconsPatchDoc
   /// assets/icons/patchDoc.png
@@ -107,7 +112,8 @@ class Assets {
 
   /// Assets for assetsIconsStudentDegrees
   /// assets/icons/student_degrees.png
-  static const String assetsIconsStudentDegrees = "assets/icons/student_degrees.png";
+  static const String assetsIconsStudentDegrees =
+      "assets/icons/student_degrees.png";
 
   /// Assets for assetsIconsSupject
   /// assets/icons/supject.png
@@ -144,5 +150,6 @@ class Assets {
   /// Assets for assetsLogosNisLogo22
   /// assets/logos/nis_logo22.png
   static const String assetsLogosNisLogo22 = "assets/logos/nis_logo22.png";
-}
 
+  Assets._();
+}

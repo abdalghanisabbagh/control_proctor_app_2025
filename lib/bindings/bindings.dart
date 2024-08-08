@@ -4,6 +4,16 @@ import '../controllers/all_exam_controller.dart';
 import '../controllers/controllers.dart';
 import '../services/services.dart';
 
+class AllExamBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<AllExamController>(
+      () => AllExamController(),
+      fenix: true,
+    );
+  }
+}
+
 class InitialBindings extends Bindings {
   @override
   void dependencies() {
@@ -43,16 +53,6 @@ class NextExamBindings extends Bindings {
   void dependencies() {
     Get.lazyPut<NextExamController>(
       () => NextExamController(),
-      fenix: true,
-    );
-  }
-}
-
-class AllExamBindings extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut<AllExamController>(
-      () => AllExamController(),
       fenix: true,
     );
   }

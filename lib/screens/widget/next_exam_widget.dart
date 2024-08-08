@@ -9,10 +9,10 @@ import '../../routes_manger.dart';
 import '../../services/students_in_exam_room_service.dart';
 
 class NextExamWidget extends GetView<NextExamController> {
-  final NextExamResModel nextExamResModel;
   final ExamMissionResModel examMissionResModel;
-  final int index;
 
+  final int index;
+  final NextExamResModel nextExamResModel;
   const NextExamWidget({
     super.key,
     required this.nextExamResModel,
