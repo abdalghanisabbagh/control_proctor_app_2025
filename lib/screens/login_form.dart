@@ -31,9 +31,9 @@ void _login(
 
 class LoginForm extends GetView<LoginController> {
   final emailController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
-
   LoginForm({super.key});
 
   @override
