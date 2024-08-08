@@ -1,4 +1,3 @@
-
 class ControlMissionResModel {
   int? active;
 
@@ -9,11 +8,12 @@ class ControlMissionResModel {
   int? createdBy;
   int? educationYearID;
   String? endDate;
- // ExamMissionsResModel? examMissionsResModel;
+  // ExamMissionsResModel? examMissionsResModel;
   int? iD;
   String? name;
   int? schoolsID;
   String? startDate;
+
   String? updatedAt;
   int? updatedBy;
   ControlMissionResModel({
@@ -91,7 +91,7 @@ class ControlMissionResModel {
     data['End_Date'] = endDate;
     data['Active'] = active;
     data['_count'] = count;
-  //  data['exam_mission'] = examMissionsResModel?.toJson();
+    //  data['exam_mission'] = examMissionsResModel?.toJson();
     return data;
   }
 }
