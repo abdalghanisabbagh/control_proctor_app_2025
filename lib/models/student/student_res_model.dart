@@ -12,8 +12,10 @@ class StudentResModel {
   String? email;
   String? firstName;
   String? gradeName;
+  GradeResModel? gradeResModel;
   int? gradesID;
   int? iD;
+  String? religion;
   int? schoolClassID;
   String? schoolClassName;
   int? schoolsID;
@@ -22,8 +24,6 @@ class StudentResModel {
   String? thirdName;
   DateTime? updatedAt;
   int? updatedBy;
-  String? religion;
-  GradeResModel? gradeResModel;
   StudentResModel({
     this.iD,
     this.blbId,
