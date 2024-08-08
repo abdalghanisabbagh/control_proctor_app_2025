@@ -13,12 +13,11 @@ import '../tools/response_handler.dart';
 import 'controllers.dart';
 
 class NextExamController extends GetxController {
-  final userId = Get.find<ProfileController>().cachedUserProfile!.iD;
-
+  List<NextExamResModel> filteredNextExamList = [];
   bool isLoadingGetNextExam = false;
   List<NextExamResModel> nextExamList = [];
-  List<NextExamResModel> filteredNextExamList = [];
   DateTime? selectedDate;
+  final userId = Get.find<ProfileController>().cachedUserProfile!.iD;
 
   void fetchDataForSelectedDate(DateTime date) {
     selectedDate = date;
