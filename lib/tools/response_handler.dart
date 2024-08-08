@@ -1,9 +1,9 @@
-import 'package:control_proctor/tools/dio_factory.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../enums/req_type_enum.dart';
 import '../models/failure_model.dart';
+import 'dio_factory.dart';
 
 class ResponseHandler<T> {
   ResponseHandler() : _dio = DioFactory().getDio();
