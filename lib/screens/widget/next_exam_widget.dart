@@ -1,12 +1,12 @@
-import 'package:control_proctor/controllers/next_exam_controller.dart';
-import 'package:control_proctor/models/next%20exam/next_exam_res_model.dart';
-import 'package:control_proctor/routes_manger.dart';
-import 'package:control_proctor/services/students_in_exam_room_service.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/next_exam_controller.dart';
 import '../../models/exam mission/exam_mission_res_model.dart';
+import '../../models/next%20exam/next_exam_res_model.dart';
+import '../../routes_manger.dart';
+import '../../services/students_in_exam_room_service.dart';
 
 class NextExamWidget extends GetView<NextExamController> {
   final NextExamResModel nextExamResModel;
