@@ -1,6 +1,5 @@
-import 'package:control_proctor/models/exam%20room/exam_room_res_model.dart';
-
 import '../exam mission/exam_missions_res_model.dart';
+import '../exam%20room/exam_room_res_model.dart';
 
 class NextExamResModel {
   ExamRoomResModel? examRoomResModel;
