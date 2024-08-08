@@ -1,4 +1,5 @@
 import 'package:control_proctor/controllers/controllers.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,9 +8,6 @@ import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 import '../../resource_manager/ReusableWidget/my_snak_bar.dart';
-import '../../resource_manager/color_manager.dart';
-import '../../resource_manager/font_manager.dart';
-import '../../resource_manager/styles_manager.dart';
 
 class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
   const StudentsInExamRoomScreen({super.key});
