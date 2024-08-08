@@ -1,10 +1,10 @@
 import 'package:control_proctor/routes_manger.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'bindings/bindings.dart';
-import 'resource_manager/theme_manager.dart';
 
 class MyApp extends StatefulWidget {
   static const MyApp _instance = MyApp._internal(); // singlton instance
@@ -20,10 +20,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+    );
     return GetMaterialApp(
       navigatorKey: Get.key,
       debugShowCheckedModeBanner: false,
