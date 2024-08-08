@@ -2,9 +2,8 @@ import 'package:control_proctor/controllers/login_controller.dart';
 import 'package:control_proctor/resource_manager/ReusableWidget/loading_indicators.dart';
 import 'package:control_proctor/resource_manager/ReusableWidget/my_snak_bar.dart';
 import 'package:control_proctor/resource_manager/ReusableWidget/my_text_form_field.dart';
-import 'package:control_proctor/resource_manager/assets_manager.dart';
-import 'package:control_proctor/resource_manager/color_manager.dart';
 import 'package:control_proctor/resource_manager/validations.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -75,7 +74,7 @@ class LoginForm extends GetView<LoginController> {
                         height: 10,
                       ),
                       Image.asset(
-                        AssetsManager.assetsbarcodeLogo,
+                        'assets/logos/barcode.png',
                         fit: BoxFit.fill,
                         height: 160,
                         width: 160,
