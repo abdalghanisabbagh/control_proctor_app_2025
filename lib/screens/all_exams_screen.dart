@@ -1,4 +1,4 @@
-import 'package:control_proctor/resource_manager/index.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
