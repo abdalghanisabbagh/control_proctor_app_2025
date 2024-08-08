@@ -11,12 +11,10 @@ import '../tools/response_handler.dart';
 import 'profile_controller.dart';
 
 class LoginController extends GetxController {
-  bool showPass = true;
   bool isLoading = false;
-
-  TokenService tokenService = Get.find<TokenService>();
-
   ProfileController profileController = Get.find<ProfileController>();
+  bool showPass = true;
+  TokenService tokenService = Get.find<TokenService>();
 
   Future<bool> login(String username, String password) async {
     isLoading = true;
