@@ -11,9 +11,8 @@ import '../services/students_in_exam_room_service.dart';
 import '../tools/response_handler.dart';
 
 class StudentsInExamRoomController extends GetxController {
-  StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
-
   bool isLoading = true;
+  StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
 
   Future<void> activateStudent(int id) async {
     final responseHandler = ResponseHandler<void>();
