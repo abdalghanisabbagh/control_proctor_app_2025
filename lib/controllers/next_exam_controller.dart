@@ -1,7 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_proctor/controllers/controllers.dart';
-import 'package:control_proctor/models/next%20exam/next_exams_res_model.dart';
-import 'package:control_proctor/tools/response_handler.dart';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +7,10 @@ import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
 import '../models/failure_model.dart';
 import '../models/next exam/next_exam_res_model.dart';
+import '../models/next%20exam/next_exams_res_model.dart';
 import '../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../tools/response_handler.dart';
+import 'controllers.dart';
 
 class NextExamController extends GetxController {
   final userId = Get.find<ProfileController>().cachedUserProfile!.iD;

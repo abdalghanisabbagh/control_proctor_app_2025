@@ -1,21 +1,13 @@
-import 'package:control_proctor/models/class_room/class_room_res_model.dart';
+import '../class_room/class_room_res_model.dart';
 
 class ExamRoomResModel {
-  ExamRoomResModel({
-    this.id,
-    this.name,
-    this.stage,
-    this.classRoomResModel
-  });
-
-  
+  ExamRoomResModel({this.id, this.name, this.stage, this.classRoomResModel});
 
   ExamRoomResModel.fromJson(json) {
     id = json['ID'];
     name = json['Name'];
     stage = json['Stage'];
     classRoomResModel = ClassRoomResModel.fromJson(json['school_class']);
-   
   }
 
   int? id;
@@ -31,6 +23,4 @@ class ExamRoomResModel {
     data['school_class'] = classRoomResModel?.toJson();
     return data;
   }
-
-  
 }

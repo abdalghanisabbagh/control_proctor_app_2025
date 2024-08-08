@@ -1,4 +1,3 @@
-import 'package:control_proctor/screens/widget/next_exam_widget.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../controllers/next_exam_controller.dart';
 import '../resource_manager/ReusableWidget/loading_indicators.dart';
+import 'widget/next_exam_widget.dart';
 import 'widget/side_menu.dart';
 
 class NextExamsPage extends GetView<NextExamController> {

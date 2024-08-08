@@ -1,5 +1,4 @@
-import 'package:control_proctor/models/barcodes/barcodes_res_model.dart';
-
+import '../barcodes/barcodes_res_model.dart';
 import '../subject/subject_res_model.dart';
 
 class StudentBarcodeInExamRoom {

@@ -1,4 +1,4 @@
-import 'package:control_proctor/models/barcodes/barcode_res_model.dart';
+import 'barcode_res_model.dart';
 
 class BarcodesResModel {
   List<BarcodeResModel>? barcodes;
