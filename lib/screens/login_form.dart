@@ -1,14 +1,14 @@
-import 'package:control_proctor/controllers/login_controller.dart';
-import 'package:control_proctor/resource_manager/ReusableWidget/loading_indicators.dart';
-import 'package:control_proctor/resource_manager/ReusableWidget/my_snak_bar.dart';
-import 'package:control_proctor/resource_manager/ReusableWidget/my_text_form_field.dart';
-import 'package:control_proctor/resource_manager/validations.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../controllers/login_controller.dart';
+import '../resource_manager/ReusableWidget/loading_indicators.dart';
+import '../resource_manager/ReusableWidget/my_snak_bar.dart';
+import '../resource_manager/ReusableWidget/my_text_form_field.dart';
 import '../resource_manager/constants/app_constatnts.dart';
+import '../resource_manager/validations.dart';
 import '../routes_manger.dart';
 
 void _login(
