@@ -1,11 +1,11 @@
-import 'package:control_proctor/bindings/bindings.dart';
-import 'package:control_proctor/screens/attendance.dart';
-import 'package:control_proctor/screens/login_form.dart';
-import 'package:control_proctor/screens/next_exams_screen.dart';
-import 'package:control_proctor/screens/students_in_exam_room/students_in_exam_room_screen.dart';
 import 'package:get/get.dart';
 
+import 'bindings/bindings.dart';
 import 'screens/all_exams_screen.dart';
+import 'screens/attendance.dart';
+import 'screens/login_form.dart';
+import 'screens/next_exams_screen.dart';
+import 'screens/students_in_exam_room/students_in_exam_room_screen.dart';
 
 class Routes {
   static const String initialRoute = "/login";
