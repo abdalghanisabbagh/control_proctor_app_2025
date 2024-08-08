@@ -1,14 +1,13 @@
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 
-import '../index.dart';
-
 class ElevatedAddButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
   const ElevatedAddButton({
     super.key,
     required this.onPressed,
   });
-
-  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
