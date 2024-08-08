@@ -1,8 +1,8 @@
-import 'package:control_proctor/services/services.dart';
 import 'package:get/get.dart';
 
 import '../controllers/all_exam_controller.dart';
 import '../controllers/controllers.dart';
+import '../services/services.dart';
 
 class InitialBindings extends Bindings {
   @override
@@ -47,6 +47,7 @@ class NextExamBindings extends Bindings {
     );
   }
 }
+
 class AllExamBindings extends Bindings {
   @override
   void dependencies() {
