@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'widget/side_menu.dart';
 
 class Attendance extends StatelessWidget {
@@ -10,7 +11,7 @@ class Attendance extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Attendance'),
       ),
-      drawer:  SideMenu(),
+      drawer: SideMenu(),
       body: const Center(
         child: Text('Welcome to the Attendance Page'),
       ),
