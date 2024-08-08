@@ -2,18 +2,19 @@ import '../student/student_res_model.dart';
 import '../student_seat/student_seat_res_model.dart';
 
 class BarcodeResModel {
-  int? iD;
-  int? examMissionID;
-  int? studentID;
-  int? studentSeatNumnbersID;
-  String? barcode;
   int? attendanceStatusId;
-  String? studentDegree;
+
+  String? barcode;
+
+  int? examMissionID;
   String? examVersion;
+  int? iD;
   int? isCheating;
   StudentResModel? student;
+  String? studentDegree;
+  int? studentID;
   StudentSeatNumberResModel? studentSeatNumberResModel;
-
+  int? studentSeatNumnbersID;
   BarcodeResModel({
     this.iD,
     this.examMissionID,
@@ -27,7 +28,6 @@ class BarcodeResModel {
     this.student,
     this.studentSeatNumberResModel,
   });
-
   BarcodeResModel.fromJson(json) {
     iD = json['ID'];
     examMissionID = json['Exam_Mission_ID'];
