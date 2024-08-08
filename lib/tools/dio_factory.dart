@@ -10,10 +10,10 @@ import '../configurations/app_links.dart';
 import '../models/token_model.dart';
 import '../services/token_service.dart';
 
-const String APPLICATION_JSON = "application/json";
-const String CONTENT_TYPE = "content-type";
 const String ACCEPT = "accept";
+const String APPLICATION_JSON = "application/json";
 const String AUTHORIZATION = "authorization";
+const String CONTENT_TYPE = "content-type";
 
 const Duration timeOut = Duration(seconds: 120);
 
