@@ -1,5 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_proctor/controllers/profile_controller.dart';
 import 'package:get/get.dart' hide Response;
 
 import '../configurations/app_links.dart';
@@ -9,6 +8,7 @@ import '../models/token_model.dart';
 import '../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../services/token_service.dart';
 import '../tools/response_handler.dart';
+import 'profile_controller.dart';
 
 class LoginController extends GetxController {
   bool showPass = true;
