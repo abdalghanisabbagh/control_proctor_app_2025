@@ -1,4 +1,14 @@
 class UserProfileModel {
+  String? active;
+
+  String? createdAt;
+
+  int? createdBy;
+  String? fullName;
+  int? iD;
+  String? updatedAt;
+  int? updatedBy;
+  String? userName;
   UserProfileModel({
     this.iD,
     this.fullName,
@@ -9,7 +19,6 @@ class UserProfileModel {
     this.updatedAt,
     this.active,
   });
-
   UserProfileModel.fromJson(json) {
     iD = json['ID'];
     fullName = json['Full_Name'];
@@ -20,15 +29,6 @@ class UserProfileModel {
     updatedAt = json['Updated_At'];
     active = json['Active'];
   }
-
-  String? active;
-  String? createdAt;
-  int? createdBy;
-  String? fullName;
-  int? iD;
-  String? updatedAt;
-  int? updatedBy;
-  String? userName;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
