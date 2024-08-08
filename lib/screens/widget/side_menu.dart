@@ -1,10 +1,9 @@
 import 'package:control_proctor/controllers/controllers.dart';
 import 'package:control_proctor/services/services.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../resource_manager/assets_manager.dart';
-import '../../resource_manager/color_manager.dart';
 import '../../routes_manger.dart';
 
 class SideMenu extends StatelessWidget {
