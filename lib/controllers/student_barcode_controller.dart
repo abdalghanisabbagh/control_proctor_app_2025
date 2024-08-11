@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../configurations/app_links.dart';
@@ -12,7 +13,10 @@ import '../tools/response_handler.dart';
 
 class StudentsInExamRoomController extends GetxController {
   bool isLoading = true;
+  bool locked = true;
   StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
+
+  final TextEditingController passwordController = TextEditingController();
 
   Future<void> activateStudent(int id) async {
     final responseHandler = ResponseHandler<void>();
@@ -74,6 +78,17 @@ class StudentsInExamRoomController extends GetxController {
     update();
   }
 
+  void markStudentCheating({required String barcode}) async {
+    final ResponseHandler responseHandler = ResponseHandler<void>();
+
+    await responseHandler.getResponse(
+      path: '${StudentsLinks.markCheatingStudent}/$barcode',
+      type: ReqTypeEnum.GET,
+      converter: (_) {},
+    );
+    getAllStudentsInExamRoom();
+  }
+
   @override
   void onClose() async {
     await Future.wait([
@@ -88,5 +103,21 @@ class StudentsInExamRoomController extends GetxController {
       getAllStudentsInExamRoom(),
     ]);
     super.onInit();
+  }
+
+  void unlock() {
+    locked = false;
+  }
+
+  void unMarkCheatingStudent({required String barcode}) async {
+    final ResponseHandler responseHandler = ResponseHandler();
+
+    await responseHandler.getResponse(
+      path: '${StudentsLinks.unMarkCheatingStudent}/$barcode',
+      body: {},
+      converter: (_) {},
+      type: ReqTypeEnum.GET,
+    );
+    getAllStudentsInExamRoom();
   }
 }
