@@ -3,6 +3,8 @@ class AppLinks {
   static const baseUrl = 'http://localhost:3333/';
 
   static const baseUrlDev = 'http://10.6.65.98:3333/';
+
+  static const baseUrlProd = 'https://control-o5xlbifnea-uc.a.run.app/';
 }
 
 class AuthLinks {
@@ -70,6 +72,8 @@ class StudentsLinks {
   static const studentBarcodesStudent = 'student-barcodes/student';
   static const studentCohort = 'student/cohort';
   static const studentExams = '$student/student-exams';
+  static const unMarkCheatingStudent = '$student/uncheating-student';
+  static const markCheatingStudent = '$student/student-cheating';
   static const studentMany = 'student/many';
   static const studentSchool = 'student/school';
   static const studentSeatNumbers = 'student-seat-numbers';
