@@ -1,3 +1,7 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:control_proctor/resource_manager/ReusableWidget/app_dialogs.dart';
+import 'package:control_proctor/resource_manager/ReusableWidget/my_text_form_field.dart';
+import 'package:control_proctor/resource_manager/ReusableWidget/show_dialgue.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +85,41 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                               ),
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.locked
+                                    ? MyDialogs.showDialog(
+                                        context,
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.centerRight,
+                                              child: IconButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                icon: const Icon(
+                                                  Icons.close,
+                                                ),
+                                              ),
+                                            ),
+                                            MytextFormFiled(
+                                              title: 'Enter Principal Password',
+                                              controller:
+                                                  controller.passwordController,
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () async {},
+                                              child: const Text('Validate'),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : controller.locked = true;
+                              },
                               icon: const Icon(
                                 Icons.lock_outline,
                               ),
@@ -104,92 +142,60 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                       controller.studentBarcodeInExamRoom!
                                           .barcodesResModel!.barcodes!.length;
                                   i++)
-                                Card(
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          width: double.infinity,
-                                          decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(10),
-                                              topRight: Radius.circular(10),
-                                            ),
-                                            color: ColorManager.primary,
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              controller
-                                                  .studentBarcodeInExamRoom!
-                                                  .barcodesResModel!
-                                                  .barcodes![i]
-                                                  .studentSeatNumberResModel!
-                                                  .seatNumber
-                                                  .toString(),
-                                              style: nunitoRegularStyle(
-                                                fontSize: FontSize.s18,
-                                                color: ColorManager.white,
+                                GestureDetector(
+                                  onTap: () {
+                                    if (controller.locked) {
+                                      MyAwesomeDialogue(
+                                        title:
+                                            'This will Mark/Unmark the Student as Cheating',
+                                        desc: 'Are you sure?',
+                                        dialogType: DialogType.warning,
+                                        btnOkOnPressed: () {
+                                          controller
+                                                      .studentBarcodeInExamRoom!
+                                                      .barcodesResModel!
+                                                      .barcodes![i]
+                                                      .isCheating ==
+                                                  0
+                                              ? controller.markStudentCheating(
+                                                  barcode: controller
+                                                      .studentBarcodeInExamRoom!
+                                                      .barcodesResModel!
+                                                      .barcodes![i]
+                                                      .barcode!)
+                                              : controller.unMarkCheatingStudent(
+                                                  barcode: controller
+                                                      .studentBarcodeInExamRoom!
+                                                      .barcodesResModel!
+                                                      .barcodes![i]
+                                                      .barcode!);
+                                        },
+                                        btnCancelOnPressed: () {},
+                                      ).showDialogue(Get.key.currentContext!);
+                                    }
+                                  },
+                                  child: Card(
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                            width: double.infinity,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                topRight: Radius.circular(10),
                                               ),
+                                              color: ColorManager.primary,
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 4,
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                            color: ColorManager.gradesColor[
-                                                controller
-                                                    .studentBarcodeInExamRoom!
-                                                    .barcodesResModel!
-                                                    .barcodes![i]
-                                                    .student!
-                                                    .gradeResModel!
-                                                    .name!],
-                                          ),
-                                          child: Center(
-                                            child: FittedBox(
-                                              fit: BoxFit.fill,
+                                            child: Center(
                                               child: Text(
                                                 controller
                                                     .studentBarcodeInExamRoom!
                                                     .barcodesResModel!
                                                     .barcodes![i]
-                                                    .student!
-                                                    .gradeResModel!
-                                                    .name!,
-                                                style: nunitoRegularStyle(
-                                                  fontSize: FontSize.s18,
-                                                  color: ColorManager.black,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Container(
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              bottomLeft: Radius.circular(10),
-                                              bottomRight: Radius.circular(10),
-                                            ),
-                                            color: ColorManager.bgSideMenu,
-                                          ),
-                                          child: Center(
-                                            child: FittedBox(
-                                              fit: BoxFit.fill,
-                                              child: Text(
-                                                controller
-                                                    .studentBarcodeInExamRoom!
-                                                    .barcodesResModel!
-                                                    .barcodes![i]
-                                                    .student!
-                                                    .firstName
+                                                    .studentSeatNumberResModel!
+                                                    .seatNumber
                                                     .toString(),
                                                 style: nunitoRegularStyle(
                                                   fontSize: FontSize.s18,
@@ -199,8 +205,88 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Expanded(
+                                          flex: 4,
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
+                                              color: controller
+                                                          .studentBarcodeInExamRoom!
+                                                          .barcodesResModel!
+                                                          .barcodes![i]
+                                                          .isCheating! ==
+                                                      1
+                                                  ? ColorManager.red
+                                                  : ColorManager.gradesColor[
+                                                      controller
+                                                          .studentBarcodeInExamRoom!
+                                                          .barcodesResModel!
+                                                          .barcodes![i]
+                                                          .student!
+                                                          .gradeResModel!
+                                                          .name!],
+                                            ),
+                                            child: Center(
+                                              child: FittedBox(
+                                                fit: BoxFit.fill,
+                                                child: Text(
+                                                  controller
+                                                      .studentBarcodeInExamRoom!
+                                                      .barcodesResModel!
+                                                      .barcodes![i]
+                                                      .student!
+                                                      .gradeResModel!
+                                                      .name!,
+                                                  style: nunitoRegularStyle(
+                                                    fontSize: FontSize.s18,
+                                                    color: controller
+                                                                .studentBarcodeInExamRoom!
+                                                                .barcodesResModel!
+                                                                .barcodes![i]
+                                                                .isCheating ==
+                                                            0
+                                                        ? ColorManager.black
+                                                        : ColorManager.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                bottomLeft: Radius.circular(10),
+                                                bottomRight:
+                                                    Radius.circular(10),
+                                              ),
+                                              color: ColorManager.bgSideMenu,
+                                            ),
+                                            child: Center(
+                                              child: FittedBox(
+                                                fit: BoxFit.fill,
+                                                child: Text(
+                                                  controller
+                                                      .studentBarcodeInExamRoom!
+                                                      .barcodesResModel!
+                                                      .barcodes![i]
+                                                      .student!
+                                                      .firstName
+                                                      .toString(),
+                                                  style: nunitoRegularStyle(
+                                                    fontSize: FontSize.s18,
+                                                    color: ColorManager.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                             ],

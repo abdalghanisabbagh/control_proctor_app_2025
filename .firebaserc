@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "nis-control-4cd9d"
+  },
+  "targets": {
+    "nis-control-4cd9d": {
+      "hosting": {
+        "control_proctor_app_2025": [
+          "control-proctor-app-2025"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
