@@ -1,7 +1,4 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_proctor/resource_manager/ReusableWidget/app_dialogs.dart';
-import 'package:control_proctor/resource_manager/ReusableWidget/my_text_form_field.dart';
-import 'package:control_proctor/resource_manager/ReusableWidget/show_dialgue.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +7,11 @@ import 'package:simple_barcode_scanner/enum.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 import '../../controllers/controllers.dart';
+import '../../resource_manager/ReusableWidget/app_dialogs.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 import '../../resource_manager/ReusableWidget/my_snak_bar.dart';
+import '../../resource_manager/ReusableWidget/my_text_form_field.dart';
+import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 
 class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
   const StudentsInExamRoomScreen({super.key});
