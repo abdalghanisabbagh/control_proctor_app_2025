@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:control_proctor/resource_manager/ReusableWidget/my_snak_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,7 @@ import '../tools/response_handler.dart';
 class StudentsInExamRoomController extends GetxController {
   bool isLoading = true;
   bool locked = true;
+  bool validating = false;
   StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
 
   final TextEditingController passwordController = TextEditingController();
@@ -106,7 +108,37 @@ class StudentsInExamRoomController extends GetxController {
   }
 
   void unlock() {
-    locked = false;
+    validating = true;
+    update();
+    final ResponseHandler responseHandler = ResponseHandler<void>();
+
+    responseHandler
+        .getResponse(
+      path: ProctorsLinks.validatePrinciple,
+      type: ReqTypeEnum.POST,
+      body: {
+        "password": passwordController.text,
+      },
+      converter: (_) {},
+    )
+        .then(
+      (value) {
+        validating = false;
+        update();
+        value.fold(
+          (l) => MyAwesomeDialogue(
+                  title: 'Error', desc: l.message, dialogType: DialogType.error)
+              .showDialogue(Get.context!),
+          (_) {
+            Get.back();
+            MyFlashBar.showSuccess('Validated Successfully', 'Success').show(
+              Get.key.currentContext!,
+            );
+            locked = false;
+          },
+        );
+      },
+    );
   }
 
   void unMarkCheatingStudent({required String barcode}) async {
