@@ -3,7 +3,6 @@ class AppLinks {
   static const baseUrl = 'http://localhost:3333/';
 
   static const baseUrlDev = 'http://10.6.65.98:3333/';
-
   static const baseUrlProd = 'https://control-o5xlbifnea-uc.a.run.app/';
 }
 
@@ -66,6 +65,7 @@ class Stage {
 }
 
 class StudentsLinks {
+  static const markCheatingStudent = '$student/student-cheating';
   static const student = 'student';
   static const studentBarcodes = 'student-barcodes';
   static const studentBarcodesExamMission = 'student-barcodes/exam-mission';
@@ -73,8 +73,6 @@ class StudentsLinks {
   static const studentBarcodesStudent = 'student-barcodes/student';
   static const studentCohort = 'student/cohort';
   static const studentExams = '$student/student-exams';
-  static const unMarkCheatingStudent = '$student/uncheating-student';
-  static const markCheatingStudent = '$student/student-cheating';
   static const studentMany = 'student/many';
   static const studentSchool = 'student/school';
   static const studentSeatNumbers = 'student-seat-numbers';
@@ -85,6 +83,7 @@ class StudentsLinks {
   static const studentSeatNumbersStudent = '$studentSeatNumbers/student';
   static const studentUuid = '/uuid';
   static const studentsClass = 'student/class';
+  static const unMarkCheatingStudent = '$student/uncheating-student';
 }
 
 class UserRolesSystemsLink {
