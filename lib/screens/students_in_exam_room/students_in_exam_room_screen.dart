@@ -111,10 +111,21 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                             const SizedBox(
                                               height: 20,
                                             ),
-                                            ElevatedButton(
-                                              onPressed: () async {},
-                                              child: const Text('Validate'),
-                                            ),
+                                            controller.validating
+                                                ? Center(
+                                                    child: FittedBox(
+                                                      fit: BoxFit.cover,
+                                                      child: LoadingIndicators
+                                                          .getLoadingIndicator(),
+                                                    ),
+                                                  )
+                                                : ElevatedButton(
+                                                    onPressed: () async {
+                                                      controller.unlock();
+                                                    },
+                                                    child:
+                                                        const Text('Validate'),
+                                                  ),
                                           ],
                                         ),
                                       )
@@ -144,7 +155,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                   i++)
                                 GestureDetector(
                                   onTap: () {
-                                    if (controller.locked) {
+                                    if (!controller.locked) {
                                       MyAwesomeDialogue(
                                         title:
                                             'This will Mark/Unmark the Student as Cheating',
