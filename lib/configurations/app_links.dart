@@ -41,6 +41,7 @@ class ExamLinks {
 class ProctorsLinks {
   static const getControlMissionByProctor = 'proctor/control-mission';
   static const proctor = 'proctor';
+  static const validatePrinciple = '$proctor/validate-principle-password';
 }
 
 class SchoolsLinks {
