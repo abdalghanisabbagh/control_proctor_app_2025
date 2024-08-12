@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_proctor/resource_manager/ReusableWidget/my_snak_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
 import '../models/student_barcode_in_exam_room/student_barcode_in_exam_room.dart';
+import '../resource_manager/ReusableWidget/my_snak_bar.dart';
 import '../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../services/students_in_exam_room_service.dart';
 import '../tools/response_handler.dart';
@@ -15,10 +15,9 @@ import '../tools/response_handler.dart';
 class StudentsInExamRoomController extends GetxController {
   bool isLoading = true;
   bool locked = true;
-  bool validating = false;
-  StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
-
   final TextEditingController passwordController = TextEditingController();
+  StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
+  bool validating = false;
 
   Future<void> activateStudent(int id) async {
     final responseHandler = ResponseHandler<void>();
