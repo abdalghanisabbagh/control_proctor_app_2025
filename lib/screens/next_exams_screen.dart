@@ -24,7 +24,7 @@ class NextExamsPage extends GetView<NextExamController> {
           fontSize: FontSize.s18,
           color: ColorManager.white,
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: ColorManager.white,
         ),
       ),
