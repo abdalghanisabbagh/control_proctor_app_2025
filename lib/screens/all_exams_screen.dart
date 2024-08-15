@@ -21,7 +21,7 @@ class AllExams extends GetView<AllExamController> {
           fontSize: FontSize.s18,
           color: ColorManager.white,
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: ColorManager.white,
         ),
       ),
