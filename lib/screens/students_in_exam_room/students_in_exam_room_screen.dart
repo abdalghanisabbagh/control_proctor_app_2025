@@ -26,7 +26,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
           fontSize: FontSize.s18,
           color: ColorManager.white,
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: ColorManager.white,
         ),
       ),
@@ -267,9 +267,9 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                           flex: 2,
                                           child: Container(
                                             width: double.infinity,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                                  BorderRadius.only(
                                                 bottomLeft: Radius.circular(10),
                                                 bottomRight:
                                                     Radius.circular(10),
