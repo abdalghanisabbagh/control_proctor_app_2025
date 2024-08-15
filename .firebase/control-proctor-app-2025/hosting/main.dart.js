@@ -8143,9 +8143,9 @@ _.lj$=f
 _.mj$=g},
 m4:function m4(a,b,c,d,e,f,g){var _=this
 _.ay=_.ax=!0
-_.ch=!1
+_.ch=a
 _.CW=null
-_.cx=a
+_.cx=!1
 _.lk$=b
 _.kF$=c
 _.mi$=d
@@ -49379,10 +49379,10 @@ case 2:q.Bj()
 return A.K(null,r)}})
 return A.L($async$lx,r)},
 aHj(a){var s,r=this
-r.ch=!0
+r.cx=!0
 r.cK(0)
 s=t.N
-new A.hk(new A.lv().mZ(),t.qn).AG(A.aQ(["password",r.cx.a.a],s,s),new A.ay9(),"proctor/validate-principle-password",B.zo).cb(new A.aya(r),t.P)},
+new A.hk(new A.lv().mZ(),t.qn).AG(A.aQ(["password",r.ch.a.a],s,s),new A.ay9(),"proctor/validate-principle-password",B.zo).cb(new A.aya(r),t.P)},
 GG(a){return this.aHi(a)},
 aHi(a){var s=0,r=A.M(t.H),q=this,p
 var $async$GG=A.N(function(b,c){if(b===1)return A.J(c,r)
@@ -49425,7 +49425,7 @@ $1(a){},
 $S:29}
 A.aya.prototype={
 $1(a){var s=this.a
-s.ch=!1
+s.cx=!1
 s.cK(0)
 a.ic(0,new A.ay7(),new A.ay8(s))},
 $S:368}
@@ -50058,8 +50058,8 @@ $S:455}
 A.ayh.prototype={
 $0(){var s,r,q=null,p=this.a
 if(p.ay){s=A.qX(q,B.oC,new A.ayd(),q,q)
-r=A.aOl(p.cx,B.cp,q,!1,q,"Enter Principal Password")
-p=p.ch?A.eF(A.aio(B.e9,B.CS),q,q):A.ahD(B.XH,new A.aye(p),q)
+r=A.aOl(p.ch,B.cp,q,!1,q,"Enter Principal Password")
+p=p.cx?A.eF(A.aio(B.e9,B.CS),q,q):A.ahD(B.XH,new A.aye(p),q)
 A.b78(this.b,A.dp(A.a([new A.f_(B.ja,q,q,s,q),r,B.Sc,p],t.p),B.F,B.A,B.bi))}else p.ay=!0},
 $S:0}
 A.ayd.prototype={
@@ -50311,7 +50311,7 @@ j.l(0,"content-type",l)
 j.l(0,"accept",l)
 q=(r==null?n:r.a)!=null
 if(q){q=r==null?n:r.a
-j.l(0,"authorization","Bearer "+A.n(q))}k.Ng$=A.aRy("http://localhost:3333/",j,B.nW,B.nW)
+j.l(0,"authorization","Bearer "+A.n(q))}k.Ng$=A.aRy("https://control-o5xlbifnea-uc.a.run.app/",j,B.nW,B.nW)
 return k}}
 A.hk.prototype={
 lN(a,b,c,d,e){return this.a8j(a,b,c,d,e,this.$ti.h("fU<eA,1>"))},
