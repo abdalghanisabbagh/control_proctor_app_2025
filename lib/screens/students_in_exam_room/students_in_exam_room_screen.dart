@@ -104,7 +104,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                               ),
                                             ),
                                             MytextFormFiled(
-                                              title: 'Enter Principal Password',
+                                              title: 'Enter The Password',
                                               controller:
                                                   controller.passwordController,
                                             ),
@@ -192,12 +192,20 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                           flex: 1,
                                           child: Container(
                                             width: double.infinity,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  const BorderRadius.only(
                                                 topLeft: Radius.circular(10),
                                                 topRight: Radius.circular(10),
                                               ),
-                                              color: ColorManager.primary,
+                                              color: ColorManager.gradesColor[
+                                                  controller
+                                                      .studentBarcodeInExamRoom!
+                                                      .barcodesResModel!
+                                                      .barcodes![i]
+                                                      .student!
+                                                      .gradeResModel!
+                                                      .name!],
                                             ),
                                             child: Center(
                                               child: Text(
@@ -210,7 +218,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                     .toString(),
                                                 style: nunitoRegularStyle(
                                                   fontSize: FontSize.s18,
-                                                  color: ColorManager.white,
+                                                  color: ColorManager.black,
                                                 ),
                                               ),
                                             ),
@@ -226,15 +234,15 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                           .barcodes![i]
                                                           .isCheating! ==
                                                       1
-                                                  ? ColorManager.red
-                                                  : ColorManager.gradesColor[
-                                                      controller
-                                                          .studentBarcodeInExamRoom!
-                                                          .barcodesResModel!
-                                                          .barcodes![i]
-                                                          .student!
-                                                          .gradeResModel!
-                                                          .name!],
+                                                  ? ColorManager.ornage
+                                                  : controller
+                                                              .studentBarcodeInExamRoom!
+                                                              .barcodesResModel!
+                                                              .barcodes![i]
+                                                              .attendanceStatusId ==
+                                                          13
+                                                      ? ColorManager.green
+                                                      : ColorManager.greyA8,
                                             ),
                                             child: Center(
                                               child: FittedBox(
@@ -248,16 +256,9 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                       .gradeResModel!
                                                       .name!,
                                                   style: nunitoRegularStyle(
-                                                    fontSize: FontSize.s18,
-                                                    color: controller
-                                                                .studentBarcodeInExamRoom!
-                                                                .barcodesResModel!
-                                                                .barcodes![i]
-                                                                .isCheating ==
-                                                            0
-                                                        ? ColorManager.black
-                                                        : ColorManager.white,
-                                                  ),
+                                                      fontSize: FontSize.s18,
+                                                      color:
+                                                          ColorManager.black),
                                                 ),
                                               ),
                                             ),
@@ -267,14 +268,21 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                           flex: 2,
                                           child: Container(
                                             width: double.infinity,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.only(
+                                                  const BorderRadius.only(
                                                 bottomLeft: Radius.circular(10),
                                                 bottomRight:
                                                     Radius.circular(10),
                                               ),
-                                              color: ColorManager.bgSideMenu,
+                                              color: ColorManager.gradesColor[
+                                                  controller
+                                                      .studentBarcodeInExamRoom!
+                                                      .barcodesResModel!
+                                                      .barcodes![i]
+                                                      .student!
+                                                      .gradeResModel!
+                                                      .name!],
                                             ),
                                             child: Center(
                                               child: FittedBox(
@@ -289,7 +297,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                       .toString(),
                                                   style: nunitoRegularStyle(
                                                     fontSize: FontSize.s18,
-                                                    color: ColorManager.white,
+                                                    color: ColorManager.black,
                                                   ),
                                                 ),
                                               ),
