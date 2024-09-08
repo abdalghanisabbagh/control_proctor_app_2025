@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       navigatorKey: Get.key,
       debugShowCheckedModeBanner: false,
-      title: 'NIS Control System',
+      title: 'NIS Control Proctor App',
       defaultTransition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 200),
       theme: getApplicationTheme(),
