@@ -25,24 +25,24 @@ class Routes {
       binding: NextExamBindings(),
       name: nextExams,
       page: () => const NextExamsPage(),
-      transitionDuration: const Duration(seconds: 1),
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       binding: AllExamBindings(),
       name: allExams,
       page: () => const AllExams(),
-      transitionDuration: const Duration(seconds: 1),
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: attendance,
       page: () => const Attendance(),
-      transitionDuration: const Duration(seconds: 1),
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       binding: StudentsInExamRoomBinding(),
       name: studentsInExamRoom,
       page: () => const StudentsInExamRoomScreen(),
-      transitionDuration: const Duration(seconds: 1),
+      transitionDuration: const Duration(milliseconds: 500),
     ),
   ];
 
