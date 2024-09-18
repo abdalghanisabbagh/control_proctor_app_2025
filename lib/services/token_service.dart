@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../models/token_model.dart';
 
@@ -22,14 +22,13 @@ class TokenService extends GetxController {
     return _tokenModel;
   }
 
-  Future<void> saveNewAccessToken(String newAccessToken) async {
+  Future<void> saveNewAccessToken(TokenModel tokenModel) async {
     _tokenModel = tokenModel;
-    await Hive.box('Token').put('aToken', newAccessToken);
-    await Hive.box('Token').put('dToken', DateTime.now().toIso8601String());
-    await Hive.box('Token').flush();
+    Hive.box('Token').put('Token', jsonEncode(tokenModel.toJson()));
   }
 
   void saveTokenModelToHiveBox(TokenModel tokenModel) {
+    _tokenModel = tokenModel;
     Hive.box('Token').put('Token', jsonEncode(tokenModel.toJson()));
   }
 }
