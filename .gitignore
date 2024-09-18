@@ -45,3 +45,7 @@ app.*.map.json
 
 # IDE - VSCode
 .vscode/*
+
+
+# Firebase
+.firebase/*
