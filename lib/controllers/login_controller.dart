@@ -43,11 +43,12 @@ class LoginController extends GetxController {
       ).showDialogue(Get.context!);
       isLogin = false;
     }, (r) {
-      tokenService.saveTokenModelToHiveBox(TokenModel(
-        aToken: r.accessToken!,
-        rToken: r.refreshToken!,
-        dToken: DateTime.now().toIso8601String(),
-      ));
+      tokenService.saveTokenModelToHiveBox(
+        TokenModel(
+          aToken: r.accessToken!,
+          rToken: r.refreshToken!,
+        ),
+      );
       profileController.saveProfileToHiveBox(r.userProfile!);
       isLogin = true;
     });

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 // import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../configurations/app_links.dart';
+import '../configurations/token_interceptor.dart';
 import '../models/token_model.dart';
 import '../services/token_service.dart';
 
@@ -19,7 +20,7 @@ const Duration timeOut = Duration(seconds: 120);
 
 class DioFactory {
   Dio getDio({TokenModel? token}) {
-    Dio dio = Dio();
+    Dio dio = Dio()..interceptors.add(TokenInterceptor());
 
     TokenService tokenService = Get.find<TokenService>();
 
@@ -33,7 +34,7 @@ class DioFactory {
     };
 
     dio.options = BaseOptions(
-      baseUrl: AppLinks.baseUrl,
+      baseUrl: AppLinks.baseUrlStaging,
       headers: headers,
       receiveTimeout: timeOut,
       sendTimeout: timeOut,
