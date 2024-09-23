@@ -4,9 +4,8 @@ class AppLinks {
   static const baseUrlProd =
       'https://control-2025-490607372730.us-central1.run.app/';
   static const baseUrlStaging =
-      'https://control-2025-904810505533.us-central1.run.app/';
+      'https://staging-control-2025-490607372730.us-central1.run.app/';
 }
-
 class AuthLinks {
   static const login = 'auth/login';
   static const logout = 'auth/logout';
