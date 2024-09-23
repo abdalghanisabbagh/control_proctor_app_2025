@@ -18,8 +18,8 @@ class TokenInterceptor extends Interceptor {
       var dio = Dio(
         BaseOptions(
           baseUrl: AppLinks.baseUrlDev,
+        ),
       );
-
       var response = await dio
           .post(AuthLinks.refresh, data: {'refreshToken': refresh}).onError(
         (error, stackTrace) {
