@@ -1,8 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_proctor/routes_manger.dart';
+import 'package:control_proctor/controllers/web_socket_controller.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
@@ -15,7 +14,6 @@ import 'profile_controller.dart';
 
 class LoginController extends GetxController {
   PackageInfo? packageInfo;
-  io.Socket? socket;
 
   bool isLoading = false;
   ProfileController profileController = Get.find<ProfileController>();
@@ -48,20 +46,6 @@ class LoginController extends GetxController {
         isLogin = false;
       },
       (r) {
-        socket = io.io(
-          AppLinks.baseUrlDev,
-          io.OptionBuilder()
-              .setTransports(['websocket'])
-              .setExtraHeaders({
-                'Authorization': 'Bearer ${r.accessToken!}',
-              })
-              .enableAutoConnect()
-              .build(),
-        )..onDisconnect(
-            (_) {
-              Get.offAllNamed(Routes.loginRoute);
-            },
-          );
         tokenService.saveTokenModelToHiveBox(
           TokenModel(
             aToken: r.accessToken!,
@@ -69,6 +53,10 @@ class LoginController extends GetxController {
           ),
         );
         profileController.saveProfileToHiveBox(r.userProfile!);
+        Get.put<WebSocketController>(
+          WebSocketController(),
+          permanent: true,
+        );
         isLogin = true;
       },
     );

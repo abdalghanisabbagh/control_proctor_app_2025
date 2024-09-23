@@ -1,3 +1,4 @@
+import 'package:control_proctor/controllers/web_socket_controller.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -83,6 +84,7 @@ class SideMenu extends StatelessWidget {
                         Get.find<ProfileController>()
                             .deleteProfileFromHiveBox(),
                       ]);
+                      Get.delete<WebSocketController>(force: true);
                       Get.offAllNamed(Routes.loginRoute);
                     },
                   ),

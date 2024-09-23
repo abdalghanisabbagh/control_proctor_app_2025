@@ -19,6 +19,29 @@ class StudentsInExamRoomController extends GetxController {
   StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
   bool validating = false;
 
+  // Future<void> activateStudent(int id) async {
+  //   final responseHandler = ResponseHandler<void>();
+
+  //   var response = await responseHandler.getResponse(
+  //     path: '${StudentsLinks.studentUuid}/$id/activate',
+  //     body: {},
+  //     converter: (_) {},
+  //     type: ReqTypeEnum.PATCH,
+  //   );
+  //   response.fold(
+  //     (l) {
+  //       MyAwesomeDialogue(
+  //         title: 'Error',
+  //         desc: l.message,
+  //         dialogType: DialogType.error,
+  //       ).showDialogue(Get.key.currentContext!);
+  //     },
+  //     (_) {},
+  //   );
+
+  //   update();
+  //   return;
+  // }
   Future<void> activateStudent(int id) async {
     final responseHandler = ResponseHandler<void>();
 
@@ -36,17 +59,19 @@ class StudentsInExamRoomController extends GetxController {
           dialogType: DialogType.error,
         ).showDialogue(Get.key.currentContext!);
       },
-      (_) {},
+      (_) {
+        studentBarcodeInExamRoom!.barcodesResModel!.barcodes!
+            .firstWhereOrNull((element) => element.student?.iD == id)!
+            .attendanceStatusId = 13;
+        update();
+      },
     );
-
-    update();
     return;
   }
 
   Future<void> getAllStudentsInExamRoom() async {
     isLoading = true;
     update();
-
     final selectedExamRoomId =
         await Get.find<StudentsInExamRoomService>().selectedExamRoomId;
     final selectedExamMissionId =
@@ -122,6 +147,7 @@ class StudentsInExamRoomController extends GetxController {
     )
         .then(
       (value) {
+        passwordController.clear();
         validating = false;
         update();
         value.fold(
@@ -134,6 +160,7 @@ class StudentsInExamRoomController extends GetxController {
               Get.key.currentContext!,
             );
             locked = false;
+            update();
           },
         );
       },
@@ -143,12 +170,25 @@ class StudentsInExamRoomController extends GetxController {
   void unMarkCheatingStudent({required String barcode}) async {
     final ResponseHandler responseHandler = ResponseHandler();
 
-    await responseHandler.getResponse(
+    await responseHandler
+        .getResponse(
       path: '${StudentsLinks.unMarkCheatingStudent}/$barcode',
       body: {},
       converter: (_) {},
       type: ReqTypeEnum.GET,
-    );
+    )
+        .then((value) {
+      value.fold(
+        (l) {
+          MyAwesomeDialogue(
+            title: 'Error',
+            desc: l.message,
+            dialogType: DialogType.error,
+          ).showDialogue(Get.key.currentContext!);
+        },
+        (_) {},
+      );
+    });
     getAllStudentsInExamRoom();
   }
 }
