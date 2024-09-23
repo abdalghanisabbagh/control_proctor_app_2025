@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:control_proctor/routes_manger.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
@@ -56,7 +57,11 @@ class LoginController extends GetxController {
               })
               .enableAutoConnect()
               .build(),
-        );
+        )..onDisconnect(
+            (_) {
+              Get.offAllNamed(Routes.loginRoute);
+            },
+          );
         tokenService.saveTokenModelToHiveBox(
           TokenModel(
             aToken: r.accessToken!,
