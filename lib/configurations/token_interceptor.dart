@@ -18,7 +18,6 @@ class TokenInterceptor extends Interceptor {
       var dio = Dio(
         BaseOptions(
           baseUrl: AppLinks.baseUrlDev,
-        ),
       );
 
       var response = await dio
