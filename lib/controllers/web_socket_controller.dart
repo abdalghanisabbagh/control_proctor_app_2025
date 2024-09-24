@@ -48,11 +48,7 @@ class WebSocketController extends GetxController {
       ..on(
         'room_event',
         (roomEvent) {
-          if (roomEvent['eventType'] == 1) {
-            debugPrint('room_event: $roomEvent');
-          } else if (roomEvent['eventType'] == 0) {
-            debugPrint('room_event: $roomEvent');
-          }
+          Get.find<StudentsInExamRoomController>().onInit();
         },
       );
   }
