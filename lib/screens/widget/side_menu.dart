@@ -1,9 +1,9 @@
-import 'package:control_proctor/controllers/web_socket_controller.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/controllers.dart';
+import '../../controllers/web_socket_controller.dart';
 import '../../routes_manger.dart';
 import '../../services/services.dart';
 

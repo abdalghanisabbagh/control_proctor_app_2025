@@ -1,9 +1,10 @@
-import 'package:control_proctor/configurations/app_links.dart';
-import 'package:control_proctor/routes_manger.dart';
-import 'package:control_proctor/services/token_service.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
+
+import '../configurations/app_links.dart';
+import '../routes_manger.dart';
+import '../services/token_service.dart';
+import 'controllers.dart';
 
 class WebSocketController extends GetxController {
   late io.Socket socket;
