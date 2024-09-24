@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class MytextFormFiled extends StatelessWidget {
+class MyTextFormFiled extends StatelessWidget {
   final String? Function(String? newValue)? myValidation;
 
   final String? Function(String? value)? onChange;
@@ -11,20 +11,20 @@ class MytextFormFiled extends StatelessWidget {
   final TextEditingController controller;
   final Color? enableBorderColor;
   final FocusNode? focusNode;
-  final Color? foucsBorderColor;
+  final Color? focusBorderColor;
   final bool? isEnable;
   final bool? isNumber;
   final int? maxLength;
-  final int maxlines;
+  final int maxLines;
   final bool obscureText;
   final Widget? suffixIcon;
   final List<TextInputFormatter>? textInputs;
   final String? title;
-  const MytextFormFiled({
+  const MyTextFormFiled({
     super.key,
     this.title,
     required this.controller,
-    this.maxlines = 1,
+    this.maxLines = 1,
     this.maxLength,
     this.isEnable,
     this.myValidation,
@@ -34,7 +34,7 @@ class MytextFormFiled extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.enableBorderColor = ColorManager.grey,
-    this.foucsBorderColor = ColorManager.primary,
+    this.focusBorderColor = ColorManager.primary,
     this.onFieldSubmitted,
     this.focusNode,
   });
@@ -62,7 +62,7 @@ class MytextFormFiled extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: foucsBorderColor!, width: 3.0),
+          borderSide: BorderSide(color: focusBorderColor!, width: 3.0),
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
         ),
         hintText: title,
@@ -72,7 +72,7 @@ class MytextFormFiled extends StatelessWidget {
         ),
       ),
       controller: controller,
-      maxLines: maxlines,
+      maxLines: maxLines,
       maxLength: maxLength,
       enabled: isEnable,
       validator: myValidation,

@@ -9,7 +9,7 @@ import '../models/control_mission/control_missions_res_model.dart';
 import '../models/failure_model.dart';
 import '../models/next exam/next_exam_res_model.dart';
 import '../models/next%20exam/next_exams_res_model.dart';
-import '../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../tools/response_handler.dart';
 
 class AllExamController extends GetxController {

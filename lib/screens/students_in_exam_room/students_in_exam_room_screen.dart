@@ -9,9 +9,9 @@ import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import '../../controllers/controllers.dart';
 import '../../resource_manager/ReusableWidget/app_dialogs.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
-import '../../resource_manager/ReusableWidget/my_snak_bar.dart';
+import '../../resource_manager/ReusableWidget/my_snack_bar.dart';
 import '../../resource_manager/ReusableWidget/my_text_form_field.dart';
-import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 
 class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
   const StudentsInExamRoomScreen({super.key});
@@ -103,7 +103,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                 ),
                                               ),
                                             ),
-                                            MytextFormFiled(
+                                            MyTextFormFiled(
                                               title: 'Enter The Password',
                                               controller:
                                                   controller.passwordController,
