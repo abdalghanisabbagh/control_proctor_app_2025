@@ -7,7 +7,7 @@ import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
 import '../models/login_response/login_res_model.dart';
 import '../models/token_model.dart';
-import '../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../services/token_service.dart';
 import '../tools/response_handler.dart';
 import 'profile_controller.dart';
