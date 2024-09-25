@@ -129,11 +129,14 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                           ],
                                         ),
                                       )
-                                    : controller.locked = true;
+                                    : {
+                                        controller.locked = true,
+                                        controller.update(),
+                                      };
                               },
-                              icon: const Icon(
-                                Icons.lock_outline,
-                              ),
+                              icon: controller.locked
+                                  ? const Icon(Icons.lock_outline)
+                                  : const Icon(Icons.lock_open_outlined),
                             ),
                           ],
                         ).paddingSymmetric(horizontal: 20, vertical: 10),
@@ -183,6 +186,26 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                         },
                                         btnCancelOnPressed: () {},
                                       ).showDialogue(Get.key.currentContext!);
+                                    } else {
+                                      if (controller
+                                              .studentBarcodeInExamRoom!
+                                              .barcodesResModel!
+                                              .barcodes![i]
+                                              .isCheating ==
+                                          1) {
+                                        MyAwesomeDialogue(
+                                          title: 'Error',
+                                          desc: 'Student is cheating',
+                                          dialogType: DialogType.error,
+                                        ).showDialogue(Get.key.currentContext!);
+                                        return;
+                                      }
+                                      controller.activateStudent(controller
+                                          .studentBarcodeInExamRoom!
+                                          .barcodesResModel!
+                                          .barcodes![i]
+                                          .student!
+                                          .iD!);
                                     }
                                   },
                                   child: Card(
