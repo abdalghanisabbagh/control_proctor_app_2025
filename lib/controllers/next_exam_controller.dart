@@ -8,7 +8,7 @@ import '../enums/req_type_enum.dart';
 import '../models/failure_model.dart';
 import '../models/next exam/next_exam_res_model.dart';
 import '../models/next%20exam/next_exams_res_model.dart';
-import '../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../tools/response_handler.dart';
 import 'controllers.dart';
 

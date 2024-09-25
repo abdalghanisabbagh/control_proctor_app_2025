@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
 import '../models/student_barcode_in_exam_room/student_barcode_in_exam_room.dart';
-import '../resource_manager/ReusableWidget/my_snak_bar.dart';
-import '../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../resource_manager/ReusableWidget/my_snack_bar.dart';
+import '../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../services/students_in_exam_room_service.dart';
 import '../tools/response_handler.dart';
 

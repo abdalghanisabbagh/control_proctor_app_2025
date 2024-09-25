@@ -36,7 +36,7 @@ class StudentsInExamRoomService extends GetxService {
         await Hive.box('StudentsInExamRoom').get('selectedExamMissionId');
   }
 
-  Future<void> saveTohiveBox() async {
+  Future<void> saveToHiveBox() async {
     await Future.wait([
       Hive.box('StudentsInExamRoom').put(
         'selectedExamRoomId',
@@ -62,7 +62,7 @@ class StudentsInExamRoomService extends GetxService {
     _selectedExamRoomId = examRoomId;
     _selectedExamMissionId = examMissionId;
 
-    await saveTohiveBox();
+    await saveToHiveBox();
   }
 
   void setSelectedExamRoomId(int id) {
