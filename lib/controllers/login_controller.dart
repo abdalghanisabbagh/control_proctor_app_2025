@@ -10,7 +10,6 @@ import '../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../services/token_service.dart';
 import '../tools/response_handler.dart';
 import 'profile_controller.dart';
-import 'web_socket_controller.dart';
 
 class LoginController extends GetxController {
   bool isLoading = false;
@@ -52,10 +51,6 @@ class LoginController extends GetxController {
           ),
         );
         profileController.saveProfileToHiveBox(r.userProfile!);
-        Get.put<WebSocketController>(
-          WebSocketController(),
-          permanent: true,
-        );
         isLogin = true;
       },
     );

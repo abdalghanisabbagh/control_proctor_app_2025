@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 import '../controllers/all_exam_controller.dart';
 import '../controllers/controllers.dart';
-import '../controllers/web_socket_controller.dart';
 import '../services/services.dart';
 
 class AllExamBindings extends Bindings {
@@ -64,16 +63,6 @@ class StudentsInExamRoomBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<StudentsInExamRoomController>(
       () => StudentsInExamRoomController(),
-      fenix: true,
-    );
-  }
-}
-
-class WebSocketBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut<WebSocketController>(
-      () => WebSocketController(),
       fenix: true,
     );
   }
