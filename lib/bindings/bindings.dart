@@ -72,9 +72,9 @@ class StudentsInExamRoomBinding extends Bindings {
 class WebSocketBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<WebSocketController>(
-      () => WebSocketController(),
-      fenix: true,
+    Get.put<WebSocketController>(
+      WebSocketController(),
+      permanent: true,
     );
   }
 }

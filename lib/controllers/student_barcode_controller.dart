@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
@@ -18,6 +19,9 @@ class StudentsInExamRoomController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
   StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
   bool validating = false;
+  final examMissionId = Hive.box('StudentsInExamRoom').get(
+    'selectedExamMissionId',
+  );
 
   // Future<void> activateStudent(int id) async {
   //   final responseHandler = ResponseHandler<void>();
@@ -47,6 +51,9 @@ class StudentsInExamRoomController extends GetxController {
 
     var response = await responseHandler.getResponse(
       path: '${StudentsLinks.studentUuid}/$id/activate',
+      params: {
+        'examMissionId': examMissionId,
+      },
       body: {},
       converter: (_) {},
       type: ReqTypeEnum.PATCH,

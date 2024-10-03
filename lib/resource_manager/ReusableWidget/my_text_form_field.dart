@@ -20,6 +20,7 @@ class MyTextFormFiled extends StatelessWidget {
   final Widget? suffixIcon;
   final List<TextInputFormatter>? textInputs;
   final String? title;
+  final List<String>? autofillHints;
   const MyTextFormFiled({
     super.key,
     this.title,
@@ -37,6 +38,7 @@ class MyTextFormFiled extends StatelessWidget {
     this.focusBorderColor = ColorManager.primary,
     this.onFieldSubmitted,
     this.focusNode,
+    this.autofillHints,
   });
 
   @override
@@ -72,6 +74,7 @@ class MyTextFormFiled extends StatelessWidget {
         ),
       ),
       controller: controller,
+      autofillHints: autofillHints,
       maxLines: maxLines,
       maxLength: maxLength,
       enabled: isEnable,
