@@ -23,6 +23,8 @@ class StudentsInExamRoomController extends GetxController {
     'selectedExamMissionId',
   );
 
+  List<int> selectedStudentsIds = [];
+
   // Future<void> activateStudent(int id) async {
   //   final responseHandler = ResponseHandler<void>();
 
@@ -46,6 +48,40 @@ class StudentsInExamRoomController extends GetxController {
   //   update();
   //   return;
   // }
+
+  Future<void> activateMany() async {
+    final responseHandler = ResponseHandler<void>();
+
+    var response = await responseHandler.getResponse(
+      path: '${StudentsLinks.studentUuid}/activate/many',
+      params: {
+        'examMissionId': examMissionId,
+        'studentsIds': selectedStudentsIds.toString(),
+      },
+      body: {},
+      converter: (_) {},
+      type: ReqTypeEnum.PATCH,
+    );
+    response.fold(
+      (l) {
+        MyAwesomeDialogue(
+          title: 'Error',
+          desc: l.message,
+          dialogType: DialogType.error,
+        ).showDialogue(Get.key.currentContext!);
+      },
+      (_) {
+        studentBarcodeInExamRoom!.barcodesResModel!.barcodes!
+            .where(
+                (element) => selectedStudentsIds.contains(element.student?.iD))
+            .map((element) => element.attendanceStatusId = 13)
+            .toList();
+        update();
+      },
+    );
+    return;
+  }
+
   Future<void> activateStudent(int id) async {
     final responseHandler = ResponseHandler<void>();
 
