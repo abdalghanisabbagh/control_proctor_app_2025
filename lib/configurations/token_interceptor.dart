@@ -12,6 +12,17 @@ class TokenInterceptor extends Interceptor {
   TokenInterceptor();
 
   @override
+
+  ///
+  /// If the request fails with a 401 error, it will try to refresh the
+  /// access token and retry the request. If the request fails again, it
+  /// will call the super onError method to handle the error as usual.
+  ///
+  /// The request will be retried with the new access token. The refresh
+  /// token will be updated in the local storage and in the ProfileController
+  ///
+  /// If the request fails while refreshing the token, it will show an
+  /// error dialogue with the message from the response.
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
       String refresh = tokenService.tokenModel!.rToken;
