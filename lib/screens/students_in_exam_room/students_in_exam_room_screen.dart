@@ -186,26 +186,6 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                         },
                                         btnCancelOnPressed: () {},
                                       ).showDialogue(Get.key.currentContext!);
-                                    } else {
-                                      if (controller
-                                              .studentBarcodeInExamRoom!
-                                              .barcodesResModel!
-                                              .barcodes![i]
-                                              .isCheating ==
-                                          1) {
-                                        MyAwesomeDialogue(
-                                          title: 'Error',
-                                          desc: 'Student is cheating',
-                                          dialogType: DialogType.error,
-                                        ).showDialogue(Get.key.currentContext!);
-                                        return;
-                                      }
-                                      controller.activateStudent(controller
-                                          .studentBarcodeInExamRoom!
-                                          .barcodesResModel!
-                                          .barcodes![i]
-                                          .student!
-                                          .iD!);
                                     }
                                   },
                                   child: Card(
