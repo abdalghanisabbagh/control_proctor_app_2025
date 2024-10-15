@@ -18,6 +18,14 @@ class AllExamController extends GetxController {
   List<NextExamResModel> nextExamList = [];
   List<ValueItem> optionsControlMission = <ValueItem>[];
 
+  /// Gets a list of control missions by proctor id.
+  ///
+  /// After getting the list of control missions, it will be converted to a list of [ValueItem]
+  /// and stored in [optionsControlMission].
+  ///
+  /// The loading state is stored in [isLoadingGetControlMission].
+  ///
+  /// If the request failed, it will show an error dialogue with the message from the response.
   Future<void> getControlMissionsByProctorId() async {
     isLoadingGetControlMission = true;
 
@@ -50,6 +58,13 @@ class AllExamController extends GetxController {
     update();
   }
 
+  /// Gets a list of exam missions by control mission id.
+  ///
+  /// After getting the list of exam missions, it will be stored in [nextExamList].
+  ///
+  /// The loading state is stored in [isLoadingGetNextExam].
+  ///
+  /// If the request failed, it will show an error dialogue with the message from the response.
   Future<void> getExamMissionsByControlMissionId(
       {required int controlMissionId}) async {
     isLoadingGetNextExam = true;
@@ -80,6 +95,14 @@ class AllExamController extends GetxController {
   }
 
   @override
+
+  /// The on init method of the all exam controller.
+  ///
+  /// This method is called by the [Get] framework when the controller is initialized.
+  ///
+  /// It calls [getControlMissionsByProctorId] to get the list of control missions
+  /// by the proctor id. This method is called only once and is reused when the
+  /// page is navigated to.
   void onInit() {
     getControlMissionsByProctorId();
 
