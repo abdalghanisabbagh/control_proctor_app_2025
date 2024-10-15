@@ -18,6 +18,15 @@ class LoginController extends GetxController {
   bool showPass = true;
   TokenService tokenService = Get.find<TokenService>();
 
+  /// Logs the user in with the provided username and password.
+  ///
+  /// Shows an error dialogue if the request fails.
+  ///
+  /// Saves the user's profile to the hive box if the request is successful.
+  ///
+  /// Sets the [isLoading] state to true when the function is called and to false when the function is done.
+  ///
+  /// Returns true if the login was successful, false otherwise.
   Future<bool> login(String username, String password) async {
     isLoading = true;
     bool isLogin = false;
@@ -61,6 +70,16 @@ class LoginController extends GetxController {
   }
 
   @override
+
+  /// The on init method of the login controller.
+  ///
+  /// This method is called by the [Get] framework when the controller is initialized.
+  ///
+  /// It calls [PackageInfo.fromPlatform] to get the package information of the app.
+  /// This information is used in the login page to show the version of the app.
+  ///
+  /// It calls [update] at the end to notify the widgets that depend on this controller
+  /// to rebuild.
   void onInit() async {
     super.onInit();
     packageInfo = await PackageInfo.fromPlatform();
