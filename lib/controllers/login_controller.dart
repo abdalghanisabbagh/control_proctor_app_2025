@@ -1,26 +1,32 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
 import '../models/login_response/login_res_model.dart';
 import '../models/token_model.dart';
-import '../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../services/token_service.dart';
 import '../tools/response_handler.dart';
 import 'profile_controller.dart';
 
 class LoginController extends GetxController {
-  PackageInfo? packageInfo;
-  io.Socket? socket;
-
   bool isLoading = false;
+  PackageInfo? packageInfo;
   ProfileController profileController = Get.find<ProfileController>();
   bool showPass = true;
   TokenService tokenService = Get.find<TokenService>();
 
+  /// Logs the user in with the provided username and password.
+  ///
+  /// Shows an error dialogue if the request fails.
+  ///
+  /// Saves the user's profile to the hive box if the request is successful.
+  ///
+  /// Sets the [isLoading] state to true when the function is called and to false when the function is done.
+  ///
+  /// Returns true if the login was successful, false otherwise.
   Future<bool> login(String username, String password) async {
     isLoading = true;
     bool isLogin = false;
@@ -47,16 +53,6 @@ class LoginController extends GetxController {
         isLogin = false;
       },
       (r) {
-        socket = io.io(
-          AppLinks.baseUrlDev,
-          io.OptionBuilder()
-              .setTransports(['websocket'])
-              .setExtraHeaders({
-                'Authorization': 'Bearer ${r.accessToken!}',
-              })
-              .enableAutoConnect()
-              .build(),
-        );
         tokenService.saveTokenModelToHiveBox(
           TokenModel(
             aToken: r.accessToken!,
@@ -74,6 +70,16 @@ class LoginController extends GetxController {
   }
 
   @override
+
+  /// The on init method of the login controller.
+  ///
+  /// This method is called by the [Get] framework when the controller is initialized.
+  ///
+  /// It calls [PackageInfo.fromPlatform] to get the package information of the app.
+  /// This information is used in the login page to show the version of the app.
+  ///
+  /// It calls [update] at the end to notify the widgets that depend on this controller
+  /// to rebuild.
   void onInit() async {
     super.onInit();
     packageInfo = await PackageInfo.fromPlatform();

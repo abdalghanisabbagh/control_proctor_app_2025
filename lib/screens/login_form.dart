@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 
 import '../controllers/login_controller.dart';
 import '../resource_manager/ReusableWidget/loading_indicators.dart';
-import '../resource_manager/ReusableWidget/my_snak_bar.dart';
+import '../resource_manager/ReusableWidget/my_snack_bar.dart';
 import '../resource_manager/ReusableWidget/my_text_form_field.dart';
-import '../resource_manager/constants/app_constatnts.dart';
+import '../resource_manager/constants/app_constants.dart';
 import '../resource_manager/validations.dart';
 import '../routes_manger.dart';
 
@@ -102,23 +102,21 @@ class LoginForm extends GetView<LoginController> {
                       const SizedBox(
                         height: 32,
                       ),
-                      MytextFormFiled(
+                      MyTextFormFiled(
                         controller: emailController,
                         myValidation: Validations.requiredValidator,
                         title: "User Name",
-                       
                       ),
                       GetBuilder<LoginController>(
                         id: 'pass_icon',
                         builder: (_) {
-                          return MytextFormFiled(
+                          return MyTextFormFiled(
                             obscureText: controller.showPass,
                             controller: passwordController,
                             myValidation: Validations.requiredValidator,
                             enableBorderColor: ColorManager.grey,
                             title: "Password",
                             suffixIcon: GetBuilder<LoginController>(
-                              id: 'pass_icon',
                               builder: (_) {
                                 return IntrinsicHeight(
                                   child: IntrinsicWidth(
@@ -165,7 +163,8 @@ class LoginForm extends GetView<LoginController> {
                                                       alignment:
                                                           Alignment.topRight,
                                                       child: IgnorePointer(
-                                                          child: child),
+                                                        child: child,
+                                                      ),
                                                     ),
                                                   );
                                                 },
