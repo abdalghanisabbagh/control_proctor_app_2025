@@ -19,11 +19,24 @@ class NextExamController extends GetxController {
   DateTime? selectedDate;
   final userId = Get.find<ProfileController>().cachedUserProfile!.iD;
 
+  /// This method is called when the selected date is changed. It stores the
+  /// selected date and calls [filterList] to filter the list of next exams
+  /// based on the selected date and the query string.
+  ///
+  /// If the query string is empty and the selected date is null, it will show
+  /// all exams. Otherwise, it will show the exams that match the query string
+  /// and are on the selected date.
   void fetchDataForSelectedDate(DateTime date) {
     selectedDate = date;
     filterList('');
   }
 
+  /// This method is called when the query string is changed. It filters the list
+  /// of next exams based on the query string and the selected date.
+  ///
+  /// If the query string is empty and the selected date is null, it will show
+  /// all exams. Otherwise, it will show the exams that match the query string
+  /// and are on the selected date.
   void filterList(String query) {
     if (query.isEmpty && selectedDate == null) {
       filteredNextExamList = nextExamList;
@@ -49,6 +62,13 @@ class NextExamController extends GetxController {
     update();
   }
 
+  /// Gets all exam missions by proctor id.
+  ///
+  /// The loading state is stored in [isLoadingGetNextExam].
+  ///
+  /// If the request failed, it will show an error dialogue with the message from the response.
+  ///
+  /// The list of exam missions will be stored in [nextExamList] and [filteredNextExamList] when the request is successful.
   Future<void> getAllExamMissionsByProctorId() async {
     isLoadingGetNextExam = true;
 
@@ -81,11 +101,22 @@ class NextExamController extends GetxController {
   }
 
   @override
+
+  /// The on init method of the next exam controller.
+  ///
+  /// This method is called by the [Get] framework when the controller is initialized.
+  ///
+  /// It calls [getAllExamMissionsByProctorId] to get all exam missions by proctor id.
+  /// The method is called only once and is reused when the page is navigated to.
   void onInit() {
     super.onInit();
     getAllExamMissionsByProctorId();
   }
 
+  /// Resets the selected date and query string filters to their default values.
+  ///
+  /// This method is typically called when the user navigates away from the page
+  /// and the filters should be reset to their default state.
   void resetFilters() {
     selectedDate = null;
     filterList('');
