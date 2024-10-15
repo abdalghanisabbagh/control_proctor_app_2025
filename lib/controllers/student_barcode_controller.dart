@@ -19,29 +19,13 @@ class StudentsInExamRoomController extends GetxController {
   StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
   bool validating = false;
 
-  // Future<void> activateStudent(int id) async {
-  //   final responseHandler = ResponseHandler<void>();
-
-  //   var response = await responseHandler.getResponse(
-  //     path: '${StudentsLinks.studentUuid}/$id/activate',
-  //     body: {},
-  //     converter: (_) {},
-  //     type: ReqTypeEnum.PATCH,
-  //   );
-  //   response.fold(
-  //     (l) {
-  //       MyAwesomeDialogue(
-  //         title: 'Error',
-  //         desc: l.message,
-  //         dialogType: DialogType.error,
-  //       ).showDialogue(Get.key.currentContext!);
-  //     },
-  //     (_) {},
-  //   );
-
-  //   update();
-  //   return;
-  // }
+  /// Activate a student in the exam room.
+  ///
+  /// Activates a student based on the student's id.
+  ///
+  /// The student's attendance status is set to 13 (active) if the request is successful.
+  ///
+  /// If the request fails, an error dialogue is shown with the error message from the response.
   Future<void> activateStudent(int id) async {
     final responseHandler = ResponseHandler<void>();
 
@@ -69,6 +53,19 @@ class StudentsInExamRoomController extends GetxController {
     return;
   }
 
+  /// Gets all students in the exam room.
+  ///
+  /// The loading state is stored in [isLoading].
+  ///
+  /// The selected exam room id and selected exam mission id are retrieved from the
+  /// [StudentsInExamRoomService] using [selectedExamRoomId] and [selectedExamMissionId]
+  /// respectively.
+  ///
+  /// The response is handled by the [ResponseHandler] and if the request fails,
+  /// an error dialogue is shown with the error message from the response.
+  ///
+  /// If the request is successful, the [studentBarcodeInExamRoom] is set to the
+  /// response and the [isLoading] is set to false.
   Future<void> getAllStudentsInExamRoom() async {
     isLoading = true;
     update();
@@ -104,6 +101,15 @@ class StudentsInExamRoomController extends GetxController {
     update();
   }
 
+  /// Marks a student as cheating in the exam room.
+  ///
+  /// Calls the [markCheatingStudent] endpoint with the student's barcode and
+  /// gets the list of students in the exam room again after the request is
+  /// done. The [isLoading] state is set to true when the function is called and
+  /// to false when the function is done.
+  ///
+  /// If the request fails, an error dialogue is shown with the error message
+  /// from the response.
   void markStudentCheating({required String barcode}) async {
     final ResponseHandler responseHandler = ResponseHandler<void>();
 
@@ -116,6 +122,9 @@ class StudentsInExamRoomController extends GetxController {
   }
 
   @override
+
+  /// Deletes the selected exam room and exam mission from the hive box when the
+  /// page is closed.
   void onClose() async {
     await Future.wait([
       Get.find<StudentsInExamRoomService>().deleteFromHiveBox(),
@@ -124,6 +133,14 @@ class StudentsInExamRoomController extends GetxController {
   }
 
   @override
+
+  /// The on init method of the students in exam room controller.
+  ///
+  /// This method is called by the [Get] framework when the controller is initialized.
+  ///
+  /// It calls [getAllStudentsInExamRoom] to get all students in the exam room.
+  ///
+  /// The method is called only once and is reused when the page is navigated to.
   void onInit() async {
     await Future.wait([
       getAllStudentsInExamRoom(),
@@ -131,6 +148,17 @@ class StudentsInExamRoomController extends GetxController {
     super.onInit();
   }
 
+  /// Unlocks the exam room by validating the proctor's principle password.
+  ///
+  /// Sets the [validating] state to true when the function is called and to false
+  /// when the function is done. The [passwordController] is cleared when the
+  /// function is done.
+  ///
+  /// If the request fails, an error dialogue is shown with the error message
+  /// from the response.
+  ///
+  /// If the request is successful, a success flash bar is shown with the message
+  /// "Validated Successfully" and the [locked] state is set to false.
   void unlock() {
     validating = true;
     update();
@@ -167,6 +195,15 @@ class StudentsInExamRoomController extends GetxController {
     );
   }
 
+  /// Unmarks a student as cheating in the exam room.
+  ///
+  /// Calls the [unMarkCheatingStudent] endpoint with the student's barcode.
+  ///
+  /// If the request fails, an error dialogue is shown with the error message
+  /// from the response.
+  ///
+  /// If the request is successful, the list of students in the exam room is
+  /// retrieved again by calling [getAllStudentsInExamRoom].
   void unMarkCheatingStudent({required String barcode}) async {
     final ResponseHandler responseHandler = ResponseHandler();
 
