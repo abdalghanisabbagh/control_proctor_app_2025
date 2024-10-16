@@ -50428,7 +50428,7 @@ j=B.d.cB(B.e.j(A.ath(s)),2,"0")
 r=A.u9(10)
 q=A.a([new A.f3(5,B.eu,A.a0(B.c.an(127.5),158,158,158),B.Or,7)],t.sq)
 p=this.r
-o=p.d===!0?"One":"Two"
+o=p.d===!1?"One":"Two"
 o=A.cd("Session: "+o+" ",l,l,l,A.lm(l,l).lf(B.j,14),l,l)
 n=p.c
 n.toString

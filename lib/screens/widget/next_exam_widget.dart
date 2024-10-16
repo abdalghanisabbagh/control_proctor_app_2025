@@ -59,7 +59,7 @@ class NextExamWidget extends GetView<NextExamController> {
                   Row(
                     children: [
                       Text(
-                          "Session: ${nextExamResModel.period == true ? "One" : "Two"} ",
+                          "Session: ${nextExamResModel.period == false ? "One" : "Two"} ",
                           style: nunitoLightStyle().copyWith(
                             fontSize: 14,
                             color: ColorManager.white,
