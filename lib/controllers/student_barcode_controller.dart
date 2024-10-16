@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:control_proctor/models/barcodes/barcode_res_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +18,7 @@ class StudentsInExamRoomController extends GetxController {
   bool locked = true;
   final TextEditingController passwordController = TextEditingController();
   StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
+  List<BarcodeResModel> barcodes = [];
   bool validating = false;
 
   /// Activate a student in the exam room.
@@ -44,7 +46,8 @@ class StudentsInExamRoomController extends GetxController {
         ).showDialogue(Get.key.currentContext!);
       },
       (_) {
-        studentBarcodeInExamRoom!.barcodesResModel!.barcodes!
+        // studentBarcodeInExamRoom!.barcodesResModel!.barcodes!
+        barcodes
             .firstWhereOrNull((element) => element.student?.iD == id)!
             .attendanceStatusId = 13;
         update();
@@ -69,23 +72,37 @@ class StudentsInExamRoomController extends GetxController {
   Future<void> getAllStudentsInExamRoom() async {
     isLoading = true;
     update();
+
     final selectedExamRoomId =
         await Get.find<StudentsInExamRoomService>().selectedExamRoomId;
-    final selectedExamMissionId =
+    final selectedExamMissionIds =
         await Get.find<StudentsInExamRoomService>().selectedExamMissionId;
 
+    await Future.wait([
+      ...List.generate(selectedExamMissionIds!.length, (i) async {
+        return await getStudents(
+            selectedExamRoomId!, selectedExamMissionIds[i]!);
+      })
+    ]);
+
+    isLoading = false;
+    update();
+  }
+
+  getStudents(int roomId, int missionId) async {
     final response =
         await ResponseHandler<StudentBarcodeInExamRoom>().getResponse(
-      path: "${StudentsLinks.studentBarcodesExamRoom}/$selectedExamRoomId",
+      path: "${StudentsLinks.studentBarcodesExamRoom}/$roomId",
       converter: StudentBarcodeInExamRoom.fromJson,
       params: {
-        'examMissionId': selectedExamMissionId,
+        'examMissionId': missionId,
       },
       type: ReqTypeEnum.GET,
     );
 
     response.fold(
       (l) => {
+        print(l.message);
         MyAwesomeDialogue(
           title: 'Error',
           desc: l.message,
@@ -94,11 +111,9 @@ class StudentsInExamRoomController extends GetxController {
       },
       (r) {
         studentBarcodeInExamRoom = r;
+        barcodes.addAll(r.barcodesResModel?.barcodes ?? []);
       },
     );
-
-    isLoading = false;
-    update();
   }
 
   /// Marks a student as cheating in the exam room.

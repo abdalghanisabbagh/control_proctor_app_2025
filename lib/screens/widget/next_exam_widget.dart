@@ -1,28 +1,27 @@
+import 'package:control_proctor/routes_manger.dart';
+import 'package:control_proctor/services/students_in_exam_room_service.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/next_exam_controller.dart';
 import '../../models/exam mission/exam_mission_res_model.dart';
 import '../../models/next%20exam/next_exam_res_model.dart';
-import '../../routes_manger.dart';
-import '../../services/students_in_exam_room_service.dart';
 
 class NextExamWidget extends GetView<NextExamController> {
-  final ExamMissionResModel examMissionResModel;
+  final List<ExamMissionResModel> examMissionResModel;
 
-  final int index;
+  // final int index;
   final NextExamResModel nextExamResModel;
   const NextExamWidget({
     super.key,
     required this.nextExamResModel,
     required this.examMissionResModel,
-    required this.index,
+    // required this.index,
   });
 
   @override
   Widget build(BuildContext context) {
-    DateTime dateTime = DateTime.parse(examMissionResModel.startTime!);
+    DateTime dateTime = DateTime.parse(examMissionResModel[0].startTime!);
     String formattedTime =
         '${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
 
@@ -30,7 +29,10 @@ class NextExamWidget extends GetView<NextExamController> {
       onTap: () async {
         await Get.find<StudentsInExamRoomService>()
             .setSelectedExamRoomAndExamMissionId(
-          examMissionId: nextExamResModel.examMissionsResModel!.data![index].iD,
+          examMissionIds: nextExamResModel.examMissionsResModel!.data
+                  ?.map((item) => item.iD)
+                  .toList() ??
+              [],
           examRoomId: nextExamResModel.examRoomResModel!.id,
         );
         Get.toNamed(Routes.studentsInExamRoom);
@@ -90,23 +92,33 @@ class NextExamWidget extends GetView<NextExamController> {
                     ],
                   ),
                   const SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Text(
-                          "Subject: ${examMissionResModel.subjectResModel!.name!} (${examMissionResModel.gradeResModel!.name!})",
-                          style: nunitoLightStyle().copyWith(
-                            fontSize: 14,
-                            color: ColorManager.white,
-                          )),
-                      const Spacer(),
-                      Text(
-                        "Start in: $formattedTime",
-                        style: nunitoLightStyle().copyWith(
-                          fontSize: 14,
-                          color: ColorManager.white,
-                        ),
-                      ),
-                    ],
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(
+                      nextExamResModel.examMissionsResModel!.data!.length,
+                      (i) {
+                        var mission =
+                            nextExamResModel.examMissionsResModel!.data![i];
+                        return Row(
+                          children: [
+                            Text(
+                                "Subject: ${mission.subjectResModel?.name ?? ''} (${mission.gradeResModel?.name ?? ''})",
+                                style: nunitoLightStyle().copyWith(
+                                  fontSize: 14,
+                                  color: ColorManager.white,
+                                )),
+                            const Spacer(),
+                            Text(
+                              "Start in: $formattedTime",
+                              style: nunitoLightStyle().copyWith(
+                                fontSize: 14,
+                                color: ColorManager.white,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),

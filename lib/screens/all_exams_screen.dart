@@ -107,8 +107,8 @@ class AllExams extends GetView<AllExamController> {
                                             .examMissionsResModel!.data![i];
                                         return NextExamWidget(
                                           nextExamResModel: nextExamResModel,
-                                          examMissionResModel: mission,
-                                          index: i,
+                                          examMissionResModel: [mission],
+                                          // index: i,
                                         );
                                       },
                                     ),

@@ -152,9 +152,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                             ),
                             children: [
                               for (int i = 0;
-                                  i <
-                                      controller.studentBarcodeInExamRoom!
-                                          .barcodesResModel!.barcodes!.length;
+                                  i < controller.barcodes.length;
                                   i++)
                                 GestureDetector(
                                   onTap: () {
@@ -165,23 +163,14 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                         desc: 'Are you sure?',
                                         dialogType: DialogType.warning,
                                         btnOkOnPressed: () {
-                                          controller
-                                                      .studentBarcodeInExamRoom!
-                                                      .barcodesResModel!
-                                                      .barcodes![i]
-                                                      .isCheating ==
-                                                  0
+                                          controller.barcodes[i].isCheating == 0
                                               ? controller.markStudentCheating(
                                                   barcode: controller
-                                                      .studentBarcodeInExamRoom!
-                                                      .barcodesResModel!
-                                                      .barcodes![i]
+                                                      .barcodes[i]
                                                       .barcode!)
                                               : controller.unMarkCheatingStudent(
                                                   barcode: controller
-                                                      .studentBarcodeInExamRoom!
-                                                      .barcodesResModel!
-                                                      .barcodes![i]
+                                                      .barcodes[i]
                                                       .barcode!);
                                         },
                                         btnCancelOnPressed: () {},
@@ -203,9 +192,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                               ),
                                               color: ColorManager.gradesColor[
                                                   controller
-                                                      .studentBarcodeInExamRoom!
-                                                      .barcodesResModel!
-                                                      .barcodes![i]
+                                                      .barcodes[i]
                                                       .student!
                                                       .gradeResModel!
                                                       .name!],
@@ -213,9 +200,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                             child: Center(
                                               child: Text(
                                                 controller
-                                                    .studentBarcodeInExamRoom!
-                                                    .barcodesResModel!
-                                                    .barcodes![i]
+                                                     .barcodes[i]
                                                     .studentSeatNumberResModel!
                                                     .seatNumber
                                                     .toString(),
@@ -232,16 +217,12 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
                                               color: controller
-                                                          .studentBarcodeInExamRoom!
-                                                          .barcodesResModel!
-                                                          .barcodes![i]
+                                                          .barcodes[i]
                                                           .isCheating! ==
                                                       1
                                                   ? ColorManager.ornage
                                                   : controller
-                                                              .studentBarcodeInExamRoom!
-                                                              .barcodesResModel!
-                                                              .barcodes![i]
+                                                              .barcodes[i]
                                                               .attendanceStatusId ==
                                                           13
                                                       ? ColorManager.green
@@ -252,9 +233,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                 fit: BoxFit.fill,
                                                 child: Text(
                                                   controller
-                                                      .studentBarcodeInExamRoom!
-                                                      .barcodesResModel!
-                                                      .barcodes![i]
+                                                      .barcodes[i]
                                                       .student!
                                                       .gradeResModel!
                                                       .name!,
@@ -280,9 +259,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                               ),
                                               color: ColorManager.gradesColor[
                                                   controller
-                                                      .studentBarcodeInExamRoom!
-                                                      .barcodesResModel!
-                                                      .barcodes![i]
+                                                       .barcodes[i]
                                                       .student!
                                                       .gradeResModel!
                                                       .name!],
@@ -292,9 +269,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                 fit: BoxFit.fill,
                                                 child: Text(
                                                   controller
-                                                      .studentBarcodeInExamRoom!
-                                                      .barcodesResModel!
-                                                      .barcodes![i]
+                                                      .barcodes[i]
                                                       .student!
                                                       .firstName
                                                       .toString(),
