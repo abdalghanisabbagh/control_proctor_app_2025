@@ -37,7 +37,7 @@ class StudentsInExamRoomController extends GetxController {
       converter: (_) {},
       type: ReqTypeEnum.PATCH,
     );
-    response.fold(
+    await response.fold(
       (l) {
         MyAwesomeDialogue(
           title: 'Error',
@@ -45,15 +45,16 @@ class StudentsInExamRoomController extends GetxController {
           dialogType: DialogType.error,
         ).showDialogue(Get.key.currentContext!);
       },
-      (_) {
+      (_) async {
         // studentBarcodeInExamRoom!.barcodesResModel!.barcodes!
-        barcodes
-            .firstWhereOrNull((element) => element.student?.iD == id)!
-            .attendanceStatusId = 13;
-        update();
+        // barcodes
+        //     .firstWhereOrNull((element) => element.student?.iD == id)!
+        //     .attendanceStatusId = 13;
+
+        await getAllStudentsInExamRoom();
+        // update();
       },
     );
-    return;
   }
 
   /// Gets all students in the exam room.
@@ -78,18 +79,15 @@ class StudentsInExamRoomController extends GetxController {
     final selectedExamMissionIds =
         await Get.find<StudentsInExamRoomService>().selectedExamMissionId;
 
-    await Future.wait([
-      ...List.generate(selectedExamMissionIds!.length, (i) async {
-        return await getStudents(
-            selectedExamRoomId!, selectedExamMissionIds[i]!);
-      })
-    ]);
-
+    barcodes = [];
+    for (var i = 0; i < selectedExamMissionIds!.length; i++) {
+      await getStudents(selectedExamRoomId!, selectedExamMissionIds[i]!);
+    }
     isLoading = false;
     update();
   }
 
-  getStudents(int roomId, int missionId) async {
+  Future getStudents(int roomId, int missionId) async {
     final response =
         await ResponseHandler<StudentBarcodeInExamRoom>().getResponse(
       path: "${StudentsLinks.studentBarcodesExamRoom}/$roomId",
@@ -101,17 +99,18 @@ class StudentsInExamRoomController extends GetxController {
     );
 
     response.fold(
-      (l) => {
+      (l) {
         print(l.message);
         MyAwesomeDialogue(
           title: 'Error',
           desc: l.message,
           dialogType: DialogType.error,
-        ).showDialogue(Get.context!),
+        ).showDialogue(Get.context!);
       },
       (r) {
         studentBarcodeInExamRoom = r;
         barcodes.addAll(r.barcodesResModel?.barcodes ?? []);
+        print(missionId);
       },
     );
   }
@@ -144,6 +143,8 @@ class StudentsInExamRoomController extends GetxController {
     await Future.wait([
       Get.find<StudentsInExamRoomService>().deleteFromHiveBox(),
     ]);
+    barcodes.clear();
+    studentBarcodeInExamRoom = null;
     super.onClose();
   }
 
