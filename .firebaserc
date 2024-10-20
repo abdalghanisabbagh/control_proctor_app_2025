@@ -6,7 +6,7 @@
     "nis-control-4cd9d": {
       "hosting": {
         "control_proctor_app_2025": [
-          "staging-control-proctor-app-2025"
+          "control-proctor-app-2025"
         ]
       }
     }

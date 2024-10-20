@@ -119,7 +119,7 @@ class StudentsInExamRoomBinding extends Bindings {
     /// controller is not recreated when the page is navigated to.
     Get.lazyPut<StudentsInExamRoomController>(
       () => StudentsInExamRoomController(),
-      fenix: true,
+      // fenix: true,
     );
   }
 }

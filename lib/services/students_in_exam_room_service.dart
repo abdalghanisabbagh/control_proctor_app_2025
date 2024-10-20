@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 class StudentsInExamRoomService extends GetxService {
-  int? _selectedExamMissionId;
+  List<int?>? _selectedExamMissionId;
   int? _selectedExamRoomId;
 
-  FutureOr<int?> get selectedExamMissionId async {
+  FutureOr<List<int?>?> get selectedExamMissionId async {
     if (_selectedExamMissionId == null) {
       await getFromHiveBox();
     }
@@ -51,16 +51,16 @@ class StudentsInExamRoomService extends GetxService {
     await Hive.box('StudentsInExamRoom').flush();
   }
 
-  void setSelectedExamMissionId(int id) {
-    _selectedExamMissionId = id;
+  void setSelectedExamMissionId( List<int> ids) {
+    _selectedExamMissionId = ids;
   }
 
   Future<void> setSelectedExamRoomAndExamMissionId({
     int? examRoomId,
-    int? examMissionId,
+     List<int?>? examMissionIds,
   }) async {
     _selectedExamRoomId = examRoomId;
-    _selectedExamMissionId = examMissionId;
+    _selectedExamMissionId = examMissionIds;
 
     await saveToHiveBox();
   }

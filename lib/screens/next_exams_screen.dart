@@ -139,23 +139,31 @@ class NextExamsPage extends GetView<NextExamController> {
                                     return Container();
                                   }
 
-                                  return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: List.generate(
-                                      nextExamResModel
-                                          .examMissionsResModel!.data!.length,
-                                      (i) {
-                                        var mission = nextExamResModel
-                                            .examMissionsResModel!.data![i];
-                                        return NextExamWidget(
-                                          nextExamResModel: nextExamResModel,
-                                          examMissionResModel: mission,
-                                          index: i,
-                                        );
-                                      },
-                                    ),
+                                  return NextExamWidget(
+                                    nextExamResModel: nextExamResModel,
+                                    examMissionResModel: nextExamResModel
+                                            .examMissionsResModel?.data ??
+                                        [],
+                                    // index: i,
                                   );
+
+                                  // Column(
+                                  //   crossAxisAlignment:
+                                  //       CrossAxisAlignment.start,
+                                  //   children: List.generate(
+                                  //     nextExamResModel
+                                  //         .examMissionsResModel!.data!.length,
+                                  //     (i) {
+                                  //       var mission = nextExamResModel
+                                  //           .examMissionsResModel!.data![i];
+                                  //       return NextExamWidget(
+                                  //         nextExamResModel: nextExamResModel,
+                                  //         examMissionResModel: mission,
+                                  //         index: i,
+                                  //       );
+                                  //     },
+                                  //   ),
+                                  // );
                                 },
                               ),
                       ),
