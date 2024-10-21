@@ -72,58 +72,50 @@ class StudentsInExamRoomController extends GetxController {
   /// If the request is successful, the [studentBarcodeInExamRoom] is set to the
   /// response and the [isLoading] is set to false.
   Future<void> getAllStudentsInExamRoom() async {
-    workerManager.execute(
-      () async {
-        isLoading = true;
-        update();
+    isLoading = true;
+    update();
 
-        final selectedExamRoomId =
-            await Get.find<StudentsInExamRoomService>().selectedExamRoomId;
-        final selectedExamMissionIds =
-            await Get.find<StudentsInExamRoomService>().selectedExamMissionId;
+    final selectedExamRoomId =
+        await Get.find<StudentsInExamRoomService>().selectedExamRoomId;
+    final selectedExamMissionIds =
+        await Get.find<StudentsInExamRoomService>().selectedExamMissionId;
 
-        barcodes = [];
-        for (var i = 0; i < selectedExamMissionIds!.length; i++) {
-          await getStudents(selectedExamRoomId!, selectedExamMissionIds[i]!);
-        }
-        isLoading = false;
-        update();
-      },
-    );
+    barcodes = [];
+    for (var i = 0; i < selectedExamMissionIds!.length; i++) {
+      await getStudents(selectedExamRoomId!, selectedExamMissionIds[i]!);
+    }
+    isLoading = false;
+    update();
   }
 
   Future getStudents(int roomId, int missionId) async {
-    workerManager.execute(
-      () async {
-        final response =
-            await ResponseHandler<StudentBarcodeInExamRoom>().getResponse(
-          path: "${StudentsLinks.studentBarcodesExamRoom}/$roomId",
-          converter: StudentBarcodeInExamRoom.fromJson,
-          params: {
-            'examMissionId': missionId,
-          },
-          type: ReqTypeEnum.GET,
-        );
+    final response =
+        await ResponseHandler<StudentBarcodeInExamRoom>().getResponse(
+      path: "${StudentsLinks.studentBarcodesExamRoom}/$roomId",
+      converter: StudentBarcodeInExamRoom.fromJson,
+      params: {
+        'examMissionId': missionId,
+      },
+      type: ReqTypeEnum.GET,
+    );
 
-        response.fold(
-          (l) {
-            MyAwesomeDialogue(
-              title: 'Error',
-              desc: l.message,
-              dialogType: DialogType.error,
-            ).showDialogue(Get.context!);
+    response.fold(
+      (l) {
+        MyAwesomeDialogue(
+          title: 'Error',
+          desc: l.message,
+          dialogType: DialogType.error,
+        ).showDialogue(Get.context!);
+      },
+      (r) {
+        workerManager.execute(
+          () {
+            studentBarcodeInExamRoom = r;
           },
-          (r) {
-            workerManager.execute(
-              () {
-                studentBarcodeInExamRoom = r;
-              },
-            );
-            workerManager.execute(
-              () {
-                barcodes.addAll(r.barcodesResModel?.barcodes ?? []);
-              },
-            );
+        );
+        workerManager.execute(
+          () {
+            barcodes.addAll(r.barcodesResModel?.barcodes ?? []);
           },
         );
       },
