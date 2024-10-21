@@ -40,7 +40,7 @@ class ProfileController extends GetxController {
   /// This method also calls [update] to notify the widgets that depend on
   /// this controller to rebuild.
   void saveProfileToHiveBox(UserProfileModel cachedUserProfile) {
-    update();
+    _cachedUserProfile = cachedUserProfile;
     Hive.box('Profile').put('Profile', jsonEncode(cachedUserProfile.toJson()));
   }
 }
