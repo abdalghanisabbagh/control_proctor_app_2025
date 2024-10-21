@@ -22,7 +22,7 @@ class TokenService extends GetxController {
     return _tokenModel;
   }
 
-  Future<void> saveNewAccessToken(TokenModel tokenModel) async {
+  void saveNewAccessToken(TokenModel tokenModel) {
     _tokenModel = tokenModel;
     Hive.box('Token').put('Token', jsonEncode(tokenModel.toJson()));
   }
