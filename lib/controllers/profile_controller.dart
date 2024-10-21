@@ -41,7 +41,6 @@ class ProfileController extends GetxController {
   /// this controller to rebuild.
   void saveProfileToHiveBox(UserProfileModel cachedUserProfile) {
     _cachedUserProfile = cachedUserProfile;
-    update();
     Hive.box('Profile').put('Profile', jsonEncode(cachedUserProfile.toJson()));
   }
 }
