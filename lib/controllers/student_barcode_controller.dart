@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_proctor/models/barcodes/barcode_res_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:worker_manager/worker_manager.dart';
 
 import '../configurations/app_links.dart';
 import '../enums/req_type_enum.dart';
@@ -71,46 +72,60 @@ class StudentsInExamRoomController extends GetxController {
   /// If the request is successful, the [studentBarcodeInExamRoom] is set to the
   /// response and the [isLoading] is set to false.
   Future<void> getAllStudentsInExamRoom() async {
-    isLoading = true;
-    update();
+    workerManager.execute(
+      () async {
+        isLoading = true;
+        update();
 
-    final selectedExamRoomId =
-        await Get.find<StudentsInExamRoomService>().selectedExamRoomId;
-    final selectedExamMissionIds =
-        await Get.find<StudentsInExamRoomService>().selectedExamMissionId;
+        final selectedExamRoomId =
+            await Get.find<StudentsInExamRoomService>().selectedExamRoomId;
+        final selectedExamMissionIds =
+            await Get.find<StudentsInExamRoomService>().selectedExamMissionId;
 
-    barcodes = [];
-    for (var i = 0; i < selectedExamMissionIds!.length; i++) {
-      await getStudents(selectedExamRoomId!, selectedExamMissionIds[i]!);
-    }
-    isLoading = false;
-    update();
+        barcodes = [];
+        for (var i = 0; i < selectedExamMissionIds!.length; i++) {
+          await getStudents(selectedExamRoomId!, selectedExamMissionIds[i]!);
+        }
+        isLoading = false;
+        update();
+      },
+    );
   }
 
   Future getStudents(int roomId, int missionId) async {
-    final response =
-        await ResponseHandler<StudentBarcodeInExamRoom>().getResponse(
-      path: "${StudentsLinks.studentBarcodesExamRoom}/$roomId",
-      converter: StudentBarcodeInExamRoom.fromJson,
-      params: {
-        'examMissionId': missionId,
-      },
-      type: ReqTypeEnum.GET,
-    );
+    workerManager.execute(
+      () async {
+        final response =
+            await ResponseHandler<StudentBarcodeInExamRoom>().getResponse(
+          path: "${StudentsLinks.studentBarcodesExamRoom}/$roomId",
+          converter: StudentBarcodeInExamRoom.fromJson,
+          params: {
+            'examMissionId': missionId,
+          },
+          type: ReqTypeEnum.GET,
+        );
 
-    response.fold(
-      (l) {
-        print(l.message);
-        MyAwesomeDialogue(
-          title: 'Error',
-          desc: l.message,
-          dialogType: DialogType.error,
-        ).showDialogue(Get.context!);
-      },
-      (r) {
-        studentBarcodeInExamRoom = r;
-        barcodes.addAll(r.barcodesResModel?.barcodes ?? []);
-        print(missionId);
+        response.fold(
+          (l) {
+            MyAwesomeDialogue(
+              title: 'Error',
+              desc: l.message,
+              dialogType: DialogType.error,
+            ).showDialogue(Get.context!);
+          },
+          (r) {
+            workerManager.execute(
+              () {
+                studentBarcodeInExamRoom = r;
+              },
+            );
+            workerManager.execute(
+              () {
+                barcodes.addAll(r.barcodesResModel?.barcodes ?? []);
+              },
+            );
+          },
+        );
       },
     );
   }

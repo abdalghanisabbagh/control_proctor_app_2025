@@ -49,14 +49,10 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                 String? uuid /* , studentId, name, examId */;
                                 dynamic result;
                                 if (kIsWeb) {
-                                  result = await Navigator.push(
-                                    Get.overlayContext!,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SimpleBarcodeScannerPage(
-                                        scanType: ScanType.qr,
-                                        appBarTitle: 'Student QR code',
-                                      ),
+                                  result = await Get.to(
+                                    const SimpleBarcodeScannerPage(
+                                      scanType: ScanType.qr,
+                                      appBarTitle: 'Student QR code',
                                     ),
                                   );
                                   // result='data\n316';
