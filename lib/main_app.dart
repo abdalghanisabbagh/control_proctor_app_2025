@@ -36,6 +36,7 @@ class _MyAppState extends State<MyApp> {
       getPages: Routes.routes,
       initialBinding: InitialBindings(),
       initialRoute: Routes.initialRoute,
+      unknownRoute: Routes.unknownRoute,
     );
   }
 

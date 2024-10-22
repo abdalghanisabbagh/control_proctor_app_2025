@@ -13,6 +13,13 @@ class Routes {
   static const String initialRoute = "/login";
   static const String loginRoute = "/login";
   static const String nextExams = "/NextExams";
+  static final unknownRoute = GetPage(
+    name: Routes.loginRoute,
+    page: () => LoginForm(),
+    transition: Transition.fade,
+    binding: LoginBinding(),
+    transitionDuration: const Duration(seconds: 1),
+  );
   static List<GetPage> routes = [
     GetPage(
       name: loginRoute,
