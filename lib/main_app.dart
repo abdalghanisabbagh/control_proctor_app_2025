@@ -1,4 +1,3 @@
-import 'package:control_proctor/screens/login_form.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,13 +36,7 @@ class _MyAppState extends State<MyApp> {
       getPages: Routes.routes,
       initialBinding: InitialBindings(),
       initialRoute: Routes.initialRoute,
-      unknownRoute: GetPage(
-        name: Routes.loginRoute,
-        page: () => LoginForm(),
-        transition: Transition.fade,
-        binding: LoginBinding(),
-        transitionDuration: const Duration(seconds: 1),
-      ),
+      unknownRoute: Routes.unknownRoute,
     );
   }
 
