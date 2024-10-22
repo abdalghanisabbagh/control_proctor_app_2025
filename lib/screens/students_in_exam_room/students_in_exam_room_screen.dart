@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:custom_theme/lib.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_barcode_scanner/enum.dart';
@@ -48,34 +47,32 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                               onPressed: () async {
                                 String? uuid /* , studentId, name, examId */;
                                 dynamic result;
-                                if (kIsWeb) {
-                                  result = await Get.to(
-                                    const SimpleBarcodeScannerPage(
-                                      scanType: ScanType.qr,
-                                      appBarTitle: 'Student QR code',
-                                    ),
-                                  );
-                                  // result='data\n316';
-                                  if (result is String) {
-                                    var res = result;
-                                    var splitedData = res.split('\n');
-                                    MyFlashBar.showSuccess(
-                                            splitedData[0].toString(),
-                                            'Scanned Successfully')
-                                        .show(Get.key.currentContext!);
-                                    uuid = splitedData[1];
-                                    return await controller
-                                        .activateStudent(int.parse(uuid));
-                                    // macId = splitedData.first;
-                                    // studentId = splitedData[1];
-                                    // name = splitedData[2];
-                                    // examId = splitedData.last;
-                                  } else {
-                                    // student_loading = false;
-                                    // isScanning = false;
-                                    // update();
-                                    return;
-                                  }
+                                result = await Get.to(
+                                  () => const SimpleBarcodeScannerPage(
+                                    scanType: ScanType.qr,
+                                    appBarTitle: 'Student QR code',
+                                  ),
+                                );
+                                // result='data\n316';
+                                if (result is String) {
+                                  var res = result;
+                                  var splitedData = res.split('\n');
+                                  MyFlashBar.showSuccess(
+                                          splitedData[0].toString(),
+                                          'Scanned Successfully')
+                                      .show(Get.key.currentContext!);
+                                  uuid = splitedData[1];
+                                  return await controller
+                                      .activateStudent(int.parse(uuid));
+                                  // macId = splitedData.first;
+                                  // studentId = splitedData[1];
+                                  // name = splitedData[2];
+                                  // examId = splitedData.last;
+                                } else {
+                                  // student_loading = false;
+                                  // isScanning = false;
+                                  // update();
+                                  return;
                                 }
                               },
                               icon: const Icon(
