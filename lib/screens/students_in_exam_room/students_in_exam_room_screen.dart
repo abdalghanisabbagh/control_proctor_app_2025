@@ -48,7 +48,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                 String? uuid /* , studentId, name, examId */;
                                 dynamic result;
                                 result = await Get.to(
-                                  const SimpleBarcodeScannerPage(
+                                  () => const SimpleBarcodeScannerPage(
                                     scanType: ScanType.qr,
                                     appBarTitle: 'Student QR code',
                                   ),
