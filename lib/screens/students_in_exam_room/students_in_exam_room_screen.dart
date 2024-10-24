@@ -328,20 +328,15 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                               child: DecoratedBox(
                                                 decoration: BoxDecoration(
                                                   color: controller
+                                                          .selectedStudentsIds
+                                                          .contains(controller
                                                               .studentBarcodeInExamRoom!
                                                               .barcodesResModel!
                                                               .barcodes![i]
-                                                              .isCheating! ==
-                                                          1
-                                                      ? ColorManager.ornage
-                                                      : controller
-                                                                  .studentBarcodeInExamRoom!
-                                                                  .barcodesResModel!
-                                                                  .barcodes![i]
-                                                                  .attendanceStatusId ==
-                                                              13
-                                                          ? ColorManager.green
-                                                          : ColorManager.greyA8,
+                                                              .student!
+                                                              .iD!)
+                                                      ? ColorManager.green
+                                                      : ColorManager.red,
                                                 ),
                                                 child: Center(
                                                   child: FittedBox(
