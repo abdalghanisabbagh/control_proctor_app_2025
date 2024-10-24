@@ -32,8 +32,10 @@ class StudentsInExamRoomService extends GetxService {
   Future<void> getFromHiveBox() async {
     _selectedExamRoomId =
         await Hive.box('StudentsInExamRoom').get('selectedExamRoomId');
-    _selectedExamMissionId =
-        await Hive.box('StudentsInExamRoom').get('selectedExamMissionId');
+    _selectedExamMissionId = (await Hive.box('StudentsInExamRoom')
+            .get('selectedExamMissionId') as List<dynamic>?)
+        ?.map((e) => e as int?)
+        .toList();
   }
 
   Future<void> saveToHiveBox() async {
@@ -51,13 +53,13 @@ class StudentsInExamRoomService extends GetxService {
     await Hive.box('StudentsInExamRoom').flush();
   }
 
-  void setSelectedExamMissionId( List<int> ids) {
+  void setSelectedExamMissionId(List<int> ids) {
     _selectedExamMissionId = ids;
   }
 
   Future<void> setSelectedExamRoomAndExamMissionId({
     int? examRoomId,
-     List<int?>? examMissionIds,
+    List<int?>? examMissionIds,
   }) async {
     _selectedExamRoomId = examRoomId;
     _selectedExamMissionId = examMissionIds;
