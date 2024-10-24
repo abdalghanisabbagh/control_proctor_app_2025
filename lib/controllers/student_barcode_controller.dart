@@ -39,6 +39,8 @@ class StudentsInExamRoomController extends GetxController {
         desc: 'Please select students',
         dialogType: DialogType.error,
       ).showDialogue(Get.key.currentContext!);
+      isLoading = false;
+      update();
       return;
     }
 
