@@ -2,8 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:simple_barcode_scanner/enum.dart';
-import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 import '../../controllers/controllers.dart';
 import '../../resource_manager/ReusableWidget/app_dialogs.dart';
@@ -11,6 +9,7 @@ import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 import '../../resource_manager/ReusableWidget/my_snack_bar.dart';
 import '../../resource_manager/ReusableWidget/my_text_form_field.dart';
 import '../../resource_manager/ReusableWidget/show_dialogue.dart';
+import 'barcode_scanner_screen.dart';
 
 class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
   const StudentsInExamRoomScreen({super.key});
@@ -48,10 +47,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                 String? uuid /* , studentId, name, examId */;
                                 dynamic result;
                                 result = await Get.to(
-                                  () => const SimpleBarcodeScannerPage(
-                                    scanType: ScanType.qr,
-                                    appBarTitle: 'Student QR code',
-                                  ),
+                                  () => const BarcodeScannerWithOverlay(),
                                 );
                                 // result='data\n316';
                                 if (result is String) {
