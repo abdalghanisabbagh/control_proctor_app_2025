@@ -69,8 +69,6 @@ class StudentsInExamRoomController extends GetxController {
         //     .firstWhereOrNull((element) => element.student?.iD == id)!
         //     .attendanceStatusId = 13;
 
-        await getAllStudentsInExamRoom();
-
         MyAwesomeDialogue(
           title: 'Success',
           desc: 'Activated successfully',
@@ -78,6 +76,8 @@ class StudentsInExamRoomController extends GetxController {
         ).showDialogue(Get.key.currentContext!);
       },
     );
+    isLoading = false;
+    update();
   }
 
   /// Gets all students in the exam room.
