@@ -21,6 +21,7 @@ class StudentsInExamRoomController extends GetxController {
   StudentBarcodeInExamRoom? studentBarcodeInExamRoom;
   List<BarcodeResModel> barcodes = [];
   bool validating = false;
+  List<int> selectedStudentsIds = [];
 
   /// Activate a student in the exam room.
   ///
@@ -29,14 +30,30 @@ class StudentsInExamRoomController extends GetxController {
   /// The student's attendance status is set to 13 (active) if the request is successful.
   ///
   /// If the request fails, an error dialogue is shown with the error message from the response.
-  Future<void> activateStudent(int id) async {
+  Future<void> activateStudents() async {
+    isLoading = true;
+    update();
+    if (selectedStudentsIds.isEmpty) {
+      MyAwesomeDialogue(
+        title: 'Error',
+        desc: 'Please select students',
+        dialogType: DialogType.error,
+      ).showDialogue(Get.key.currentContext!);
+      isLoading = false;
+      update();
+      return;
+    }
+
     final responseHandler = ResponseHandler<void>();
 
     var response = await responseHandler.getResponse(
-      path: '${StudentsLinks.studentUuid}/$id/activate',
+      path: '${StudentsLinks.studentUuid}/activate/many',
       body: {},
       converter: (_) {},
       type: ReqTypeEnum.PATCH,
+      params: {
+        'studentsIds': selectedStudentsIds.toString(),
+      },
     );
     await response.fold(
       (l) {
@@ -52,10 +69,15 @@ class StudentsInExamRoomController extends GetxController {
         //     .firstWhereOrNull((element) => element.student?.iD == id)!
         //     .attendanceStatusId = 13;
 
-        await getAllStudentsInExamRoom();
-        // update();
+        MyAwesomeDialogue(
+          title: 'Success',
+          desc: 'Activated successfully',
+          dialogType: DialogType.success,
+        ).showDialogue(Get.key.currentContext!);
       },
     );
+    isLoading = false;
+    update();
   }
 
   /// Gets all students in the exam room.
@@ -115,7 +137,18 @@ class StudentsInExamRoomController extends GetxController {
         );
         workerManager.execute(
           () {
-            barcodes.addAll(r.barcodesResModel?.barcodes ?? []);
+            barcodes
+              ..addAll(r.barcodesResModel?.barcodes ?? [])
+              ..toSet()
+              ..toList();
+            selectedStudentsIds.addAll(
+              barcodes
+                  .where((studentId) =>
+                      !selectedStudentsIds.contains(studentId.student?.iD))
+                  .map(
+                    (e) => e.student!.iD!,
+                  ),
+            );
           },
         );
       },
