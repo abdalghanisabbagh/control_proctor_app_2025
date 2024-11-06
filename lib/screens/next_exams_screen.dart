@@ -30,31 +30,34 @@ class NextExamsPage extends GetView<NextExamController> {
           color: ColorManager.white,
         ),
         actions: [
-          GestureDetector(
-            onTap: () async {
-              // Handle logout action
-              await Future.wait([
-                Get.find<TokenService>().deleteTokenModelFromHiveBox(),
-                Get.find<ProfileController>().deleteProfileFromHiveBox(),
-              ]);
-              Get.offAllNamed(Routes.loginRoute);
-            },
-            child: const Row(
-              children: [
-                Icon(
-                  Icons.exit_to_app,
-                  color: ColorManager.white,
-                ),
-                SizedBox(width: 5),
-                Text(
-                  'Logout',
-                  style: TextStyle(
+          Tooltip(
+            message: 'Logout', // This is the tooltip text
+            child: InkWell(
+              onTap: () async {
+                // Handle logout action
+                await Future.wait([
+                  Get.find<TokenService>().deleteTokenModelFromHiveBox(),
+                  Get.find<ProfileController>().deleteProfileFromHiveBox(),
+                ]);
+                Get.offAllNamed(Routes.loginRoute);
+              },
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.exit_to_app,
                     color: ColorManager.white,
-                    fontSize: 16,
                   ),
-                ),
-                Padding(padding: EdgeInsets.only(right: 10)),
-              ],
+                  SizedBox(width: 5),
+                  Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: ColorManager.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(right: 10)),
+                ],
+              ),
             ),
           ),
         ],

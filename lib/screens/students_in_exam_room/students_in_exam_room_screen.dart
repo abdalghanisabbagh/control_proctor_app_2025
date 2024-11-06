@@ -8,10 +8,8 @@ import 'package:get/get.dart';
 // import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 import '../../controllers/controllers.dart';
-import '../../resource_manager/ReusableWidget/app_dialogs.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 // import '../../resource_manager/ReusableWidget/my_snack_bar.dart';
-import '../../resource_manager/ReusableWidget/my_text_form_field.dart';
 import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 
 class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
@@ -123,60 +121,60 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                             //   Icons.qr_code_scanner_outlined,
                             // ),
                             // ),
-                            IconButton(
-                              onPressed: () {
-                                controller.locked
-                                    ? MyDialogs.showDialog(
-                                        context,
-                                        Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.centerRight,
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  Get.back();
-                                                },
-                                                icon: const Icon(
-                                                  Icons.close,
-                                                ),
-                                              ),
-                                            ),
-                                            MyTextFormFiled(
-                                              title: 'Enter The Password',
-                                              controller:
-                                                  controller.passwordController,
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            controller.validating
-                                                ? Center(
-                                                    child: FittedBox(
-                                                      fit: BoxFit.cover,
-                                                      child: LoadingIndicators
-                                                          .getLoadingIndicator(),
-                                                    ),
-                                                  )
-                                                : ElevatedButton(
-                                                    onPressed: () async {
-                                                      controller.unlock();
-                                                    },
-                                                    child:
-                                                        const Text('Validate'),
-                                                  ),
-                                          ],
-                                        ),
-                                      )
-                                    : {
-                                        controller.locked = true,
-                                        controller.update(),
-                                      };
-                              },
-                              icon: controller.locked
-                                  ? const Icon(Icons.lock_outline)
-                                  : const Icon(Icons.lock_open_outlined),
-                            ),
+                            // IconButton(
+                            //   onPressed: () {
+                            //     controller.locked
+                            //         ? MyDialogs.showDialog(
+                            //             context,
+                            //             Column(
+                            //               mainAxisSize: MainAxisSize.min,
+                            //               children: [
+                            //                 Align(
+                            //                   alignment: Alignment.centerRight,
+                            //                   child: IconButton(
+                            //                     onPressed: () {
+                            //                       Get.back();
+                            //                     },
+                            //                     icon: const Icon(
+                            //                       Icons.close,
+                            //                     ),
+                            //                   ),
+                            //                 ),
+                            //                 MyTextFormFiled(
+                            //                   title: 'Enter The Password',
+                            //                   controller:
+                            //                       controller.passwordController,
+                            //                 ),
+                            //                 const SizedBox(
+                            //                   height: 20,
+                            //                 ),
+                            //                 controller.validating
+                            //                     ? Center(
+                            //                         child: FittedBox(
+                            //                           fit: BoxFit.cover,
+                            //                           child: LoadingIndicators
+                            //                               .getLoadingIndicator(),
+                            //                         ),
+                            //                       )
+                            //                     : ElevatedButton(
+                            //                         onPressed: () async {
+                            //                           controller.unlock();
+                            //                         },
+                            //                         child:
+                            //                             const Text('Validate'),
+                            //                       ),
+                            //               ],
+                            //             ),
+                            //           )
+                            //         : {
+                            //             controller.locked = true,
+                            //             controller.update(),
+                            //           };
+                            //   },
+                            //   icon: controller.locked
+                            //       ? const Icon(Icons.lock_outline)
+                            //       : const Icon(Icons.lock_open_outlined),
+                            // ),
                           ],
                         ).paddingSymmetric(horizontal: 20, vertical: 10),
                         Expanded(
