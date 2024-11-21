@@ -103,6 +103,7 @@ class LoginForm extends GetView<LoginController> {
                         height: 32,
                       ),
                       MyTextFormFiled(
+                        autofillHints: const [AutofillHints.username],
                         controller: emailController,
                         myValidation: Validations.requiredValidator,
                         title: "User Name",
@@ -111,6 +112,7 @@ class LoginForm extends GetView<LoginController> {
                         id: 'pass_icon',
                         builder: (_) {
                           return MyTextFormFiled(
+                            autofillHints: const [AutofillHints.password],
                             obscureText: controller.showPass,
                             controller: passwordController,
                             myValidation: Validations.requiredValidator,

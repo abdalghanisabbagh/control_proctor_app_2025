@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../controllers/next_exam_controller.dart';
+import '../controllers/profile_controller.dart';
 import '../resource_manager/ReusableWidget/loading_indicators.dart';
+import '../routes_manger.dart';
+import '../services/token_service.dart';
 import 'widget/next_exam_widget.dart';
-import 'widget/side_menu.dart';
 
 class NextExamsPage extends GetView<NextExamController> {
   const NextExamsPage({super.key});
@@ -27,9 +29,42 @@ class NextExamsPage extends GetView<NextExamController> {
         iconTheme: const IconThemeData(
           color: ColorManager.white,
         ),
+        actions: [
+          Tooltip(
+            message: 'Logout', // This is the tooltip text
+            child: InkWell(
+              onTap: () async {
+                // Handle logout action
+                await Future.wait([
+                  Get.find<TokenService>().deleteTokenModelFromHiveBox(),
+                  Get.find<ProfileController>().deleteProfileFromHiveBox(),
+                ]);
+                Get.offAllNamed(Routes.loginRoute);
+              },
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.exit_to_app,
+                    color: ColorManager.white,
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: ColorManager.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(right: 10)),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
-      drawer: SideMenu(),
-      drawerScrimColor: ColorManager.white,
+
+      // drawer: SideMenu(),
+      // drawerScrimColor: ColorManager.white,
       body: Column(
         children: [
           GetBuilder<NextExamController>(
