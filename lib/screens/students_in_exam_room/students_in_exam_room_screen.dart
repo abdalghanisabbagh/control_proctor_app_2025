@@ -19,7 +19,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Scan QR Code'),
+        title: const Text('Exam Activation'),
         backgroundColor: ColorManager.bgSideMenu,
         titleTextStyle: nunitoRegularStyle(
           fontSize: FontSize.s18,
