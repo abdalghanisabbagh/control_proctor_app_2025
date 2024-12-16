@@ -189,9 +189,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                             ),
                             children: [
                               for (int i = 0;
-                                  i <
-                                      controller.studentBarcodeInExamRoom!
-                                          .barcodesResModel!.barcodes!.length;
+                                  i < controller.barcodes.length;
                                   i++)
                                 Stack(
                                   children: [
@@ -206,24 +204,18 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                               desc: 'Are you sure?',
                                               dialogType: DialogType.warning,
                                               btnOkOnPressed: () {
-                                                controller
-                                                            .studentBarcodeInExamRoom!
-                                                            .barcodesResModel!
-                                                            .barcodes![i]
+                                                controller.barcodes[i]
                                                             .isCheating ==
                                                         0
-                                                    ? controller.markStudentCheating(
-                                                        barcode: controller
-                                                            .studentBarcodeInExamRoom!
-                                                            .barcodesResModel!
-                                                            .barcodes![i]
-                                                            .barcode!)
+                                                    ? controller
+                                                        .markStudentCheating(
+                                                            barcode: controller
+                                                                .barcodes[i]
+                                                                .barcode!)
                                                     : controller
                                                         .unMarkCheatingStudent(
                                                             barcode: controller
-                                                                .studentBarcodeInExamRoom!
-                                                                .barcodesResModel!
-                                                                .barcodes![i]
+                                                                .barcodes[i]
                                                                 .barcode!);
                                               },
                                               btnCancelOnPressed: () {},
@@ -232,27 +224,17 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                           } else {
                                             !controller.selectedStudentsIds
                                                     .contains(controller
-                                                        .studentBarcodeInExamRoom!
-                                                        .barcodesResModel!
-                                                        .barcodes![i]
+                                                        .barcodes[i]
                                                         .student!
                                                         .iD!)
                                                 ? controller.selectedStudentsIds
-                                                    .add(controller
-                                                        .studentBarcodeInExamRoom!
-                                                        .barcodesResModel!
-                                                        .barcodes![i]
-                                                        .student!
-                                                        .iD!)
+                                                    .add(controller.barcodes[i]
+                                                        .student!.iD!)
                                                 : controller.selectedStudentsIds
                                                     .removeWhere((element) =>
                                                         element ==
-                                                        (controller
-                                                            .studentBarcodeInExamRoom!
-                                                            .barcodesResModel!
-                                                            .barcodes![i]
-                                                            .student!
-                                                            .iD!));
+                                                        (controller.barcodes[i]
+                                                            .student!.iD!));
                                             controller.update();
 
                                             /* 
@@ -294,22 +276,18 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                     topRight:
                                                         Radius.circular(10),
                                                   ),
-                                                  color: ColorManager
-                                                          .gradesColor[
-                                                      controller
-                                                          .studentBarcodeInExamRoom!
-                                                          .barcodesResModel!
-                                                          .barcodes![i]
-                                                          .student!
-                                                          .gradeResModel!
-                                                          .name!],
+                                                  color:
+                                                      ColorManager.gradesColor[
+                                                          controller
+                                                              .barcodes[i]
+                                                              .student!
+                                                              .gradeResModel!
+                                                              .name!],
                                                 ),
                                                 child: Center(
                                                   child: Text(
                                                     controller
-                                                        .studentBarcodeInExamRoom!
-                                                        .barcodesResModel!
-                                                        .barcodes![i]
+                                                        .barcodes[i]
                                                         .studentSeatNumberResModel!
                                                         .seatNumber
                                                         .toString(),
@@ -328,9 +306,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                   color: controller
                                                           .selectedStudentsIds
                                                           .contains(controller
-                                                              .studentBarcodeInExamRoom!
-                                                              .barcodesResModel!
-                                                              .barcodes![i]
+                                                              .barcodes[i]
                                                               .student!
                                                               .iD!)
                                                       ? ColorManager.green
@@ -341,9 +317,7 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                     fit: BoxFit.fill,
                                                     child: Text(
                                                       controller
-                                                          .studentBarcodeInExamRoom!
-                                                          .barcodesResModel!
-                                                          .barcodes![i]
+                                                          .barcodes[i]
                                                           .student!
                                                           .gradeResModel!
                                                           .name!,
@@ -369,26 +343,20 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                                     bottomRight:
                                                         Radius.circular(10),
                                                   ),
-                                                  color: ColorManager
-                                                          .gradesColor[
-                                                      controller
-                                                          .studentBarcodeInExamRoom!
-                                                          .barcodesResModel!
-                                                          .barcodes![i]
-                                                          .student!
-                                                          .gradeResModel!
-                                                          .name!],
+                                                  color:
+                                                      ColorManager.gradesColor[
+                                                          controller
+                                                              .barcodes[i]
+                                                              .student!
+                                                              .gradeResModel!
+                                                              .name!],
                                                 ),
                                                 child: Center(
                                                   child: FittedBox(
                                                     fit: BoxFit.fill,
                                                     child: Text(
-                                                      controller
-                                                          .studentBarcodeInExamRoom!
-                                                          .barcodesResModel!
-                                                          .barcodes![i]
-                                                          .student!
-                                                          .firstName
+                                                      controller.barcodes[i]
+                                                          .student!.firstName
                                                           .toString(),
                                                       style: nunitoRegularStyle(
                                                         fontSize: FontSize.s18,
@@ -408,29 +376,17 @@ class StudentsInExamRoomScreen extends GetView<StudentsInExamRoomController> {
                                       child: Checkbox(
                                         value: controller.selectedStudentsIds
                                             .contains(controller
-                                                .studentBarcodeInExamRoom!
-                                                .barcodesResModel!
-                                                .barcodes![i]
-                                                .student!
-                                                .iD),
+                                                .barcodes[i].student!.iD),
                                         onChanged: (value) {
                                           value!
                                               ? controller.selectedStudentsIds
                                                   .add(controller
-                                                      .studentBarcodeInExamRoom!
-                                                      .barcodesResModel!
-                                                      .barcodes![i]
-                                                      .student!
-                                                      .iD!)
+                                                      .barcodes[i].student!.iD!)
                                               : controller.selectedStudentsIds
                                                   .removeWhere((element) =>
                                                       element ==
-                                                      (controller
-                                                          .studentBarcodeInExamRoom!
-                                                          .barcodesResModel!
-                                                          .barcodes![i]
-                                                          .student!
-                                                          .iD!));
+                                                      (controller.barcodes[i]
+                                                          .student!.iD!));
                                           controller.update();
                                         },
                                       ),
